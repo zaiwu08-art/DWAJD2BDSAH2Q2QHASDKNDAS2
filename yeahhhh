@@ -1,4 +1,4 @@
--- // HATE v17 FINAL //
+-- // HATE v18 FINAL (PART 1/2) //
 if not LPH_OBFUSCATED then getfenv().LPH_NO_VIRTUALIZE=function(...) return ... end end
 local genv=getgenv() or shared
 if genv.__HateCC_Loaded and type(genv.__HateCC_Unload)=="function" then pcall(genv.__HateCC_Unload) task.wait(0.4) end
@@ -32,11 +32,8 @@ cfg('Settings',{['Target Aim']=true,['Knock Check']=true,['Visible Check']=false
 cfg('Keybinds',{
 ['UI Toggle']={Key='RightShift',Mode='Toggle'},
 ['Target Lock']={Key='E',Mode='Toggle'},
-['Silent Aim']={Key='',Mode='Toggle'},
-['Juju Silent Aim']={Key='',Mode='Toggle'},
 ['Aim Assist']={Key='',Mode='Toggle'},
 ['Trigger Bot']={Key='',Mode='Toggle'},
-['Rage Mode']={Key='',Mode='Toggle'},
 ['Ragebot']={Key='',Mode='Toggle'},
 ['Speed']={Key='',Mode='Hold'},
 ['Fly']={Key='',Mode='Hold'},
@@ -46,25 +43,23 @@ cfg('Keybinds',{
 ['Noclip']={Key='',Mode='Toggle'},
 ['Emote']={Key='',Mode='Hold'},
 ['Auto Buy']={Key='',Mode='Toggle'},
-['Purchase Armor']={Key='',Mode='Toggle'}})
+['Purchase Armor']={Key='',Mode='Toggle'},['CamLock']={Key='Q',Mode='Toggle'},['Desync']={Key='V',Mode='Toggle'}})
 cfg('UI Settings',{Transparency=0,Font='Code',Rainbow=false})
 cfg('FOV',{Enabled=false,Visible=true,Size=120,Thickness=1.5,Color=Color3.fromRGB(138,110,255)})
-cfg('Silent Aim FOV',{Enabled=false,Visible=true,Size=90,Thickness=1.5,Color=Color3.fromRGB(255,80,80)})
 cfg('Lock Line',{Enabled=false,Color=Color3.fromRGB(138,110,255),Thickness=1.5})
-cfg('Silent Aim',{Enabled=false,HitPart='Head',Sticky=false,UsePrediction=false,Prediction={X=0,Y=0,Z=0}})
-cfg('Juju Silent Aim',{Enabled=false,Sticky=false,HitPart='Head',HitChance=100,UsePrediction=true,Prediction={X=0.133,Y=0.133,Z=0.133},AntiCurve=false,AntiCurveValue=95,Multipoint=0,AirHitbox='LowerTorso',Backtrack=false,BacktrackLifetime=0.2})
-cfg('Aim Assist',{Enabled=false,HitPart='Head',Style='Camera',Smoothing=50,Sticky=false,UsePrediction=true,Prediction={X=0.133,Y=0.133,Z=0.133},FOVEnabled=false,FOVSize=150})
+cfg('Sticky',{Enabled=false,HitPart='Head',AutoFire=true,Spectate=false,StompTarget=false,InvisibleBullets=false,Tracer=true,TracerMode='Mouse',TracerColor=Color3.fromRGB(255,255,255),FOVEnabled=false,FOVSize=150,FOVColor=Color3.fromRGB(255,80,80),TargetColor=Color3.fromRGB(255,0,0),Strafe=false,StrafeMode='Orbit',StrafeSpeed=5,StrafeXOffset=5,SpectateStrafe=false})
+cfg('CamLock',{Enabled=false,Smoothness=50})
+cfg('Hitsounds',{Enabled=false,Selected='Bubble',Volume=1})
+cfg('God Block',{Enabled=false,HideAnimations=false})
+cfg('Kill Say',{Enabled=false,Message=''})
+cfg('Animations',{Idle1='Default',Idle2='Default',Walk='Default',Run='Default',Jump='Default',Climb='Default',Fall='Default'})
 cfg('Trigger Bot',{Enabled=false,Delay=0.1,HorizontalRadius=0,VerticalRadius=0,JumpPrediction=false,SpecificWeapons={Enabled=false,Weapons={}}})
-cfg('Rage Mode',{Enabled=false,Delay=0.05,Prediction=0.13,Tracers=true,TracerColor=Color3.fromRGB(255,80,80),Impacts=true,WallCheck=true,InfiniteRange=true,Target=nil,RageColor=Color3.fromRGB(255,0,0)})
-cfg('Ragebot',{Enabled=false,Targets={},IncludeAimbotTarget=false,AutoEquip=false,AutoEquipWeapon='[LMG]',AutoStomp=false,TeleportBack=false,AttachToTarget=false,AttachMode='Strafe',StrafeSpeed=50,HOffset=10,VOffset=10,TeleportBullets=false,ViewTarget=false,AutoShoot=false})
+cfg('Ragebot',{Enabled=false,Targets={},IncludeAimbotTarget=false,AutoEquip=false,AutoEquipWeapons={},AutoStomp=false,TeleportBack=false,AttachToTarget=false,AttachMode='Strafe',StrafeSpeed=50,HOffset=10,VOffset=10,TeleportBullets=false,ViewTarget=false,AutoShoot=false,WallCheck=false,InfiniteRange=false})
 cfg('Resolver',{Enabled=false,RandomTeleport=false,Network=false,RefreshRate=0.095})
-cfg('Desync',{Velocity=false,VelocityValue='Zero',Multiplier=0.2,Random=5,Network=false,NetworkValue='Simple',RandomTeleport=false,HOffset=5,VOffset=5,VoidSpam=false})
-cfg('Destroy Cheaters',{Enabled=false,VoidKill=false})
+cfg('Desync',{Enabled=false,Mode='Underground',ShowEye=false,EyeSize=14,EyeColor=Color3.new(1,1,1),Velocity=false,VelocityValue='Zero',Multiplier=0.2,Random=5,Network=false,NetworkValue='Simple',RandomTeleport=false,HOffset=5,VOffset=5})
 cfg('Anti Aim',{AnimationLag=false,AnimationLagValue=50,AnimationSpam=false,AnimationSpamValue='Floss',ClientPitch=false,ClientPitchValue=90,FaceBackwards=false,Spinbot=false,SpinbotSpeed=50})
 cfg('Anti Aim Viewer',{Enabled=false})
-cfg('Teleport Bullets',{Enabled=false})
-cfg('Local Player Visuals',{Trail=false,TrailColor=Color3.fromRGB(0,255,255),TrailGradient=false,GradientColor=Color3.fromRGB(255,0,255),ForcefieldBody=false,ForcefieldBodyColor=Color3.fromRGB(0,255,255),ForcefieldHats=false,ForcefieldHatsColor=Color3.fromRGB(0,255,255),MaterialTools=false,MaterialToolsValue='ForceField',MaterialToolsColor=Color3.fromRGB(0,255,255)})
-cfg('Particle Aura',{Enabled=false,Value='Swirl',Color=Color3.fromRGB(0,255,38)})
+cfg('Local Player Visuals',{Trail=false,TrailColor=Color3.fromRGB(0,255,255),TrailGradient=false,GradientColor=Color3.fromRGB(255,0,255),MaterialTools=false,MaterialToolsValue='ForceField',MaterialToolsColor=Color3.fromRGB(0,255,255),ForcefieldBody=false,ForcefieldBodyColor=Color3.fromRGB(0,255,255),ForcefieldBodyTransparency=0.3,ForcefieldHats=false,ForcefieldHatsColor=Color3.fromRGB(0,255,255),ForcefieldHatsTransparency=0.3,ParticleAura=false,ParticleAuraValue='Swirl',ParticleAuraColor=Color3.fromRGB(0,255,38)})
 cfg('Desynced Position',{Enabled=false,Value='ForceField',Color=Color3.fromRGB(153,196,39),Highlight=false,OutlineColor=Color3.fromRGB(0,0,0)})
 cfg('Skin Changer',{Enabled=false,Skins={}})
 cfg('Spread',{Enabled=false,Amount=0,SpecificWeapons={Enabled=false,Weapons={}}})
@@ -75,7 +70,7 @@ cfg('No Jump Cooldown',{Enabled=false})
 cfg('Delay Changer',{Enabled=false,Delay=0.1,SpecificWeapons={Enabled=false,Weapons={}}})
 cfg('Auto Ammo',{Enabled=false,Amount=30})
 cfg('Visual Awareness',{
-Enabled=false,WeaponESP=false,WeaponESPSize=12,WeaponESPColor=Color3.fromRGB(255,200,0),
+Enabled=false,Names=true,NameMode='Username',Outline=true,WeaponESP=false,WeaponESPSize=12,WeaponESPColor=Color3.fromRGB(255,200,0),
 KeybindDisplay=false,AntiRecord=false,
 KeybindDisplayPos='Left',KeybindDisplaySize=12,KeybindDisplayColor=Color3.fromRGB(255,255,255),KeybindDisplayFont='Plex',
 NameTagSize=14,NameTagColor=Color3.fromRGB(255,255,255),WhitelistColor=Color3.fromRGB(80,200,120),
@@ -96,12 +91,12 @@ HitMarker={Enabled=false,Value='2D',Color=Color3.fromRGB(255,255,255)},
 HitChams={Enabled=false,Value='Outline',Color=Color3.fromRGB(255,255,255),Transparency=0.5,OnlyLast=false,FadeOut=true,Life=1.5},
 HitSkeleton={Enabled=false,Color=Color3.fromRGB(255,255,255),OnlyLast=false,FadeOut=true,Life=1.5},
 HitParticle={Enabled=false,Value='Sparks',Color=Color3.fromRGB(255,255,255)},
-WorldMod={Enabled=false,Brightness=2,FogEnd=1000,ClockTime=14,Saturation=0},
+WorldMod={Enabled=false,Brightness=2,FogEnd=1000,ClockTime=14,Saturation=0,Atmosphere=false,AtmosphereColor=Color3.fromRGB(238,147,237),AtmosphereDecay=Color3.fromRGB(255,255,255),AtmosphereDensity=0.4,AtmosphereGlare=10 ,AtmosphereHaze=10},
 Skybox={Enabled=false,Value='Jungle'},
 AspectRatio={Enabled=false,Value=100},
 View={UnlockZoom=false,HideGunCrosshair=false,HideCursor=false,ShowChat=true},
 Crosshair={Enabled=false,Follow=false,Location='Mouse',Smooth=0,Spin=0,Size=10,Gap=1,Color=Color3.fromRGB(255,255,255)},
-Watermark={Enabled=false,Text='hate v17',Position='Center',YOffset=0,Size=13,Color=Color3.fromRGB(255,255,255)},
+Watermark={Enabled=false,Text='hate v18',Position='Center',YOffset=0,Size=13,Color=Color3.fromRGB(255,255,255)},
 Notifications={Enabled=false,Style='Simple',Value={'On hit'},Color=Color3.fromRGB(242,255,0),YOffset=0},
 MoneyText={Enabled=false,Value='Default',Image='None',Color=Color3.fromRGB(95,255,87)},
 StatBars={Enabled=false,Value='Default',HP=Color3.fromRGB(36,182,3),Energy=Color3.fromRGB(182,182,9),Armor=Color3.fromRGB(0,136,194),Fire=Color3.fromRGB(253,121,33)},
@@ -110,12 +105,15 @@ Hotbar={Enabled=false,Value='Default'},
 cfg('Super Jump',{Enabled=false,Power=100,Cooldown=0.1})
 cfg('Infinite Range',{Enabled=false,MaxRange=999999})
 cfg('Rapid Fire',{Enabled=false,Delay=0.1,SpecificWeapons={Enabled=false,Weapons={}}})
+cfg('Rapid Fire v2',{Enabled=false})
+cfg('Remove Shoot Animations',{Enabled=false})
 cfg('Teleport',{Enabled=false,Mode='Follow',Distance=5,Speed=50,Target=nil})
 cfg('Utility',{AntiTrip=false,AntiStomp=false,CleanScripts=false,NoRecoil=false,AutoReload=false,SmartAutoReload=false,SmartAutoReloadDelay=0.03,RemoveSlowdowns=false,InstantStand=false,NoSit=false,NoVoidKill=false,AutoSort=false})
 cfg('Double Tap',{Enabled=false,Weapons={'[Revolver]','[Silencer]','[Glock]','[Deagle]'}})
 cfg('Purchases',{Style='Hidden',AutoArmor=false,ArmorAt=20})
 cfg('Auto Buy',{Enabled=false,Items={},ItemsSet={}})
 cfg('Spoofing',{Headless=false,Korblox=false})
+cfg('Pqnd4 Kick',{Enabled=false,SoundId='6899466638'})
 for k,d in pairs(DEFAULTS) do if type(d)=="table" and type(Config[k])=="table" then mergeDefaults(Config[k],d) end end
 if type(Config.Keybinds['UI Toggle'])~="table" or Config.Keybinds['UI Toggle'].Key==nil or Config.Keybinds['UI Toggle'].Key=="" then Config.Keybinds['UI Toggle']={Key='RightShift',Mode='Toggle'} end
 local Players=game:GetService("Players")
@@ -130,14 +128,16 @@ local Camera=Workspace.CurrentCamera
 local LocalPlayer=Players.LocalPlayer
 local Mouse=LocalPlayer:GetMouse()
 currentTarget=nil;isLocking=false
+triggerEnabled=false
+stickyLocked=false;stickyTargetPlayer=nil
+ragebotTarget=nil;ragebotAimPart=nil;rageStrafeAngle=0;rageStompBusy=false;rageAttachLast=0;ragebotBackPos=nil
 espLabels={};BaseSpeed=16
-rapidFireActive=false;infRangeActive=false;lastRapidShot=0;lastTriggerClick=0
+rapidFireActive=false;infRangeActive=false;lastRapidShot=0;lastTriggerClick=0;rapidPatched={}
 Unloaded=false;PanicMode=false;Started=false
 Whitelist={};Blacklist={};AllConnections={}
 WaitingForKey=nil;BindConsumed=false
 KeybindPopup=nil;DropdownPopup=nil;GridPopup=nil;Launcher=nil
-aimAssistPart=nil;stickyTarget=nil;silentAimTarget=nil;saStickyTarget=nil
-ragebotTarget=nil;ragebotAimPart=nil;rageStrafeAngle=0;rageStompBusy=false
+camLockTarget=nil
 selectedSkinWeapon='[Revolver]'
 MainFrame=nil;TopBar=nil;TabBar=nil;ContentFrame=nil
 buildPlayerList=nil;buildConfigList=nil;configNameBox=nil
@@ -151,6 +151,8 @@ auraPart=nil;auraEmitters={}
 trailObj=nil;addedAccessories={};accessoryId=""
 slowConn=nil;sitConn=nil;instantStandConn=nil
 holdStates={}
+pqndTool=nil;pqndTest=false
+indUpdateLast=0
 function track(c) table.insert(AllConnections,c) return c end
 function getBindKey(b) if type(b)=="table" then return b.Key end return b end
 function getKeyEnum(n) if not n or n=='' then return nil end local ok,e=pcall(function() return Enum.KeyCode[n] end) return ok and e or nil end
@@ -163,6 +165,7 @@ if ok2 and uit and input.UserInputType==uit then return true end
 return false
 end
 function bindMode(name) local b=Config.Keybinds[name] if type(b)=="table" then return b.Mode end return 'Toggle' end
+-- // [修复] 绑定按键后失效: Toggle=直接切换主开关, Hold=按住生效 //
 function bindActive(name)
 local b=Config.Keybinds[name]
 local kn=getBindKey(b)
@@ -171,19 +174,17 @@ if b.Mode=='Hold' then return holdStates[name]==true end
 return true
 end
 function toggleFeatureFlag(name)
-if name=='Silent Aim' then Config['Silent Aim'].Enabled=not Config['Silent Aim'].Enabled
-elseif name=='Juju Silent Aim' then Config['Juju Silent Aim'].Enabled=not Config['Juju Silent Aim'].Enabled
-elseif name=='Aim Assist' then Config['Aim Assist'].Enabled=not Config['Aim Assist'].Enabled
-elseif name=='Trigger Bot' then Config['Trigger Bot'].Enabled=not Config['Trigger Bot'].Enabled
-elseif name=='Rage Mode' then Config['Rage Mode'].Enabled=not Config['Rage Mode'].Enabled
+if name=='Sticky' then Config['Sticky'].Enabled=not Config['Sticky'].Enabled notifyToggle("Sticky",Config['Sticky'].Enabled)
+elseif name=='Trigger Bot' then Config['Trigger Bot'].Enabled=not Config['Trigger Bot'].Enabled notifyToggle("Trigger Bot",Config['Trigger Bot'].Enabled)
 elseif name=='Ragebot' then
 Config.Ragebot.Enabled=not Config.Ragebot.Enabled
+notifyToggle("Ragebot",Config.Ragebot.Enabled)
 if not Config.Ragebot.Enabled then pcall(function() local h=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Humanoid') if h then Camera.CameraSubject=h end end) end
-elseif name=='ESP' then Config['Visual Awareness'].Enabled=not Config['Visual Awareness'].Enabled
-elseif name=='Inf Range' then Config['Infinite Range'].Enabled=not Config['Infinite Range'].Enabled
-elseif name=='Noclip' then Config.Movement.Noclip=not Config.Movement.Noclip
-elseif name=='Speed' then Config.Movement.CFrameSpeed=not Config.Movement.CFrameSpeed
-elseif name=='Fly' then Config.Movement.CFrameFly=not Config.Movement.CFrameFly
+elseif name=='ESP' then Config['Visual Awareness'].Enabled=not Config['Visual Awareness'].Enabled notifyToggle("ESP",Config['Visual Awareness'].Enabled)
+elseif name=='Inf Range' then Config['Infinite Range'].Enabled=not Config['Infinite Range'].Enabled notifyToggle("Inf Range",Config['Infinite Range'].Enabled)
+elseif name=='Noclip' then Config.Movement.Noclip=not Config.Movement.Noclip notifyToggle("Noclip",Config.Movement.Noclip)
+elseif name=='Speed' then Config.Movement.CFrameSpeed=not Config.Movement.CFrameSpeed notifyToggle("Speed",Config.Movement.CFrameSpeed)
+elseif name=='Fly' then Config.Movement.CFrameFly=not Config.Movement.CFrameFly notifyToggle("Fly",Config.Movement.CFrameFly)
 end
 refreshAllComponents()
 end
@@ -216,6 +217,7 @@ ESPAdv="ESP Advanced Settings",NameTagSize="Name Size",NameTagColor="Name Color"
 SkinChanger="Skin Changer",SkinWeapon="Weapon",SkinSelect="Skin",FOVEnabled="FOV On",FOVVisible="FOV Visible",FOVSize="FOV Size",FOVThickness="FOV Thick",FOVColor="FOV Color",
 LockLine="Lock Line",LockLineColor="Line Color",LockLineThick="Line Thick",TargetAim="Target Aim",KnockCheck="Knock Check",VisibleCheck="Visible Check",
 ESP="ESP",ESPBox="Box",ESPFill="Fill",ESPChams="Chams",ESPArmor="Armor Bar",Tracer="Tracer Line",WeaponESP="Weapon ESP",KeybindDisplay="Keybind Display",AntiRecord="Anti-Record",
+KDPos="KB Position",KDSize="KB Size",KDColor="KB Color",KDFont="KB Font",NameFont="Name Font",WeaponFont="Weapon Font",DistanceESP="Distance ESP",WLColor="Whitelist Color",BLColor2="Blacklist Color",BoxColor2="Box Color",
 ESPColors="ESP Colors",HealthBar="Health Bar",HealthText="Health Text",Skeleton="Skeleton",
 Effects="Effects",LocalTracers="Local Tracers",TracerMode="Mode",TracerTexture="Texture",TracerLife="Lifetime",TracerColor="Color",
 EnemyTracers="Enemy Tracers",EnemyTracerMode="Mode",EnemyTracerColor="Color",EnemyTracerLife="Lifetime",Impacts="Bullet Impacts",ImpactSize="Impact Size",
@@ -263,6 +265,7 @@ ESPAdv="ESP 集中设置",NameTagSize="名字大小",NameTagColor="名字颜色"
 SkinChanger="皮肤更换",SkinWeapon="武器",SkinSelect="选择皮肤",FOVEnabled="FOV开",FOVVisible="FOV可见",FOVSize="FOV大小",FOVThickness="FOV粗细",FOVColor="FOV颜色",
 LockLine="锁定线",LockLineColor="线颜色",LockLineThick="线粗细",TargetAim="目标锁定",KnockCheck="击倒检测",VisibleCheck="可见检测",
 ESP="ESP",ESPBox="方框",ESPFill="填充",ESPChams="透视",ESPArmor="护甲条",Tracer="追踪线",WeaponESP="武器ESP",KeybindDisplay="按键显示",AntiRecord="防录屏",
+KDPos="按键位置",KDSize="按键大小",KDColor="按键颜色",KDFont="按键字体",NameFont="名字字体",WeaponFont="武器字体",DistanceESP="距离ESP",WLColor="白名单颜色",BLColor2="黑名单颜色",BoxColor2="方框颜色",
 ESPColors="ESP颜色",HealthBar="血量条",HealthText="血量数值",Skeleton="骨骼",
 Effects="特效",LocalTracers="本地轨迹",TracerMode="模式",TracerTexture="贴图",TracerLife="寿命",TracerColor="颜色",
 EnemyTracers="敌人轨迹",EnemyTracerMode="模式",EnemyTracerColor="颜色",EnemyTracerLife="寿命",Impacts="子弹落点",ImpactSize="落点大小",
@@ -291,6 +294,10 @@ ThemeColor="主题色",PanicInfo="F9=隐藏",UIToggleKey="呼出键",UISettings=
 NoWeapon="空手",Follow="跟随",Orbit="环绕",NoFiles="不支持文件",BindMode="模式",
 CatGuns="枪械",CatAmmo="枪械子弹",CatOther="食物/护甲/工具",Start="启动",Exit="退出"},
 }
+Translations.EN.StickyAim="Sticky Aim";Translations.EN.StickyFire="Fire Mode";Translations.EN.StickySpectate="Spectate";Translations.EN.StickyStomp="Stomp Target";Translations.EN.StickyInvBullets="Invisible Bullets";Translations.EN.StickyTracer="Tracer";Translations.EN.StickyTracerMode="Tracer Mode";Translations.EN.StickyTracerColor="Tracer Color";Translations.EN.StickyFOV="FOV Box";Translations.EN.StickyFOVSize="FOV Size";Translations.EN.StickyFOVColor="FOV Color";Translations.EN.RapidFireV2="Rapid Fire v2";Translations.EN.RemoveShootAnim="Remove Shoot Animations";Translations.EN.ESPNames="Names";Translations.EN.ESPNameMode="Name Mode";Translations.EN.ESPOutline="Outline"
+Translations.CN.StickyAim="吸附瞄准";Translations.CN.StickyFire="开火模式";Translations.CN.StickySpectate="观战";Translations.CN.StickyStomp="踩踏目标";Translations.CN.StickyInvBullets="隐形子弹";Translations.CN.StickyTracer="追踪线";Translations.CN.StickyTracerMode="追踪线模式";Translations.CN.StickyTracerColor="追踪线颜色";Translations.CN.StickyFOV="FOV框";Translations.CN.StickyFOVSize="FOV大小";Translations.CN.StickyFOVColor="FOV颜色";Translations.CN.RapidFireV2="快速射击v2";Translations.CN.RemoveShootAnim="移除射击动画";Translations.CN.ESPNames="显示名字";Translations.CN.ESPNameMode="名字模式";Translations.CN.ESPOutline="描边"
+Translations.EN.Pqnd4Kick="Pqnd4 Kick";Translations.EN.Atmosphere="Atmosphere";Translations.EN.AtmosphereColor="Atmosphere Color";Translations.EN.AtmosphereDecay="Atmosphere Decay";Translations.EN.AtmosphereDensity="Atmosphere Density";Translations.EN.AtmosphereGlare="Atmosphere Glare";Translations.EN.AtmosphereHaze="Atmosphere Haze";Translations.EN.Exposure="Exposure";Translations.EN.ExposureValue="Exposure Value";Translations.EN.Saturation="Saturation";Translations.EN.StickyStrafe="Target Strafe";Translations.EN.StickyStrafeMode="Strafe Mode";Translations.EN.StickyStrafeSpeed="Strafe Speed";Translations.EN.StickyStrafeOffset="Z Offset";Translations.EN.StickySpectateStrafe="Spectate Strafe"
+Translations.CN.Pqnd4Kick="Pqnd4 假踢";Translations.CN.Atmosphere="大气";Translations.CN.AtmosphereColor="大气颜色";Translations.CN.AtmosphereDecay="大气衰减";Translations.CN.AtmosphereDensity="大气密度";Translations.CN.AtmosphereGlare="大气眩光";Translations.CN.AtmosphereHaze="大气雾霾";Translations.CN.Exposure="曝光";Translations.CN.ExposureValue="曝光值";Translations.CN.Saturation="饱和度";Translations.CN.StickyStrafe="环绕目标";Translations.CN.StickyStrafeMode="环绕模式";Translations.CN.StickyStrafeSpeed="环绕速度";Translations.CN.StickyStrafeOffset="Z偏移";Translations.CN.StickySpectateStrafe="环绕观战"
 function T(k) return (Translations[CurrentLang] and Translations[CurrentLang][k]) or Translations.EN[k] or k end
 LangLabels={}
 BindSuffixSet={}
@@ -298,7 +305,11 @@ function registerLang(o,k) table.insert(LangLabels,{obj=o,key=k}); o.Text=T(k)..
 function refreshLanguage() for _,it in pairs(LangLabels) do pcall(function() it.obj.Text=T(it.key)..(BindSuffixSet[it.obj] and (" ("..T("BindKey")..")") or "") end) end end
 ItemCN={revolver="左轮手枪",glock="格洛克",silencer="消音手枪",deagle="沙鹰",shotgun="霰弹枪",doublereloadsg="双管霰弹枪",tacticalshotgun="战术霰弹枪",drumshotgun="鼓式霰弹枪",["drum-shotgun"]="鼓式霰弹枪",["double-barrelsg"]="双管霰弹枪",smg="冲锋枪",rifle="步枪",ak47="AK47",ar="突击步枪",aug="AUG",drumgun="鼓枪",lmg="轻机枪",p90="P90",flintlock="燧发枪",knife="小刀",taser="电击枪",paintball="彩弹枪",flaregun="信号枪",snowball="雪球",sword="剑",bat="球棒",
 revolverammo="左轮子弹",glockammo="格洛克子弹",silencerammo="消音手枪子弹",silencerarammo="消音步枪子弹",deagleammo="沙鹰子弹",shotgunammo="霰弹枪子弹",doublereloadsgammo="双管霰弹枪子弹",tacticalshotgunammo="战术霰弹枪子弹",["drum-shotgunammo"]="鼓式霰弹枪子弹",["double-barrelsgammo"]="双管霰弹枪子弹",smgammo="冲锋枪子弹",rifleammo="步枪子弹",ak47ammo="AK47子弹",arammo="突击步枪子弹",augammo="AUG子弹",drumgunammo="鼓枪子弹",lmgammo="轻机枪子弹",p90ammo="P90子弹",flamethrowerammo="火焰喷射器弹药",rpgammo="火箭筒弹药",grenadelauncherammo="榴弹发射器弹药",ammo="子弹",
-mediumarmor="中护甲",higharmor="高护甲",["high-mediumarmor"]="高中护甲",firearmor="火焰护甲",antidotes="解毒剂",bandage="绷带",medkit="医疗包",pizza="披萨",chicken="鸡肉",burger="汉堡",hamburger="汉堡包",cola="可乐",water="水",cranberry="蔓越莓",lettuce="生菜",taco="塔可",donut="甜甜圈",meat="肉",popcorn="爆米花",hotdog="热狗",damilk="牛奶",starbloxlatte="星布乐拿铁",phone="手机",lockpick="开锁器",lockpicker="开锁器",key="钥匙",bag="背包",radio="对讲机",jammers="干扰器",c4="C4",detonator="起爆器",mine="地雷",flashlight="手电筒",flashbang="闪光弹",grenade="手榴弹",grenadelauncher="榴弹发射器",pepperspray="胡椒喷雾",teargas="催泪瓦斯",basketball="篮球",sledgehammer="大锤",pitchfork="干草叉",riotmask="防暴面具",surgeonmask="外科面具",paintballmask="彩弹面具",ninjamask="忍者面具",whip="鞭子",hairglue="发胶",pencil="铅笔",stopsign="停车牌",defaultmoveset="默认动作",foodscart="食物车",flowers="花",tele="传送"}
+mediumarmor="中护甲",higharmor="高护甲",["high-mediumarmor"]="高中护甲",firearmor="火焰护甲",antidotes="解毒剂",bandage="绷带",medkit="医疗包",
+pizza="披萨",chicken="鸡肉",burger="汉堡",hamburger="汉堡包",cola="可乐",water="水",cranberry="蔓越莓",lettuce="生菜",taco="塔可",donut="甜甜圈",meat="肉",popcorn="爆米花",hotdog="热狗",damilk="牛奶",starbloxlatte="星布乐拿铁",
+phone="手机",lockpick="开锁器",lockpicker="开锁器",key="钥匙",bag="背包",radio="对讲机",jammers="干扰器",c4="C4",detonator="起爆器",mine="地雷",
+flashlight="手电筒",flashbang="闪光弹",grenade="手榴弹",grenadelauncher="榴弹发射器",pepperspray="胡椒喷雾",teargas="催泪瓦斯",
+basketball="篮球",sledgehammer="大锤",pitchfork="干草叉",riotmask="防暴面具",surgeonmask="外科面具",paintballmask="彩弹面具",ninjamask="忍者面具",whip="鞭子",hairglue="发胶",pencil="铅笔",stopsign="停车牌",defaultmoveset="默认动作",foodscart="食物车",flowers="花",tele="传送"}
 function itemDisplay(n) if CurrentLang=="CN" then return ItemCN[n] or n end return n end
 function getWeaponDisplayName(n) if not n or n=="" then return T("NoWeapon") end return itemDisplay(n) end
 function serializeValue(v,ind)
@@ -380,7 +391,7 @@ if #bl>0 then return bl end
 return cand
 end
 function findClosestTarget(hp,fovCfg)
-hp=hp or Config['Silent Aim'].HitPart; fovCfg=fovCfg or Config.FOV
+hp=hp or 'Head'; fovCfg=fovCfg or Config.FOV
 local best,bd=nil,math.huge
 for _,pl in ipairs(getValidTargetPlayers()) do
 local part=hp=='Closest Part' and getClosestBodyPart(pl.Character) or pl.Character:FindFirstChild(hp)
@@ -434,147 +445,64 @@ end
 end
 if total>=9e9 then resolverState.forcePos=resolverState.lastPos end
 end
-function getSAStickyTarget()
-if not saStickyTarget then return nil end
-local ch=saStickyTarget if not ch or not ch.Parent then return nil end
-local pl=Players:GetPlayerFromCharacter(ch) if not pl or isWhitelisted(pl) or isPlayerKnockedOrKO(pl) then return nil end
+function getStickyLockPart()
+local pl=stickyTargetPlayer
+if not pl then return nil end
+local ch=pl.Character
+if not ch or not ch.Parent then return nil end
+if isWhitelisted(pl) or isPlayerKnockedOrKO(pl) then return nil end
 local hum=ch:FindFirstChildOfClass("Humanoid") if not hum or hum.Health<=0 then return nil end
-return Config['Silent Aim'].HitPart=='Closest Part' and getClosestBodyPart(ch) or ch:FindFirstChild(Config['Silent Aim'].HitPart)
+return Config['Sticky'].HitPart=='Closest Part' and getClosestBodyPart(ch) or ch:FindFirstChild(Config['Sticky'].HitPart)
 end
-function getTargetForSilentAim()
-if not Config['Silent Aim'].Sticky then saStickyTarget=nil else local tp=getSAStickyTarget() if tp then return tp end saStickyTarget=nil end
-if Config.Settings['Target Aim'] and currentTarget and currentTarget.Parent then
-local pl=Players:GetPlayerFromCharacter(currentTarget.Parent)
-if pl and not isPlayerKnockedOrKO(pl) and not isWhitelisted(pl) then
-local tp=Config['Silent Aim'].HitPart=='Closest Part' and getClosestBodyPart(currentTarget.Parent) or currentTarget.Parent:FindFirstChild(Config['Silent Aim'].HitPart)
-if tp and canSeeTarget(tp) and isMouseInFOV(currentTarget.Parent,Config['Silent Aim FOV']) then return tp end
-end
-end
-local t=findClosestTarget(Config['Silent Aim'].HitPart,Config['Silent Aim FOV'])
-if t and Config['Silent Aim'].Sticky then saStickyTarget=t.Parent end
-return t
-end
-jujuStickyTarget=nil
-function getJujuStickyTarget()
-if not jujuStickyTarget then return nil end
-local ch=jujuStickyTarget if not ch or not ch.Parent then return nil end
-local pl=Players:GetPlayerFromCharacter(ch) if not pl or isWhitelisted(pl) or isPlayerKnockedOrKO(pl) then return nil end
-local hum=ch:FindFirstChildOfClass("Humanoid") if not hum or hum.Health<=0 then return nil end
-return Config['Juju Silent Aim'].HitPart=='Closest Part' and getClosestBodyPart(ch) or ch:FindFirstChild(Config['Juju Silent Aim'].HitPart)
-end
-function getTargetForJujuSilentAim()
-local JS=Config['Juju Silent Aim']
-if not JS.Sticky then jujuStickyTarget=nil else local tp=getJujuStickyTarget() if tp then return tp end jujuStickyTarget=nil end
-if Config.Settings['Target Aim'] and currentTarget and currentTarget.Parent then
-local pl=Players:GetPlayerFromCharacter(currentTarget.Parent)
-if pl and not isPlayerKnockedOrKO(pl) and not isWhitelisted(pl) then
-local tp=JS.HitPart=='Closest Part' and getClosestBodyPart(currentTarget.Parent) or currentTarget.Parent:FindFirstChild(JS.HitPart)
-if tp and canSeeTarget(tp) then return tp end
+function lockStickyTarget()
+if isTyping() then return end
+stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil;isLocking=false
+if not Config['Sticky'].Enabled then return end
+local ST=Config['Sticky']
+local best,bd=nil,math.huge
+local center=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
+for _,pl in ipairs(getValidTargetPlayers()) do
+local ch=pl.Character
+local part=ST.HitPart=='Closest Part' and getClosestBodyPart(ch) or ch:FindFirstChild(ST.HitPart)
+if part then
+local sp,on=Camera:WorldToViewportPoint(part.Position)
+if on then
+local d=(Vector2.new(sp.X,sp.Y)-center).Magnitude
+if (not ST.FOVEnabled or d<=ST.FOVSize/2) and d<bd then bd=d best=pl end
 end
 end
-local t=findClosestTarget(JS.HitPart,Config.FOV)
-if t and JS.Sticky then jujuStickyTarget=t.Parent end
-return t
 end
-function getAAStickyTarget()
-if not stickyTarget then return nil end
-local ch=stickyTarget if not ch or not ch.Parent then return nil end
-local pl=Players:GetPlayerFromCharacter(ch) if not pl or isWhitelisted(pl) or isPlayerKnockedOrKO(pl) then return nil end
-local hum=ch:FindFirstChildOfClass("Humanoid") if not hum or hum.Health<=0 then return nil end
-return Config['Aim Assist'].HitPart=='Closest Part' and getClosestBodyPart(ch) or ch:FindFirstChild(Config['Aim Assist'].HitPart)
-end
-function getTargetForAimAssist()
-if Config['Aim Assist'].Sticky then local tp=getAAStickyTarget() if tp then return tp end stickyTarget=nil end
-if Config.Settings['Target Aim'] and currentTarget and currentTarget.Parent then
-local pl=Players:GetPlayerFromCharacter(currentTarget.Parent)
-if pl and not isPlayerKnockedOrKO(pl) and not isWhitelisted(pl) then
-local tp=Config['Aim Assist'].HitPart=='Closest Part' and getClosestBodyPart(currentTarget.Parent) or currentTarget.Parent:FindFirstChild(Config['Aim Assist'].HitPart)
-if tp and canSeeTarget(tp) then return tp end
+if best then
+stickyLocked=true;stickyTargetPlayer=best;isLocking=true
+currentTarget=getStickyLockPart()
 end
 end
-local fovCfg=Config['Aim Assist'].FOVEnabled and {Enabled=true,Size=Config['Aim Assist'].FOVSize} or Config.FOV
-local t=findClosestTarget(Config['Aim Assist'].HitPart,fovCfg)
-if t and Config['Aim Assist'].Sticky then stickyTarget=t.Parent end
-return t
-end
-function applyAimAssist(dt)
-if isSelfKnocked() then aimAssistPart=nil stickyTarget=nil return end
-local target=getTargetForAimAssist()
-aimAssistPart=target
-if not target then return end
-local tp=getPredictedPosition(target,Config['Aim Assist'])
-local f=math.clamp((100-Config['Aim Assist'].Smoothing)/100,0,1)*math.clamp(dt*60,0,1)
-if Config['Aim Assist'].Style=='Mouse' then
-local pos=Camera:WorldToViewportPoint(tp)
-local delta=Vector2.new(pos.X,pos.Y)-Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
-pcall(function() mousemoverel(delta.X*f,delta.Y*f) end)
-else
-local cc=Camera.CFrame
-local tc=CFrame.new(cc.Position,tp)
-Camera.CFrame=cc:Lerp(tc,f)
-end
-end
+-- // [juju移植] Aimbot 替换 CamLock (核心逻辑见脚本尾部整合模块) //
 fovCircle=Drawing.new("Circle");fovCircle.Visible=false;fovCircle.NumSides=60;fovCircle.Filled=false
-saFovCircle=Drawing.new("Circle");saFovCircle.Visible=false;saFovCircle.NumSides=60;saFovCircle.Filled=false
-aaFovCircle=Drawing.new("Circle");aaFovCircle.Visible=false;aaFovCircle.NumSides=60;aaFovCircle.Filled=false
 lockLine=Drawing.new("Line");lockLine.Visible=false
+stickyTracer=Drawing.new("Line");stickyTracer.Visible=false;stickyTracer.Thickness=1
+stickyFov=Drawing.new("Circle");stickyFov.Visible=false;stickyFov.NumSides=60;stickyFov.Filled=false
 function updateFOVCircle()
-if Unloaded then fovCircle.Visible=false saFovCircle.Visible=false aaFovCircle.Visible=false return end
+if Unloaded then fovCircle.Visible=false stickyFov.Visible=false return end
 if Config.FOV.Enabled and Config.FOV.Visible and not PanicMode and Started then
 fovCircle.Visible=true;fovCircle.Radius=Config.FOV.Size/2;fovCircle.Position=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2);fovCircle.Thickness=Config.FOV.Thickness;fovCircle.Color=Config.FOV.Color
 else fovCircle.Visible=false end
-if Config['Silent Aim FOV'].Enabled and Config['Silent Aim FOV'].Visible and not PanicMode and Started then
-saFovCircle.Visible=true;saFovCircle.Radius=Config['Silent Aim FOV'].Size/2;saFovCircle.Position=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2);saFovCircle.Thickness=Config['Silent Aim FOV'].Thickness;saFovCircle.Color=Config['Silent Aim FOV'].Color
-else saFovCircle.Visible=false end
-if Config['Aim Assist'].FOVEnabled and Config['Aim Assist'].Enabled and bindActive('Aim Assist') and not PanicMode and Started then
-aaFovCircle.Visible=true;aaFovCircle.Radius=Config['Aim Assist'].FOVSize/2;aaFovCircle.Position=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2);aaFovCircle.Thickness=1.5;aaFovCircle.Color=Config.FOV.Color
-else aaFovCircle.Visible=false end
+if Config['Sticky'].Enabled and Config['Sticky'].FOVEnabled and not PanicMode and Started then
+stickyFov.Visible=true;stickyFov.Radius=Config['Sticky'].FOVSize/2;stickyFov.Position=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2);stickyFov.Thickness=1.5;stickyFov.Color=Config['Sticky'].FOVColor
+else stickyFov.Visible=false end
 end
 function updateLockLine()
 if Unloaded or PanicMode or not Started then lockLine.Visible=false return end
 if not Config['Lock Line'].Enabled then lockLine.Visible=false return end
 local t=nil
-if currentTarget and currentTarget.Parent then t=currentTarget elseif aimAssistPart and aimAssistPart.Parent then t=aimAssistPart elseif jujuSilentTarget and jujuSilentTarget.Parent then t=jujuSilentTarget end
+if currentTarget and currentTarget.Parent then t=currentTarget end
 if t then
 local pos,on=Camera:WorldToViewportPoint(t.Position)
 if on then lockLine.Visible=true lockLine.From=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2) lockLine.To=Vector2.new(pos.X,pos.Y) lockLine.Color=Config['Lock Line'].Color lockLine.Thickness=Config['Lock Line'].Thickness return end
 end
 lockLine.Visible=false
 end
-function TriggerBot()
-if Unloaded or not Started then return end
-if not Config['Trigger Bot'].Enabled or not bindActive('Trigger Bot') then return end
-if tick()-lastTriggerClick<Config['Trigger Bot'].Delay then return end
-local tb=Config['Trigger Bot']
-local tool=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Tool") if not tool then return end
-if tb.SpecificWeapons.Enabled then
-local valid=false
-for _,wn in pairs(tb.SpecificWeapons.Weapons) do local cn=wn:gsub("%[",""):gsub("%]","") if tool.Name==wn or tool.Name:find(cn,1,true) then valid=true break end end
-if not valid then return end
-end
-local part=nil;local ch=nil
-if currentTarget and currentTarget.Parent then part=currentTarget;ch=currentTarget.Parent
-else part=findClosestTarget() ch=part and part.Parent end
-if not part or not ch then return end
-local pl=Players:GetPlayerFromCharacter(ch) if not pl or isWhitelisted(pl) or isPlayerKnockedOrKO(pl) then return end
-local aimPos=part.Position
-if tb.JumpPrediction then
-local vel=part.AssemblyLinearVelocity or Vector3.new(0,0,0)
-if vel.Y>12 then aimPos=aimPos+Vector3.new(0,vel.Y*0.133,0) end
-end
-if tb.HorizontalRadius>0 or tb.VerticalRadius>0 then
-local sp,on=Camera:WorldToViewportPoint(aimPos)
-if not on then return end
-local m=UserInputService:GetMouseLocation()
-if math.abs(m.X-sp.X)<=tb.HorizontalRadius and math.abs(m.Y-sp.Y)<=tb.VerticalRadius then
-tool:Activate(); lastTriggerClick=tick()
-end
-else
-if not canSeeTarget(part) then return end
-if Config.FOV.Enabled and not isMouseInFOV(ch) then return end
-tool:Activate(); lastTriggerClick=tick()
-end
-end
+-- // TriggerBot 由脚本尾部整合模块重新定义 (juju 风格) //
 grm=getrawmetatable(game)
 oldIndex=grm.__index
 oldNamecall=grm.__namecall
@@ -593,37 +521,13 @@ if Config.Ragebot.Enabled and Config.Ragebot.AutoShoot and ragebotAimPart and ra
 local vel=ragebotAimPart.AssemblyLinearVelocity or Vector3.new(0,0,0)
 return CFrame.new(ragebotAimPart.Position+vel*0.133)
 end
-if Config['Juju Silent Aim'].Enabled and (bindActive('Juju Silent Aim') or Config.Ragebot.Enabled) then
-local part=jujuSilentTarget
+if Config['Sticky'].Enabled and stickyLocked and not Config['Sticky'].AutoFire then
+local part=currentTarget
 if part and part.Parent then
-local ch=part.Parent
-local pl=Players:GetPlayerFromCharacter(ch)
+local pl=Players:GetPlayerFromCharacter(part.Parent)
 if pl and not isWhitelisted(pl) and not isPlayerKnockedOrKO(pl) then
-local JS=Config['Juju Silent Aim']
-if math.random(1,100)<=JS.HitChance then
-local pos=resolverState.forcePos or getPredictedPosition(part,JS)
-if JS.AntiCurve then
-local sp,on=Camera:WorldToViewportPoint(pos)
-if on then
-local m=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
-if (Vector2.new(sp.X,sp.Y)-m).Magnitude>JS.AntiCurveValue then return oldIndex(self,key) end
+return CFrame.new(part.Position)
 end
-end
-if JS.Multipoint>0 then
-local size=part.Size*(JS.Multipoint/200)
-pos=pos+Vector3.new(math.random(-size.X,size.X),math.random(-size.Y,size.Y),math.random(-size.Z,size.Z))
-end
-return CFrame.new(pos)
-end
-end
-end
-elseif Config['Silent Aim'].Enabled and bindActive('Silent Aim') then
-local part=silentAimTarget
-if part and part.Parent then
-local ch=part.Parent
-local pl=Players:GetPlayerFromCharacter(ch)
-if not pl or isWhitelisted(pl) or isPlayerKnockedOrKO(pl) then return oldIndex(self,key) end
-return CFrame.new(getPredictedPosition(part,Config['Silent Aim']))
 end
 end
 end
@@ -652,7 +556,7 @@ local ammo=tool and tool:FindFirstChild("Ammo")
 if not ammo or ammo.Value>=2 then
 task.delay(0.05,function()
 if Unloaded then return end
-local hit=jujuSilentTarget and jujuSilentTarget.Parent and CFrame.new(getPredictedPosition(jujuSilentTarget,Config['Juju Silent Aim'])) or (silentAimTarget and silentAimTarget.Parent and CFrame.new(getPredictedPosition(silentAimTarget,Config['Silent Aim'])) or args[4])
+local hit=currentTarget and currentTarget.Parent and CFrame.new(currentTarget.Position) or args[4]
 pcall(function() self:FireServer('ShootGun',handle,args[3],hit,args[5],args[6]) end)
 end)
 end
@@ -725,96 +629,7 @@ end
 end)
 end
 do
-local MuzzleOffsets={['[Deagle]']=CFrame.new(0,0.382,-1.568),['[Revolver]']=CFrame.new(-0.1,0.4,1.8),['[Double-Barrel SG]']=CFrame.new(0,0.25,-2.5),['[TacticalShotgun]']=CFrame.new(0,0.7,-3.8),['[Silencer]']=CFrame.new(0,0.4,1.3),['[SMG]']=CFrame.new(2.5,0.35,0),['[Rifle]']=CFrame.new(0,0.2,-1.7),['[Shotgun]']=CFrame.new(0,0.4,2.4),['[Flintlock]']=CFrame.new(0,0.25,2.5),['[AK47]']=CFrame.new(0.6,0.25,0),['[Glock]']=CFrame.new(0,0.4,1.5),['[AR]']=CFrame.new(0,0.3,-2.0),['[AUG]']=CFrame.new(0,0.3,-2.5),['[Drum-Shotgun]']=CFrame.new(0,0.4,-2.0),['[DrumGun]']=CFrame.new(0,0.3,-1.5),['[LMG]']=CFrame.new(0,0.3,-2.5),['[P90]']=CFrame.new(0,0.3,-1.8),['[SilencerAR]']=CFrame.new(0,0.3,-2.0)}
-local ShotgunWeapons={['[Double-Barrel SG]']=true,['[TacticalShotgun]']=true,['[Shotgun]']=true,['[Drum-Shotgun]']=true}
-local function getMuzzlePosition(tool)
-local h=tool:FindFirstChild('Handle') if not h then return nil end
-local off=MuzzleOffsets[tool.Name] or CFrame.new(0,0.4,1.8)
-local m=h:FindFirstChild('Muzzle') if m then return m.WorldPosition end
-return (h.CFrame*off).Position
-end
-local function rageCanShoot(ch)
-if not ch then return false end
-local hum=ch:FindFirstChildOfClass('Humanoid') if not hum or hum.Health<=0 then return false end
-local be=ch:FindFirstChild('BodyEffects') if not be then return false end
-if be:FindFirstChild('K.O') and be['K.O'].Value then return false end
-if be:FindFirstChild('Reload') and be.Reload.Value then return false end
-if ch:FindFirstChild('GRABBING_CONSTRAINT') or ch:FindFirstChild('FORCEFIELD') then return false end
-return true
-end
-local RageRay=RaycastParams.new();RageRay.FilterType=Enum.RaycastFilterType.Exclude
-local RageLast={}
-local function getRageTarget()
-if Config['Rage Mode'].Target then
-local p=Players:GetPlayerByUserId(Config['Rage Mode'].Target)
-if p and p.Character and p.Character:FindFirstChild('Head') and not isWhitelisted(p) and not isPlayerKnockedOrKO(p) then return p.Character:FindFirstChild('Head') end
-end
-if currentTarget and currentTarget.Parent then return currentTarget end
-if jujuSilentTarget and jujuSilentTarget.Parent then return jujuSilentTarget end
-if silentAimTarget and silentAimTarget.Parent then return silentAimTarget end
-return findClosestTarget(Config['Silent Aim'].HitPart,Config.FOV)
-end
-local function rageWallBlocked(origin,target)
-local rp=RaycastParams.new();rp.FilterDescendantsInstances={LocalPlayer.Character,target.Parent};rp.FilterType=Enum.RaycastFilterType.Exclude
-local res=Workspace:Raycast(origin,(target.Position-origin).Unit*(target.Position-origin).Magnitude,rp)
-return res~=nil
-end
-local function RageFire(tool,origin,dir,range,col,doTracer,doImpact)
-local handle=tool:FindFirstChild('Handle') if not handle then return end
-local ev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT') if not ev then return end
-RageRay.FilterDescendantsInstances={LocalPlayer.Character}
-local VA=Config['Visual Awareness']
-if ShotgunWeapons[tool.Name] then
-for i=1,5 do
-local spread=Vector3.new((math.random()>0.5 and math.random()*0.05 or -math.random()*0.05),(math.random()>0.5 and math.random()*0.1 or -math.random()*0.1),(math.random()>0.5 and math.random()*0.05 or -math.random()*0.05))
-local d=dir+spread
-local res=Workspace:Raycast(origin,d*range,RageRay)
-local hitPos=res and res.Position or (origin+d*range)
-pcall(function() ev:FireServer('ShootGun',handle,origin,hitPos,res and res.Instance,res and res.Normal) end)
-if doTracer then renderTracer(origin,hitPos,col,0.6) end
-if doImpact then renderImpact(hitPos,VA.Impacts.Color,VA.Impacts.Life,VA.Impacts.Size) end
-end
-else
-local res=Workspace:Raycast(origin,dir*range,RageRay)
-local hitPos=res and res.Position or (origin+dir*range)
-pcall(function() ev:FireServer('ShootGun',handle,origin,hitPos,res and res.Instance,res and res.Normal) end)
-if doTracer then renderTracer(origin,hitPos,col,0.6) end
-if doImpact then renderImpact(hitPos,VA.Impacts.Color,VA.Impacts.Life,VA.Impacts.Size) end
-end
-end
-track(RunService.Heartbeat:Connect(function()
-if Unloaded or not Started then return end
-if not (Config['Rage Mode'].Enabled and bindActive('Rage Mode')) then return end
-local ch=LocalPlayer.Character if not ch then return end
-local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then return end
-if not rageCanShoot(ch) then return end
-local target=getRageTarget() if not target or not target.Parent then return end
-local tPl=Players:GetPlayerFromCharacter(target.Parent)
-if tPl and (isWhitelisted(tPl) or isPlayerKnockedOrKO(tPl)) then return end
-if Config['Rage Mode'].WallCheck and rageWallBlocked(hrp.Position,target) then return end
-local vel=target.AssemblyLinearVelocity or Vector3.new(0,0,0)
-local aimPos=(resolverState.forcePos or target.Position)+vel*Config['Rage Mode'].Prediction
-local now=tick()
-local range=Config['Rage Mode'].InfiniteRange and 9e9 or 999
-for _,child in pairs(ch:GetChildren()) do
-if child:IsA('Tool') and MuzzleOffsets[child.Name] then
-local handle=child:FindFirstChild('Handle')
-local ammo=child:FindFirstChild('Ammo')
-if handle and ammo and ammo.Value>0 then
-local cd=0.3
-pcall(function() local c=child:FindFirstChild('ShootingCooldown') if c then cd=c.Value end end)
-cd=math.max(cd,Config['Rage Mode'].Delay/1000)
-if not RageLast[child] or (now-RageLast[child])>=cd then
-local origin=getMuzzlePosition(child) or hrp.Position
-local off=aimPos-origin
-local d=off.Magnitude
-if d>0 then RageLast[child]=now RageFire(child,origin,off/d,range,Config['Rage Mode'].TracerColor,Config['Rage Mode'].Tracers,Config['Rage Mode'].Impacts) end
-end
-end
-end
-end
-end))
--- // RAGEBOT (juju.lol) //
+-- // [新] RAGEBOT 主循环 (juju.lol 式) //
 track(RunService.Heartbeat:Connect(function(dt)
 if Unloaded or not Started then return end
 local RB=Config.Ragebot
@@ -822,17 +637,15 @@ if not (RB.Enabled and bindActive('Ragebot')) then ragebotTarget=nil;ragebotAimP
 local ch=LocalPlayer.Character if not ch then return end
 local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then return end
 local hum=ch:FindFirstChildOfClass('Humanoid') if not hum or hum.Health<=0 then return end
+if isSelfKnocked() then ragebotTarget=nil;ragebotAimPart=nil return end
 local candidates={}
 for _,uid in ipairs(RB.Targets) do
 local pl=Players:GetPlayerByUserId(uid)
 if pl and pl~=LocalPlayer and pl.Character and pl.Character:FindFirstChild('HumanoidRootPart') and not isWhitelisted(pl) and not isPlayerKnockedOrKO(pl) then table.insert(candidates,pl) end
 end
 if RB.IncludeAimbotTarget then
-local at=nil
-if currentTarget and currentTarget.Parent then at=Players:GetPlayerFromCharacter(currentTarget.Parent) end
-if not at and silentAimTarget and silentAimTarget.Parent then at=Players:GetPlayerFromCharacter(silentAimTarget.Parent) end
-if not at and jujuSilentTarget and jujuSilentTarget.Parent then at=Players:GetPlayerFromCharacter(jujuSilentTarget.Parent) end
-if not at and aimAssistPart and aimAssistPart.Parent then at=Players:GetPlayerFromCharacter(aimAssistPart.Parent) end
+local at=camLockTargetPlayer
+if not at and currentTarget and currentTarget.Parent then at=Players:GetPlayerFromCharacter(currentTarget.Parent) end
 if at and at~=LocalPlayer and not isWhitelisted(at) and not isPlayerKnockedOrKO(at) then
 local dup=false for _,p in ipairs(candidates) do if p==at then dup=true break end end
 if not dup then table.insert(candidates,at) end
@@ -842,7 +655,7 @@ if #candidates==0 then ragebotTarget=nil;ragebotAimPart=nil return end
 local closest=nil;local bd=math.huge
 for _,pl in ipairs(candidates) do
 local d=(pl.Character.HumanoidRootPart.Position-hrp.Position).Magnitude
-if d<bd then bd=d;closest=pl end
+if d<bd then bd=d closest=pl end
 end
 if not closest then ragebotTarget=nil;ragebotAimPart=nil return end
 ragebotTarget=closest
@@ -851,14 +664,17 @@ local tHrp=tChar:FindFirstChild('HumanoidRootPart')
 if not tHrp then ragebotTarget=nil;ragebotAimPart=nil return end
 ragebotAimPart=tChar:FindFirstChild('Head') or tHrp
 if RB.AutoEquip then
-local tool=ch:FindFirstChild(RB.AutoEquipWeapon) or LocalPlayer.Backpack:FindFirstChild(RB.AutoEquipWeapon)
+for _,wn in ipairs(RB.AutoEquipWeapons or {}) do
+local tool=ch:FindFirstChild(wn) or LocalPlayer.Backpack:FindFirstChild(wn)
 if tool and tool.Parent~=ch then tool.Parent=ch end
+end
 end
 if RB.ViewTarget then
 local th=tChar:FindFirstChildOfClass('Humanoid')
 if th then Camera.CameraSubject=th end
 end
-if RB.AttachToTarget then
+if RB.AttachToTarget and tick()-rageAttachLast>0.1 then
+rageAttachLast=tick()
 if RB.AttachMode=='Random Teleport' then
 hrp.CFrame=tHrp.CFrame+Vector3.new(math.random(-RB.HOffset,RB.HOffset),math.random(-RB.VOffset,RB.VOffset),math.random(-RB.HOffset,RB.HOffset))
 else
@@ -868,127 +684,95 @@ end
 end
 local gun=ch:FindFirstChildOfClass('Tool')
 if gun and gun:FindFirstChild('Handle') and gun.Name~='[RPG]' then
-if RB.TeleportBullets then
-pcall(function()
-local rh=ch:FindFirstChild('RightHand')
-if rh then
-local old=gun.Grip
-local newGrip=(rh.CFrame*CFrame.new(0,-1,0,1,0,0,0,0,1,0,-1,0)):ToObjectSpace(CFrame.new(ragebotAimPart.Position)):Inverse()
-gun.Parent=LocalPlayer.Backpack rh.Anchored=false gun.Grip=newGrip rh.Anchored=true gun.Parent=ch
-RunService.RenderStepped:Wait()
-gun.Parent=LocalPlayer.Backpack rh.Anchored=false gun.Grip=old gun.Parent=ch
+if RB.AutoShoot and gun:FindFirstChild('Ammo') then
+local rev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT')
+if rev and ragebotAimPart and ragebotAimPart.Parent then
+local origin=gun.Handle.CFrame.Position
+local dir=ragebotAimPart.Position-origin
+local blocked=false
+if RB.WallCheck then
+local rp=RaycastParams.new();rp.FilterDescendantsInstances={LocalPlayer.Character,ragebotAimPart.Parent};rp.FilterType=Enum.RaycastFilterType.Exclude
+local res=Workspace:Raycast(origin,dir.Unit*dir.Magnitude,rp)
+if res then blocked=true end
 end
-end)
+local far=RB.InfiniteRange and 9e9 or 999
+if not blocked and dir.Magnitude<=far then
+pcall(function() rev:FireServer('ShootGun',gun.Handle,origin,ragebotAimPart.Position,ragebotAimPart,Vector3.new(0,0,-1)) end)
 end
-if RB.AutoShoot then pcall(function() gun:Activate() end) end
 end
-if RB.AutoStomp and not rageStompBusy then
-local be=tChar:FindFirstChild('BodyEffects')
-local ko=be and (be:FindFirstChild('K.O') or be:FindFirstChild('Knocked'))
-if ko and ko.Value then
-rageStompBusy=true
-local backPos=hrp.CFrame
-task.spawn(function()
-pcall(function() hrp.CFrame=tHrp.CFrame+Vector3.new(0,2.5,0) end)
-task.wait(0.25)
+end
+end
+
+
+end))
+-- // [新] STICKY (free.txt 移植) //
+track(RunService.Heartbeat:Connect(function()
+if Unloaded or not Started then stickyTracer.Visible=false return end
+if not Config['Sticky'].Enabled or not stickyLocked or not stickyTargetPlayer then stickyTracer.Visible=false return end
+local ch=LocalPlayer.Character if not ch then return end
+local pl=stickyTargetPlayer
+local tCh=pl and pl.Character
+if not tCh or not tCh.Parent then stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil;stickyTracer.Visible=false return end
+local be=tCh:FindFirstChild('BodyEffects')
+local isKO=be and ((be:FindFirstChild('K.O') and be['K.O'].Value) or (be:FindFirstChild('Knocked') and be.Knocked.Value))
+local isGrabbed=tCh:FindFirstChild('GRABBING_CONSTRAINT')~=nil
+local ST=Config['Sticky']
 local ev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT')
-for i=1,3 do if ev then pcall(function() ev:FireServer('Stomp') end) end task.wait(0.05) end
-task.wait(0.1)
-if RB.TeleportBack then pcall(function() hrp.CFrame=backPos end) end
-rageStompBusy=false
-end)
-end
-end
-end))
-track(RunService.Heartbeat:Connect(function(dt)
-if Unloaded or not Started then return end
-local ch=LocalPlayer.Character if not ch then return end
-local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then return end
-local DS=Config['Desync']
-desyncActiveThisFrame=false
-if DS.Velocity then
-desyncActiveThisFrame=true
-local ov=hrp.Velocity
-local mode=DS.VelocityValue
-local r=DS.Random*5.5
-local nv=mode=='Zero' and Vector3.new() or mode=='Max' and Vector3.new(63536,63536,63536) or mode=='Sky' and Vector3.new(0,10000,0) or mode=='Underground' and Vector3.new(0,-10000,0) or mode=='Multiplier' and ov*DS.Multiplier or Vector3.new(math.random(-r,r),math.random(-r,r),math.random(-r,r))
-pcall(function() hrp.Velocity=nv end)
-task.defer(function() pcall(function() hrp.Velocity=ov end) end)
-end
-if DS.Network then
-desyncActiveThisFrame=true
-local mode=DS.NetworkValue
-if mode=='Invisible' then
-sflag('S2PhysicsSenderRate','2');sflag('PhysicsSenderMaxBandwidthBps','1.047')
-shp(hrp,'NetworkIsSleeping',doSleep)
-local old=hrp.Velocity
-hrp.Velocity=Vector3.new(math.random(-16384,16384),math.random(-16384,16384),math.random(-16384,16384))
-RunService.RenderStepped:Wait()
-pcall(function() hrp.Velocity=old end)
-sflag('S2PhysicsSenderRate','1')
-elseif mode=='Lag step' then
-sflag('S2PhysicsSenderRate','1')
-shp(hrp,'NetworkIsSleeping',doSleep);shp(hrp,'NetworkIsSleeping',not doSleep);shp(hrp,'NetworkIsSleeping',doSleep)
-local old=hrp.Velocity
-hrp.Velocity=Vector3.new(0,0,0)
-RunService.RenderStepped:Wait()
-pcall(function() hrp.Velocity=old end)
-sflag('S2PhysicsSenderRate',math.random(1,5)==5 and '15' or '1')
-elseif mode=='Random' then
-sflag('S2PhysicsSenderRate',math.random(1,15)==1 and '6' or '1')
-local old=hrp.Velocity;local oldC=hrp.CFrame
-hrp.Velocity=Vector3.new(math.random(-16384,16384),math.random(-16384,16384),math.random(-16384,16384))
-hrp.CFrame=oldC*CFrame.Angles(0,math.rad(math.random(1,359)),0)
-shp(hrp,'NetworkIsSleeping',doSleep)
-RunService.RenderStepped:Wait()
-pcall(function() hrp.CFrame=oldC hrp.Velocity=old end)
-elseif mode=='Teleport move' then
-shp(hrp,'NetworkIsSleeping',doSleep)
-sflag('S2PhysicsSenderRate','1000')
-shp(hrp,'NetworkIsSleeping',false);shp(hrp,'NetworkIsSleeping',true);shp(hrp,'NetworkIsSleeping',false)
-else
-shp(hrp,'NetworkIsSleeping',doSleep)
-end
-doSleep=not doSleep
-end
-if DS.RandomTeleport then
-desyncActiveThisFrame=true
-pcall(function()
-local old=hrp.CFrame
-hrp.CFrame=old-Vector3.new(math.random(-DS.HOffset,DS.HOffset),math.random(-DS.VOffset,DS.VOffset),math.random(-DS.HOffset,DS.HOffset))
-task.defer(function() pcall(function() hrp.CFrame=old end) end)
-end)
-end
-if DS.VoidSpam then
-desyncActiveThisFrame=true
-local now=tick()
-if now-voidSpamLast>0.1 then
-voidSpamLast=now
-pcall(function() Workspace.FallenPartsDestroyHeight=-9e9 end)
-pcall(function()
-local old=hrp.CFrame
-hrp.CFrame=old-Vector3.new(math.random(-20,20),9e9-1000,math.random(-20,20))
-task.delay(0.1,function() pcall(function() hrp.CFrame=old end) end)
-end)
-end
-end
-end))
-track(RunService.Heartbeat:Connect(function(dt)
-if Unloaded or not Started then return end
-local DC=Config['Destroy Cheaters']
-if not DC.Enabled then didVoidKill=nil return end
-local ch=LocalPlayer.Character if not ch then return end
-local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then return end
-pcall(function()
-if DC.VoidKill and not didVoidKill then
-local pos=hrp.CFrame
-hrp.CFrame=CFrame.new(pos.X,-485,pos.Z)
-didVoidKill=true
+if ST.StompTarget and isKO and not isGrabbed then
+local ut=tCh:FindFirstChild('UpperTorso')
+local lhrp=ch:FindFirstChild('HumanoidRootPart')
+if ut and lhrp then lhrp.CFrame=CFrame.new(ut.Position+Vector3.new(0,3,0)) end
+if ev then pcall(function() ev:FireServer('Stomp') end) end
+stickyTracer.Visible=false
 return
 end
-hrp.CFrame=hrp.CFrame*CFrame.new(9e9,0,math.huge)
-end)
+local part=currentTarget or getStickyLockPart()
+if not part or not part.Parent then stickyTracer.Visible=false return end
+currentTarget=part
+updateResolver(tCh,part)
+if ST.Strafe then
+local lhrp=ch:FindFirstChild('HumanoidRootPart')
+local tRoot=tCh:FindFirstChild('HumanoidRootPart')
+if lhrp and tRoot then
+if ST.StrafeMode=='Orbit' then
+local angle=tick()*ST.StrafeSpeed
+local off=Vector3.new(math.cos(angle)*ST.StrafeXOffset,-0.1,math.sin(angle)*ST.StrafeXOffset)
+lhrp.CFrame=CFrame.new(tRoot.Position+off,tRoot.Position)
+else
+local off=Vector3.new(math.random(-20,20),math.random(-10,10),math.random(-20,20))
+lhrp.CFrame=CFrame.new(tRoot.Position+off)*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360)))
+end
+end
+end
+if ST.Spectate then
+local th=tCh:FindFirstChildOfClass('Humanoid')
+if th then Camera.CameraSubject=th end
+elseif ST.SpectateStrafe and ST.Strafe then
+local th=tCh:FindFirstChild('Head')
+if th then Camera.CameraSubject=th end
+else
+local sh=ch:FindFirstChildOfClass('Humanoid')
+if sh and Camera.CameraSubject==tCh then Camera.CameraSubject=sh end
+end
+if ST.Tracer then
+local cpos,on=Camera:WorldToViewportPoint(part.Position)
+local to=nil
+if ST.TracerMode=='Mouse' then to=UserInputService:GetMouseLocation()
+else local lhrp=ch:FindFirstChild('HumanoidRootPart') if lhrp then local s2,o2=Camera:WorldToViewportPoint(lhrp.Position) if o2 then to=Vector2.new(s2.X,s2.Y) end end end
+if on and to then stickyTracer.Visible=true;stickyTracer.From=Vector2.new(cpos.X,cpos.Y);stickyTracer.To=to;stickyTracer.Color=ST.TracerColor else stickyTracer.Visible=false end
+else stickyTracer.Visible=false end
+local tool=ch:FindFirstChildOfClass('Tool')
+local handle=tool and tool:FindFirstChild('Handle')
+if ST.AutoFire and handle and tool and tool:FindFirstChild('Ammo') and not isKO and not isGrabbed then
+local origin=handle.CFrame.Position
+local aim=part.Position
+if ST.InvisibleBullets then origin=origin-Vector3.new(0,10,0) aim=aim-Vector3.new(0,10,0) end
+if ev then pcall(function() ev:FireServer('ShootGun',handle,origin,aim,part,Vector3.new(0,0,-1)) end) end
+end
 end))
+-- // 假同步 //
+-- // [合并] 假同步逻辑见脚本尾部整合模块 (free Desync + Velocity/Network/RandomTP) //
+-- // 反瞄准 //
 local spamAnims={Floss="rbxassetid://10714340543",Hype="rbxassetid://10714369624"}
 track(RunService.Heartbeat:Connect(function(dt)
 if Unloaded or not Started then return end
@@ -1030,56 +814,31 @@ end
 if AA.AnimationLag and hum then
 pcall(function()
 local now=tick()
-if now-animLagLast>AA.AnimationLagValue/150 then animLagLast=now animLagFreeze=false else animLagFreeze=true end
+local cycle=0.3
+local onFrac=AA.AnimationLagValue/100
+local ph=(now%cycle)/cycle
+animLagFreeze=ph<onFrac
 for _,tr in ipairs(hum:GetPlayingAnimationTracks()) do
 if animLagFreeze then tr.TimePosition=0.01 end
 end
 end)
 end
 end))
--- // FIXED: aura + forcefield continuous //
-auraPart=Instance.new('Part');auraPart.Size=Vector3.new(0.01,0.01,0.01);auraPart.Transparency=1;auraPart.CanCollide=false;auraPart.Anchored=true;auraPart.Parent=Workspace
-local function mkEm(t,rate) local e=Instance.new('ParticleEmitter') e.Texture=t e.Lifetime=NumberRange.new(0.5,1) e.LightEmission=1 e.Rate=rate e.Speed=NumberRange.new(3,6) e.SpreadAngle=Vector2.new(180,180) e.Enabled=false e.Parent=auraPart return e end
-local auraSets={
-Swirl={e1=mkEm("rbxassetid://8047533775",10),e2=mkEm("rbxassetid://8047796070",10),e3=mkEm("rbxassetid://8611887361",30),e4=mkEm("rbxassetid://8611887703",30)},
-Ritual={e1=mkEm("rbxassetid://8920073892",1),e2=mkEm("rbxassetid://564938805",1)},
-Bubble={e1=mkEm("rbxassetid://1084955012",12),e2=mkEm("rbxassetid://1084955488",6)},
-Rain={e1=mkEm("rbxassetid://419625073",100)},
-Air={e1=mkEm("rbxassetid://10558425570",75)},
-}
-local function setAuraColor(col)
-for _,set in pairs(auraSets) do for _,e in pairs(set) do pcall(function() e.Color=ColorSequence.new(col,col) end) end end
-end
-setAuraColor(Config['Particle Aura'].Color)
+-- // [修复] 粒子光环 (Rate>0, 可开关) //
 local function updateVisualsContinuous()
 local ch=LocalPlayer.Character if not ch then return end
 local L=Config['Local Player Visuals']
+if not L.MaterialTools then return end
+local mat=Enum.Material[L.MaterialToolsValue] or Enum.Material.ForceField
 for _,p in pairs(ch:GetChildren()) do
-if (p:IsA('MeshPart') or p:IsA('Part')) and p.Name~='HumanoidRootPart' then
-if L.ForcefieldBody then p.Material=Enum.Material.ForceField;p.Color=L.ForcefieldBodyColor
-elseif p.Material==Enum.Material.ForceField then p.Material=Enum.Material.Plastic end
-end
-end
-for _,acc in pairs(ch:GetChildren()) do
-if acc:IsA('Accessory') then local h=acc:FindFirstChild('Handle')
-if h then
-if L.ForcefieldHats then h.Material=Enum.Material.ForceField;h.Color=L.ForcefieldHatsColor
-elseif h.Material==Enum.Material.ForceField then h.Material=Enum.Material.Plastic end
+if p:IsA('Tool') then
+for _,d in pairs(p:GetDescendants()) do
+if d:IsA('MeshPart') or d:IsA('Part') then d.Material=mat; if d:IsA('MeshPart') then d.TextureID='' end; d.Color=L.MaterialToolsColor end
 end
 end
 end
-local hrp=ch:FindFirstChild('HumanoidRootPart')
-if L.ParticleAura and hrp then
-auraPart.Parent=hrp.Parent
-auraPart.CFrame=hrp.CFrame
-local set=auraSets[L.ParticleAuraValue] or auraSets.Swirl
-for _,e in pairs(auraSets) do for _,em in pairs(e) do em.Enabled=false end end
-for _,em in pairs(set) do em.Enabled=true end
-else
-for _,e in pairs(auraSets) do for _,em in pairs(e) do em.Enabled=false end end
-if auraPart then auraPart.Parent=nil end
 end
-end
+-- // 脱同步模型 //
 local function buildDesyncModel(ch)
 if desyncModel then pcall(function() desyncModel:Destroy() end) desyncModel=nil end
 pcall(function()
@@ -1139,29 +898,86 @@ end
 function applyMaterialTools()
 local ch=LocalPlayer.Character if not ch then return end
 local L=Config['Local Player Visuals']
-for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then local h=t:FindFirstChild('Handle') if h and L.MaterialTools then h.Material=Enum.Material[L.MaterialToolsValue] or Enum.Material.ForceField; h.Color=L.MaterialToolsColor end end end
+if not L.MaterialTools then return end
+local mat=Enum.Material[L.MaterialToolsValue] or Enum.Material.ForceField
+for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then
+for _,d in pairs(t:GetDescendants()) do if d:IsA('MeshPart') or d:IsA('Part') then d.Material=mat; if d:IsA('MeshPart') then d.TextureID='' end; d.Color=L.MaterialToolsColor end end
+end end
 end
 function addAccessory(id)
 pcall(function()
+if not id or not tonumber(id) then return end
 local asset=InsertService:LoadAsset(tonumber(id))
-if asset then
-local acc=asset:FindFirstChildOfClass("Accessory")
-if acc then
-local hum=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
-if hum then hum:AddAccessory(acc) table.insert(addedAccessories,acc) end
-else asset:Destroy() end
+if not asset then return end
+local acc=asset:FindFirstChildOfClass("Accessory") or (asset:IsA("Accessory") and asset or nil)
+if not acc then asset:Destroy() return end
+acc.Parent=nil
+local ch=LocalPlayer.Character
+local hum=ch and ch:FindFirstChildOfClass('Humanoid')
+local head=ch and ch:FindFirstChild('Head')
+if not hum or not head then acc:Destroy() return end
+hum:AddAccessory(acc)
+local h=acc:FindFirstChild('Handle')
+if h then
+h.CanCollide=false
+local at=h:FindFirstChildOfClass('Attachment')
+local w=Instance.new('Weld')
+w.Part0=h;w.Part1=head
+w.C0=at and at.CFrame or CFrame.new(0,0,0)
+w.C1=CFrame.new(0,0.6,0)
+w.Parent=h
 end
+table.insert(addedAccessories,acc)
 end)
 end
+function pqndCreateTool()
+if pqndTool then pqndTool:Destroy() end
+pqndTool=Instance.new("Tool");pqndTool.RequiresHandle=false;pqndTool.Name="[Kick]"
+local anim=Instance.new("Animation");anim.AnimationId="rbxassetid://2788306916"
+pqndTool.Activated:Connect(function()
+pqndTest=true
+local chr=LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local hum=chr:FindFirstChild("Humanoid")
+if hum then local at=hum:LoadAnimation(anim) at:AdjustSpeed(3.4) at:Play() end
+task.wait(0.6)
+local boom=LocalPlayer.Backpack:FindFirstChild("[Boombox]")
+local ev=ReplicatedStorage:FindFirstChild("MainEvent") or ReplicatedStorage:FindFirstChild("MAINEVENT")
+if boom and ev then
+boom.Parent=LocalPlayer.Character
+ev:FireServer("Boombox",tonumber(Config['Pqnd4 Kick'].SoundId))
+boom.RequiresHandle=false
+boom.Parent=LocalPlayer.Backpack
+task.wait(1)
+ev:FireServer("BoomboxStop")
+else
+local snd=Instance.new("Sound",Workspace);snd.SoundId="rbxassetid://"..Config['Pqnd4 Kick'].SoundId;snd:Play();task.wait(1);snd:Stop()
+end
+wait(1.4);pqndTest=false
+end)
+pqndTool.Parent=LocalPlayer:WaitForChild("Backpack")
+end
+function pqndRemoveTool()
+local t=LocalPlayer.Backpack:FindFirstChild("[Kick]") or (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("[Kick]"))
+if t then t:Destroy() end
+end
+track(RunService.Heartbeat:Connect(function()
+if not pqndTest then return end
+local chr=LocalPlayer.Character if not chr then return end
+local hrp=chr:FindFirstChild("HumanoidRootPart") if not hrp then return end
+local old=hrp.Velocity
+hrp.Velocity=Vector3.new(hrp.CFrame.LookVector.X*800,800,hrp.CFrame.LookVector.Z*800)
+RunService.RenderStepped:Wait()
+hrp.Velocity=old
+end))
 function removeAllAccessories()
 for _,a in pairs(addedAccessories) do pcall(function() a:Destroy() end) end
 addedAccessories={}
 end
-local function hookJujuToolFX(tool)
+function hookJujuToolFX(tool)
 track(tool.Activated:Connect(function()
 if Unloaded or not Started then return end
-local target=jujuSilentTarget or silentAimTarget
-if Config['Teleport Bullets'].Enabled and target and target.Parent then
+local target=currentTarget
+if Config.Ragebot.TeleportBullets and target and target.Parent then
 pcall(function()
 local rh=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('RightHand')
 if rh then
@@ -1262,6 +1078,7 @@ track(ch.ChildAdded:Connect(function(c) if c:IsA('Tool') then task.wait(0.1) Pro
 end
 if LocalPlayer.Character then hookSkinChar(LocalPlayer.Character) end
 track(LocalPlayer.CharacterAdded:Connect(function(ch) task.wait(0.5) hookSkinChar(ch) end))
+end
 function CleanToolScripts(tool) if not tool or not Config.Utility.CleanScripts then return end for _,desc in pairs(tool:GetDescendants()) do if desc:IsA("LocalScript") then desc:Destroy() end end end
 function WatchCharacterForScripts(ch)
 if not ch then return end
@@ -1327,8 +1144,8 @@ local o=KorbloxOrig[ch] if o then ru.MeshId=o[1] ru.TextureID=o[2] ru.Color=o[3]
 end
 end
 function HandleSpoofing(ch) if not ch then return end ApplyHeadless(ch) ApplyKorblox(ch) end
-if LocalPlayer.Character then WatchCharacterForScripts(LocalPlayer.Character) SetupUtility(LocalPlayer.Character) SetupNoJumpCooldown(LocalPlayer.Character) HandleSpoofing(LocalPlayer.Character) applyTrail();applyMaterialTools() for _,t in pairs(LocalPlayer.Character:GetChildren()) do if t:IsA('Tool') then hookJujuToolFX(t) end end end
-track(LocalPlayer.CharacterAdded:Connect(function(ch) task.wait(1) WatchCharacterForScripts(ch) SetupUtility(ch) SetupNoJumpCooldown(ch) HandleSpoofing(ch) applyTrail();applyMaterialTools() for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then hookJujuToolFX(t) end end end))
+pcall(function() if LocalPlayer.Character then WatchCharacterForScripts(LocalPlayer.Character) SetupUtility(LocalPlayer.Character) SetupNoJumpCooldown(LocalPlayer.Character) HandleSpoofing(LocalPlayer.Character) applyTrail();applyMaterialTools() for _,t in pairs(LocalPlayer.Character:GetChildren()) do if t:IsA('Tool') then hookJujuToolFX(t) end end end end)
+track(LocalPlayer.CharacterAdded:Connect(function(ch) task.wait(1) pcall(function() WatchCharacterForScripts(ch) SetupUtility(ch) SetupNoJumpCooldown(ch) HandleSpoofing(ch) applyTrail();applyMaterialTools();updateVisualsContinuous() for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then hookJujuToolFX(t) end end end) end))
 shopItems={};shopNames={}
 do
 local shop=Workspace:FindFirstChild("Ignored") and Workspace.Ignored:FindFirstChild("Shop")
@@ -1373,9 +1190,14 @@ return false
 end
 purchasing=false
 toastLines={}
+local function niceItemName(item)
+	item=item or ""
+	item=item:gsub("ammo$"," Ammo"):gsub("^%l",string.upper)
+	return item
+end
 function purchaseNotify(text,ok)
 local t=Drawing.new("Text")
-t.Size=14;t.Font=2;t.Text=text;t.Outline=true;t.Visible=true
+t.Size=14;t.Font=0;t.Text=text;t.Outline=true;t.Visible=true
 t.Color=ok and Color3.fromRGB(120,255,120) or Color3.fromRGB(255,90,90)
 table.insert(toastLines,{t=t,born=tick()})
 task.delay(4,function() pcall(function() t:Remove() end) for i,x in ipairs(toastLines) do if x.t==t then table.remove(toastLines,i) break end end end)
@@ -1383,22 +1205,35 @@ end
 function purchaseItem(item)
 if purchasing then return end
 local obj=shopNames[item]
-if not obj then purchaseNotify((CurrentLang=="CN" and "购买失败: 商店无 "..itemDisplay(item) or "Fail: no "..item),false) return end
+if not obj then
+local shp=Workspace:FindFirstChild("Ignored") and Workspace.Ignored:FindFirstChild("Shop")
+if shp then for _,sp in pairs(shp:GetDescendants()) do
+local nm=string.match(sp.Name,"%b[]")
+if nm then nm=cleanName(nm)
+if nm==item then
+local head=sp:FindFirstChild("Head") or (sp.Parent and sp.Parent:FindFirstChild("Head"))
+local det=sp:FindFirstChildOfClass("ClickDetector")
+if head and det then shopNames[item]={name=item,button=head,detector=det} obj=shopNames[item] end
+end end end end
+end
+if not obj then purchaseNotify("Fail: no "..niceItemName(item),false) return end
 purchasing=true
 task.spawn(function()
 local ch=LocalPlayer.Character
 local hrp=ch and ch:FindFirstChild("HumanoidRootPart")
 if hrp then
 local old=hrp.CFrame
+pcall(function() obj.detector.MaxActivationDistance=math.huge; obj.detector.RequiresLineOfSight=false end)
 hrp.CFrame=obj.button.CFrame-Vector3.new(0,8.8,0)
 task.wait(0.15)
 local t0=tick()
 while not hasItem(item) and tick()-t0<2.5 do
 pcall(function() fireclickdetector(obj.detector) end)
+hrp.CFrame=obj.button.CFrame-Vector3.new(0,8.8,0)
 task.wait(0.1)
 end
 local got=hasItem(item)
-purchaseNotify((CurrentLang=="CN" and (got and ("购买成功: "..itemDisplay(item)) or ("购买失败: "..itemDisplay(item).." (超时)")) or ((got and "Bought " or "Fail: ")..item)),got)
+purchaseNotify((got and "Bought " or "Fail: ")..niceItemName(item),got)
 task.wait(0.2)
 if hrp.Parent then hrp.CFrame=old end
 end
@@ -1437,7 +1272,7 @@ track(player.CharacterAdded:Connect(hook))
 end
 for _,pl in pairs(Players:GetPlayers()) do if pl~=LocalPlayer then watchPlayerHits(pl) end end
 track(Players.PlayerAdded:Connect(function(pl) if pl~=LocalPlayer then watchPlayerHits(pl) end end))
-sounds={["SSG-08"]="rbxassetid://2476571739",["SCAR20"]="rbxassetid://1112856880",["G3SG1"]="rbxassetid://1112950864",["USP-S"]="rbxassetid://1112952739",["AWP"]="rbxassetid://1112948895",["RIFK7"]="rbxassetid://9102080552",["Bubble"]="rbxassetid://9102092728",["Minecraft"]="rbxassetid://5869422451",["Cod"]="rbxassetid://160432334",["Bameware"]="rbxassetid://6565367558",["Neverlose"]="rbxassetid://6565370984",["Gamesense"]="rbxassetid://4817809188",["Rust"]="rbxassetid://6565371338"}
+sounds={["Bubble"]="rbxassetid://6534947588",["Lazer"]="rbxassetid://130791043",["Pick"]="rbxassetid://1347140027",["Pop"]="rbxassetid://198598793",["Rust"]="rbxassetid://1255040462",["Sans"]="rbxassetid://3188795283",["Fart"]="rbxassetid://130833677",["Big"]="rbxassetid://5332005053",["Vine"]="rbxassetid://5332680810",["UwU"]="rbxassetid://8679659744",["Bruh"]="rbxassetid://4578740568",["Skeet"]="rbxassetid://5633695679",["Neverlose"]="rbxassetid://6534948092",["Fatality"]="rbxassetid://6534947869",["Bonk"]="rbxassetid://5766898159",["Minecraft"]="rbxassetid://5869422451",["Gamesense"]="rbxassetid://4817809188",["RIFK7"]="rbxassetid://9102080552",["Bamboo"]="rbxassetid://3769434519",["Crowbar"]="rbxassetid://546410481",["Weeb"]="rbxassetid://6442965016",["Beep"]="rbxassetid://8177256015",["Bambi"]="rbxassetid://8437203821",["Stone"]="rbxassetid://3581383408",["Old Fatality"]="rbxassetid://6607142036",["Click"]="rbxassetid://8053704437",["Ding"]="rbxassetid://7149516994",["Snow"]="rbxassetid://6455527632",["Laser"]="rbxassetid://7837461331",["Mario"]="rbxassetid://2815207981",["Steve"]="rbxassetid://4965083997",["Call of Duty"]="rbxassetid://5952120301",["Bat"]="rbxassetid://3333907347",["TF2 Critical"]="rbxassetid://296102734",["Saber"]="rbxassetid://8415678813",["Baimware"]="rbxassetid://3124331820",["Osu"]="rbxassetid://7149255551",["TF2"]="rbxassetid://2868331684",["Slime"]="rbxassetid://6916371803",["Among Us"]="rbxassetid://5700183626",["One"]="rbxassetid://7380502345"}
 beamTextures={["Laser"]="rbxassetid://446111271",["Beam"]="rbxassetid://18854333763"}
 function renderTracer(from,to,color,life)
 local line=Drawing.new("Line");line.Thickness=1;line.Color=color;line.ZIndex=2
@@ -1637,7 +1472,7 @@ if v=="On hit" then pushNotification("hit "..player.Name.." for "..damage) end
 end
 end
 end))
-local bulletNames={BULLET_RAYS=true,["Part"]=true,RevStealth=true,bulletray=true}
+local bulletNames={BULLET_RAYS=true,["Part"]=true,RevStealth=true,bulletray=true,["Bullet"]=true,["bullet"]=true,["Ray"]=true,["Tracer"]=true}
 local function handleBullet(obj)
 if Unloaded then return end
 if not (bulletNames[obj.Name] or obj:FindFirstChildOfClass("Beam")) then return end
@@ -1667,6 +1502,8 @@ local w=Workspace:WaitForChild("Ignored",15)
 if w then track(w.ChildAdded:Connect(function(o) if bulletNames[o.Name] then task.spawn(handleBullet,o) end end)) end
 end
 end)
+-- // ===== PART 1 END ===== //
+-- // ===== PART 2 START ===== //
 R15_BONES={{"Head","UpperTorso"},{"UpperTorso","LowerTorso"},{"UpperTorso","LeftUpperArm"},{"LeftUpperArm","LeftLowerArm"},{"UpperTorso","RightUpperArm"},{"RightUpperArm","RightLowerArm"},{"LowerTorso","LeftUpperLeg"},{"LeftUpperLeg","LeftLowerLeg"},{"LowerTorso","RightUpperLeg"},{"RightUpperLeg","RightLowerLeg"}}
 R6_BONES={{"Head","Torso"},{"Torso","Left Arm"},{"Torso","Right Arm"},{"Torso","Left Leg"},{"Torso","Right Leg"}}
 MAX_BONES=10
@@ -1723,14 +1560,19 @@ local h=div*6
 local w=div*4
 local vpos=Vector2.new(below.X-w/2,below.Y-h/2)
 local nc=VA.Color;local bc=VA.Box.Color
-if table.find(Config.Ragebot.Targets,player.UserId) then nc=Color3.fromRGB(255,0,0);bc=Color3.fromRGB(255,0,0)
-elseif Config['Rage Mode'].Target==player.UserId then nc=Config['Rage Mode'].RageColor;bc=Config['Rage Mode'].RageColor
+if table.find(Config.Ragebot.Targets,player.UserId) or (Config.Ragebot.IncludeAimbotTarget and camLockTargetPlayer==player) then nc=Color3.fromRGB(255,0,0);bc=Color3.fromRGB(255,0,0)
 elseif isWhitelisted(player) then nc=VA.WhitelistColor or Color3.fromRGB(80,200,120);bc=VA.WhitelistColor or Color3.fromRGB(80,200,120)
-elseif (currentTarget and currentTarget.Parent==ch) or (aimAssistPart and aimAssistPart.Parent==ch) or (silentAimTarget and silentAimTarget.Parent==ch) or (jujuSilentTarget and jujuSilentTarget.Parent==ch) then nc=VA.TargetColor;bc=VA.TargetColor end
+elseif (currentTarget and currentTarget.Parent==ch) or (aimAssistPart and aimAssistPart.Parent==ch) then nc=VA.TargetColor;bc=VA.TargetColor end
 esp.nameTag.Size=VA.NameTagSize or 14
 esp.nameTag.Position=Vector2.new(vpos.X+w/2,vpos.Y-h*0.06-14)
-esp.nameTag.Text=(player.DisplayName and player.DisplayName~="") and player.DisplayName or player.Name
-esp.nameTag.Color=nc;esp.nameTag.Visible=true
+local nm=VA.NameMode or 'Username'
+local nmTxt=player.Name
+if nm=='DisplayName' then nmTxt=(player.DisplayName and player.DisplayName~="") and player.DisplayName or player.Name
+elseif nm=='Username (DisplayName)' then nmTxt=player.Name.." ("..player.DisplayName..")"
+elseif nm=='Username (DisplayName) [UserID]' then nmTxt=player.Name.." ("..player.DisplayName..") ["..player.UserId.."]" end
+esp.nameTag.Text=nmTxt
+esp.nameTag.Outline=VA.Outline
+esp.nameTag.Color=nc;esp.nameTag.Visible=VA.Names
 if VA.Box.Enabled then
 esp.box.Size=Vector2.new(w,h);esp.box.Position=vpos;esp.box.Thickness=VA.Box.Thickness;esp.box.Color=bc;esp.box.Visible=true
 esp.boxO.Size=Vector2.new(w+2,h+2);esp.boxO.Position=vpos-Vector2.new(1,1);esp.boxO.Thickness=1;esp.boxO.Color=Color3.new(0,0,0);esp.boxO.Visible=true
@@ -1741,11 +1583,11 @@ local tool=ch:FindFirstChildOfClass("Tool")
 esp.weaponTag.Text=getWeaponDisplayName(tool and tool.Name or nil)
 esp.weaponTag.Size=VA.WeaponESPSize or 12
 esp.weaponTag.Color=VA.WeaponESPColor or Color3.fromRGB(255,200,0)
-esp.weaponTag.Position=Vector2.new(vpos.X+w/2,vpos.Y+h+4);esp.weaponTag.Visible=true
+esp.weaponTag.Outline=VA.Outline;esp.weaponTag.Position=Vector2.new(vpos.X+w/2,vpos.Y+h+4);esp.weaponTag.Visible=true
 else esp.weaponTag.Visible=false end
 if VA.Distance and VA.Distance.Enabled and myHrp then
 local dist=math.floor((ut.Position-myHrp.Position).Magnitude)
-esp.distTag.Text=dist.."m";esp.distTag.Size=VA.Distance.Size or 11;esp.distTag.Color=VA.Distance.Color or Color3.fromRGB(255,255,255)
+esp.distTag.Text=dist.." studs";esp.distTag.Size=VA.Distance.Size or 11;esp.distTag.Color=VA.Distance.Color or Color3.fromRGB(255,255,255);esp.distTag.Outline=VA.Outline
 esp.distTag.Position=Vector2.new(vpos.X+w/2,vpos.Y+h+(VA.WeaponESP and 18 or 4));esp.distTag.Visible=true
 else esp.distTag.Visible=false end
 if VA.Line.Enabled then
@@ -1762,8 +1604,8 @@ if VA.HealthBar.ShowText then esp.healthText.Visible=true;esp.healthText.Text=to
 else esp.healthBG.Visible=false;esp.healthFG.Visible=false;esp.healthText.Visible=false end
 if VA.ArmorBar.Enabled then
 local be=ch:FindFirstChild("BodyEffects")
-local armor=be and be:FindFirstChild("Armor") and be.Armor.Value or 0
-esp.armorBar.Visible=true;esp.armorBar.From=Vector2.new(vpos.X+w+4,vpos.Y+h);esp.armorBar.To=Vector2.new(vpos.X+w+4,vpos.Y+h-(h*(armor/130)));esp.armorBar.Thickness=3;esp.armorBar.Color=Color3.fromRGB(0,204,255)
+local armor=0;local armO=be and be:FindFirstChild("Armor");if armO then armor=armO.Value else pcall(function() armor=ch:GetAttribute("Armor") or ch:GetAttribute("ArmorValue") or 0 end) end
+esp.armorBar.Visible=true;esp.armorBar.From=Vector2.new(vpos.X+w+4,vpos.Y+h);esp.armorBar.To=Vector2.new(vpos.X+w+4,vpos.Y+h-(h*(armor/130)));esp.armorBar.Thickness=3;esp.armorBar.Color=Color3.fromRGB(255,0,0):Lerp(Color3.fromRGB(0,204,255),math.clamp(armor/130,0,1))
 else esp.armorBar.Visible=false end
 if VA.Skeleton.Enabled then
 local bones=ch:FindFirstChild("UpperTorso") and R15_BONES or (ch:FindFirstChild("Torso") and R6_BONES or nil)
@@ -1795,43 +1637,68 @@ for _,pl in pairs(Players:GetPlayers()) do setupESPPlayer(pl) end
 track(Players.PlayerAdded:Connect(setupESPPlayer))
 track(Players.PlayerRemoving:Connect(function(pl) removeESPFromPlayer(pl) end))
 keybindDisplayObjects={}
+indicatorPos=Vector2.new(0,40)
+indicatorDragging=false;indicatorDragOff=nil
 local FONTMAP={Plex=0,UI=1,Flex=2,Monospace=3}
+track(UserInputService.InputBegan:Connect(function(input)
+if input.UserInputType~=Enum.UserInputType.MouseButton1 then return end
+if not Config['Visual Awareness'].KeybindDisplay then return end
+local mp=UserInputService:GetMouseLocation()
+if math.abs(mp.X-indicatorPos.X)<220 and mp.Y>=indicatorPos.Y-10 and mp.Y<=indicatorPos.Y+60 then
+indicatorDragging=true;indicatorDragOff=mp-indicatorPos
+end
+end))
+track(UserInputService.InputChanged:Connect(function(input)
+if indicatorDragging and input.UserInputType==Enum.UserInputType.MouseMovement then
+indicatorPos=UserInputService:GetMouseLocation()-indicatorDragOff
+updateKeybindDisplay()
+end
+end))
+track(UserInputService.InputEnded:Connect(function(input)
+if input.UserInputType==Enum.UserInputType.MouseButton1 then indicatorDragging=false end
+end))
 function updateKeybindDisplay()
 for _,o in pairs(keybindDisplayObjects) do pcall(function() o:Remove() end) end
 keybindDisplayObjects={}
 local VA=Config['Visual Awareness']
 if not VA.KeybindDisplay or Unloaded or PanicMode or not Started then return end
-local binds={}
-local function addBind(b,n) local k=getBindKey(b) if k and k~='' then table.insert(binds,{key=k,name=n,mode=(type(b)=="table" and b.Mode) or nil}) end end
-addBind(Config.Keybinds['Target Lock'],"Target Lock");addBind(Config.Keybinds['Silent Aim'],"Silent Aim")
-addBind(Config.Keybinds['Juju Silent Aim'],"Juju SA")
-addBind(Config.Keybinds['Aim Assist'],"Aim Assist");addBind(Config.Keybinds['Trigger Bot'],"Trigger Bot")
-addBind(Config.Keybinds['Rage Mode'],"Rage Mode");addBind(Config.Keybinds['Ragebot'],"Ragebot")
-addBind(Config.Keybinds['Speed'],"Speed")
-addBind(Config.Keybinds['Fly'],"Fly");addBind(Config.Keybinds['Super Jump'],"Super Jump")
-addBind(Config.Keybinds['Inf Range'],"Inf Range");addBind(Config.Keybinds['ESP'],"ESP")
-addBind(Config.Keybinds['Auto Buy'],"Auto Buy")
-local size=VA.KeybindDisplaySize or 12
-local col=VA.KeybindDisplayColor or Color3.fromRGB(255,255,255)
-local font=FONTMAP[VA.KeybindDisplayFont] or 0
+local size=VA.KeybindDisplaySize or 16
+local col=VA.KeybindDisplayColor or Color3.new(1,1,1)
+local font=FONTMAP[VA.KeybindDisplayFont] or 3
 local right=VA.KeybindDisplayPos=="Right"
 local vp=Camera.ViewportSize
-local startX=right and (vp.X-170) or 15
-local startY=200
-local title=Drawing.new("Text");title.Text="── KEYBINDS ──";title.Position=Vector2.new(startX,startY);title.Size=size+1;title.Color=col;title.Font=font;title.Outline=true;title.Visible=true
-table.insert(keybindDisplayObjects,title)
-for i,b in ipairs(binds) do
-local kt=Drawing.new("Text");kt.Text="["..b.key.."]";kt.Position=Vector2.new(startX,startY+i*(size+6));kt.Size=size;kt.Color=col;kt.Font=font;kt.Outline=true;kt.Visible=true
-table.insert(keybindDisplayObjects,kt)
-local ms=""
-if b.mode=='Hold' then ms=" ["..T("ModeHold").."]" elseif b.mode=='Toggle' then ms=" ["..T("ModeToggle").."]" end
-local nt=Drawing.new("Text");nt.Text=" → "..b.name..ms;nt.Position=Vector2.new(startX+45,startY+i*(size+6));nt.Size=size;nt.Color=Color3.fromRGB(160,160,160);nt.Outline=true;nt.Font=font;nt.Visible=true
-table.insert(keybindDisplayObjects,nt)
+local startX=indicatorPos.X
+local startY=indicatorPos.Y
+local bg=Drawing.new("Square");bg.Filled=true;bg.Color=Color3.fromRGB(8,8,10);bg.Transparency=0;bg.Visible=true;bg.ZIndex=9
+table.insert(keybindDisplayObjects,bg)
+local items={}
+local function add(b,n,active)
+if b and getBindKey(b) and getBindKey(b)~='' then table.insert(items,{k=getBindKey(b),n=n,on=active}) end
 end
+add(Config.Keybinds['Target Lock'],"Sticky",Config['Sticky'].Enabled and stickyLocked)
+add(Config.Keybinds['Trigger Bot'],"Trigger",Config['Trigger Bot'].Enabled and triggerEnabled)
+add(Config.Keybinds['Ragebot'],"Ragebot",Config.Ragebot.Enabled)
+add(Config.Keybinds['ESP'],"ESP",VA.Enabled)
+add(Config.Keybinds['Speed'],"Speed",Config.Movement.CFrameSpeed)
+add(Config.Keybinds['Fly'],"Fly",Config.Movement.CFrameFly)
+add(Config.Keybinds['Inf Range'],"Inf Range",Config['Infinite Range'].Enabled)
+add(Config.Keybinds['Noclip'],"Noclip",Config.Movement.Noclip)
+add(Config.Keybinds['Auto Buy'],"Auto Buy",Config['Auto Buy'].Enabled)
+for i,it in ipairs(items) do
+local kt=Drawing.new("Text");kt.Text="["..it.k.."] "..it.n;kt.Position=Vector2.new(startX+8,startY+6+(i-1)*(size+10));kt.Size=size;kt.Color=it.on and Color3.new(1,1,1) or Color3.fromRGB(110,110,130);kt.Font=font;kt.Outline=false;kt.Visible=true
+table.insert(keybindDisplayObjects,kt)
+local brd=Drawing.new("Square");brd.Filled=true;brd.Color=it.on and Color3.fromRGB(124,110,255) or Color3.fromRGB(35,35,50);brd.Thickness=1;brd.Visible=true;brd.ZIndex=10
+brd.Position=Vector2.new(startX,startY+(i-1)*(size+10));brd.Size=Vector2.new(math.max(210,kt.TextBounds.X+20),size+12)
+table.insert(keybindDisplayObjects,brd)
+end
+bg.Position=Vector2.new(startX-6,startY-6)
+local mw=0;for _,it in ipairs(items) do mw=math.max(mw,210) end
+bg.Size=Vector2.new(mw+20,#items*(size+10)+6)
 end
 sky=Lighting:FindFirstChildOfClass("Sky") or Instance.new("Sky",Lighting)
 colorCorr=Lighting:FindFirstChildOfClass("ColorCorrectionEffect") or Instance.new("ColorCorrectionEffect",Lighting)
 origLighting={Brightness=Lighting.Brightness,FogEnd=Lighting.FogEnd,ClockTime=Lighting.ClockTime,Saturation=colorCorr.Saturation}
+worldAtmosphere=nil
 origSky={Bk=sky.SkyboxBk,Dn=sky.SkyboxDn,Ft=sky.SkyboxFt,Lf=sky.SkyboxLf,Rt=sky.SkyboxRt,Up=sky.SkyboxUp}
 skyboxes={
 ["Jungle"]={Bk="http://www.roblox.com/asset/?id=214399891",Dn="http://www.roblox.com/asset/?id=214399887",Ft="http://www.roblox.com/asset/?id=214399894",Lf="http://www.roblox.com/asset/?id=214405668",Rt="http://www.roblox.com/asset/?id=214399899",Up="http://www.roblox.com/asset/?id=214399889"},
@@ -1842,8 +1709,15 @@ skyboxes={
 }
 function applyWorld()
 local VA=Config['Visual Awareness']
-if VA.WorldMod.Enabled then Lighting.Brightness=VA.WorldMod.Brightness;Lighting.FogEnd=VA.WorldMod.FogEnd;Lighting.ClockTime=VA.WorldMod.ClockTime;colorCorr.Saturation=VA.WorldMod.Saturation
-else Lighting.Brightness=origLighting.Brightness;Lighting.FogEnd=origLighting.FogEnd;Lighting.ClockTime=origLighting.ClockTime;colorCorr.Saturation=origLighting.Saturation end
+if VA.WorldMod.Enabled then
+Lighting.Brightness=VA.WorldMod.Brightness;Lighting.FogEnd=VA.WorldMod.FogEnd;Lighting.ClockTime=VA.WorldMod.ClockTime;colorCorr.Saturation=VA.WorldMod.Saturation
+else
+Lighting.Brightness=origLighting.Brightness;Lighting.FogEnd=origLighting.FogEnd;Lighting.ClockTime=origLighting.ClockTime;colorCorr.Saturation=origLighting.Saturation
+end
+if VA.WorldMod.Enabled and VA.WorldMod.Atmosphere then
+if not worldAtmosphere then worldAtmosphere=Instance.new("Atmosphere",Lighting) end
+worldAtmosphere.Color=VA.WorldMod.AtmosphereColor;worldAtmosphere.Decay=VA.WorldMod.AtmosphereDecay;worldAtmosphere.Density=VA.WorldMod.AtmosphereDensity;worldAtmosphere.Glare=VA.WorldMod.AtmosphereGlare;worldAtmosphere.Haze=VA.WorldMod.AtmosphereHaze
+elseif worldAtmosphere then worldAtmosphere:Destroy();worldAtmosphere=nil end
 if VA.Skybox.Enabled then local sb=skyboxes[VA.Skybox.Value] if sb then sky.SkyboxBk=sb.Bk;sky.SkyboxDn=sb.Dn;sky.SkyboxFt=sb.Ft;sky.SkyboxLf=sb.Lf;sky.SkyboxRt=sb.Rt;sky.SkyboxUp=sb.Up end
 else sky.SkyboxBk=origSky.Bk;sky.SkyboxDn=origSky.Dn;sky.SkyboxFt=origSky.Ft;sky.SkyboxLf=origSky.Lf;sky.SkyboxRt=origSky.Rt;sky.SkyboxUp=origSky.Up end
 end
@@ -1854,16 +1728,18 @@ for i=1,4 do crossLines[i]={l=Drawing.new("Line"),o=Drawing.new("Line")} end
 watermarkText=Drawing.new("Text");watermarkText.Visible=false
 notifications={}
 function pushNotification(text)
-local VA=Config['Visual Awareness']
-local t=Drawing.new("Text");t.Size=12;t.Font=3;t.Text=text;t.Outline=true;t.Visible=true;t.Color=VA.Notifications.Color
-table.insert(notifications,{t=t,born=tick()})
-task.delay(3,function() pcall(function() t:Remove() end) for i,n in ipairs(notifications) do if n.t==t then table.remove(notifications,i) break end end end)
+local ttl=Drawing.new("Text");ttl.Size=13;ttl.Font=2;ttl.Text="hate";ttl.Outline=true;ttl.OutlineColor=Color3.new(0,0,0);ttl.Color=Color3.fromRGB(124,110,255);ttl.Visible=true;ttl.ZIndex=13
+local t=Drawing.new("Text");t.Size=13;t.Font=2;t.Text=text;t.Outline=true;t.OutlineColor=Color3.new(0,0,0);t.Color=Color3.new(1,1,1);t.Visible=true;t.ZIndex=13
+local bg=Drawing.new("Square");bg.Filled=true;bg.Color=Color3.fromRGB(16,16,22);bg.Transparency=0.05;bg.Visible=true;bg.ZIndex=10
+local edge=Drawing.new("Square");edge.Filled=true;edge.Color=Color3.fromRGB(124,110,255);edge.Transparency=0;edge.Visible=true;edge.ZIndex=11
+table.insert(notifications,{t=t,ttl=ttl,bg=bg,edge=edge,born=tick()})
+task.delay(4,function() for _,o in ipairs({ttl,t,bg,edge}) do pcall(function() o:Remove() end) end for i,n in ipairs(notifications) do if n.t==t then table.remove(notifications,i) break end end end)
 end
 crossPos=Vector2.new(0,0)
 function updateHudDraws(dt)
 local VA=Config['Visual Awareness']
 if VA.Crosshair.Enabled and not PanicMode and Started then
-local target=VA.Crosshair.Follow and (silentAimTarget or aimAssistPart or jujuSilentTarget) or nil
+local target=VA.Crosshair.Follow and (currentTarget or aimAssistPart) or nil
 local desired
 if target then local p,on=Camera:WorldToViewportPoint(target.Position) if on then desired=Vector2.new(p.X,p.Y) end end
 if not desired then desired=VA.Crosshair.Location=="Mouse" and UserInputService:GetMouseLocation() or Camera.ViewportSize/2 end
@@ -1886,7 +1762,14 @@ watermarkText.Visible=true;watermarkText.Text=VA.Watermark.Text;watermarkText.Co
 local pos=VA.Watermark.Position=="Mouse" and UserInputService:GetMouseLocation() or Vector2.new(Camera.ViewportSize.X/2-40,20)
 watermarkText.Position=pos+Vector2.new(0,VA.Watermark.YOffset)
 else watermarkText.Visible=false end
-for i,n in ipairs(notifications) do n.t.Position=Vector2.new(Camera.ViewportSize.X/2-60,Camera.ViewportSize.Y/2+125+VA.Notifications.YOffset+(i-1)*14) end
+for i,n in ipairs(notifications) do
+local y=16+VA.Notifications.YOffset+(i-1)*34
+local w=math.max(260,n.t.TextBounds.X+n.ttl.TextBounds.X+40)
+n.bg.Position=Vector2.new(15,y);n.bg.Size=Vector2.new(w,28)
+n.edge.Position=Vector2.new(15,y);n.edge.Size=Vector2.new(3,28)
+n.ttl.Position=Vector2.new(27,y+6)
+n.t.Position=Vector2.new(27+n.ttl.TextBounds.X+9,y+6)
+end
 local vp=Camera.ViewportSize
 for i,x in ipairs(toastLines) do x.t.Position=Vector2.new(vp.X-280,vp.Y-30-(#toastLines-i)*18) end
 end
@@ -1934,7 +1817,6 @@ if (nm=="HP" or nm=="Health") and b then b.BackgroundColor3=VA.StatBars.HP end
 if (nm=="Energy" or nm=="Stamina") and b then b.BackgroundColor3=VA.StatBars.Energy end
 if nm=="Armor" and b then b.BackgroundColor3=VA.StatBars.Armor end
 if nm=="Armor" and fb then fb.BackgroundColor3=VA.StatBars.Fire end
-if VA.StatBars.Enabled then
 if VA.StatBars.Value=="Minimalistic" then
 if not obj:FindFirstChild("hudCorner") then Instance.new("UICorner",obj).Name="hudCorner" end
 if b and not b:FindFirstChild("hudCorner") then Instance.new("UICorner",b).Name="hudCorner" end
@@ -1943,7 +1825,6 @@ elseif VA.StatBars.Value=="Flat" then obj.BackgroundColor3=Color3.fromRGB(24,24,
 elseif VA.StatBars.Value=="Gamesense" then obj.BackgroundColor3=Color3.fromRGB(20,20,20)
 elseif VA.StatBars.Value=="Minecraft" then obj.BackgroundTransparency=1
 elseif VA.StatBars.Value=="Sanrio" then obj.BackgroundColor3=nm=="HP" and Color3.fromRGB(255,0,4) or nm=="Energy" and Color3.fromRGB(255,233,110) or Color3.fromRGB(0,163,212) end
-end
 end
 end)
 end))
@@ -2068,7 +1949,6 @@ track(RunService.RenderStepped:Connect(function(dt)
 if Unloaded or not Started then return end
 if currentTarget then local p=Players:GetPlayerFromCharacter(currentTarget.Parent) if p and isWhitelisted(p) then currentTarget=nil;isLocking=false end end
 if isSelfKnocked() and isLocking then currentTarget=nil;isLocking=false end
-TriggerBot()
 if Config['Hitbox Expander'].Enabled then
 for _,pl in pairs(Players:GetPlayers()) do
 if pl~=LocalPlayer and pl.Character and not isWhitelisted(pl) then
@@ -2078,13 +1958,12 @@ end
 end
 end
 updateFOVCircle();updateLockLine();refreshESP();applyWorld();updateHudDraws(dt);updateVisualsContinuous()
+updateKeybindDisplay()
 if Config['Visual Awareness'].AspectRatio.Enabled then Camera.CFrame=Camera.CFrame*aspectMult end
-if Config['Juju Silent Aim'].Enabled and (bindActive('Juju Silent Aim') or Config.Ragebot.Enabled) then
-jujuSilentTarget=getTargetForJujuSilentAim()
-if jujuSilentTarget then updateResolver(jujuSilentTarget.Parent,jujuSilentTarget) end
-else jujuSilentTarget=nil;jujuStickyTarget=nil end
-if Config['Silent Aim'].Enabled and bindActive('Silent Aim') then silentAimTarget=getTargetForSilentAim() else silentAimTarget=nil;saStickyTarget=nil end
-if Config['Aim Assist'].Enabled and bindActive('Aim Assist') then applyAimAssist(dt) else aimAssistPart=nil;stickyTarget=nil end
+if Config['Sticky'].Enabled then
+if stickyLocked then currentTarget=getStickyLockPart() end
+else stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil end
+applyCamLock(dt)
 end))
 track(RunService.RenderStepped:Connect(function()
 if Unloaded or not Started then return end
@@ -2092,6 +1971,18 @@ if not Config['Rapid Fire'].Enabled or not rapidFireActive then return end
 if tick()-lastRapidShot<Config['Rapid Fire'].Delay then return end
 local ch=LocalPlayer.Character if not ch then return end
 local tool=ch:FindFirstChildOfClass("Tool") if not tool then return end
+if not rapidPatched[tool] then
+rapidPatched[tool]=true
+pcall(function()
+for _,v in ipairs(getconnections(tool.Activated)) do
+local fi=debug.getinfo(v.Function)
+for i=1,fi.nups do
+local c,n=debug.getupvalue(v.Function,i)
+if type(c)=="number" then debug.setupvalue(v.Function,i,0.0000000000001) end
+end
+end
+end)
+end
 if Config['Rapid Fire'].SpecificWeapons.Enabled then
 local v=false
 for _,w in pairs(Config['Rapid Fire'].SpecificWeapons.Weapons) do if tool.Name==w then v=true break end end
@@ -2099,9 +1990,32 @@ if not v then return end
 end
 tool:Activate();lastRapidShot=tick()
 end))
+-- // [新] Rapid Fire v2 (HyperFire) //
+track(game.DescendantAdded:Connect(function(obj)
+if Config['Rapid Fire v2'].Enabled and obj.Name=='ToleranceCooldown' and obj:IsA('ValueBase') then obj.Value=0 end
+end))
 track(RunService.RenderStepped:Connect(function()
 if Unloaded or not Started then return end
-if not Config['Infinite Range'].Enabled or not bindActive('Inf Range') then return end
+if not Config['Rapid Fire v2'].Enabled then return end
+if not UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) then return end
+local ch=LocalPlayer.Character if not ch then return end
+local tool=ch:FindFirstChildOfClass('Tool') if not tool or not tool:FindFirstChild('Ammo') then return end
+tool:Activate()
+end))
+-- // [新] Remove Shoot Animations (free.txt) //
+local ShootAnimIds={["rbxassetid://2807049953"]=true,["rbxassetid://2809413000"]=true,["rbxassetid://2809419094"]=true,["rbxassetid://507768375"]=true,["rbxassetid://507755388"]=true,["rbxassetid://2877910736"]=true}
+track(RunService.RenderStepped:Connect(function()
+if Unloaded or not Started then return end
+if not Config['Remove Shoot Animations'].Enabled then return end
+for _,plr in ipairs(Players:GetPlayers()) do
+local pch=plr.Character
+local phum=pch and pch:FindFirstChildOfClass('Humanoid')
+if phum then for _,tr in ipairs(phum:GetPlayingAnimationTracks()) do if ShootAnimIds[tr.Animation and tr.Animation.AnimationId] then pcall(function() tr:Stop() end) end end end
+end
+end))
+track(RunService.RenderStepped:Connect(function()
+if Unloaded or not Started then return end
+if not Config['Infinite Range'].Enabled or not infRangeActive then return end
 local ch=LocalPlayer.Character if not ch then return end
 local tool=ch:FindFirstChildOfClass("Tool") if not tool then return end
 if tool~=irState.tool or tick()-irState.lastScan>2 then irState.tool=tool;irState.lastScan=tick();irScan(tool) end
@@ -2156,13 +2070,31 @@ if purchasing then return end
 if tick()-lastAmmoBuy<2 then return end
 local ch=LocalPlayer.Character if not ch then return end
 local tool=ch:FindFirstChildOfClass("Tool") if not tool then return end
-local ammo=tool:FindFirstChild("Ammo") if not ammo then return end
-if ammo.Value<=Config['Auto Ammo'].Amount then
-local nm=cleanName(tool.Name)
-if shopNames[nm.."ammo"] then lastAmmoBuy=tick() purchaseItem(nm.."ammo") end
+local mag=tool:FindFirstChild("Magazine") or tool:FindFirstChild("CurrentAmmo") or tool:FindFirstChild("Mag") or tool:FindFirstChild("Clip")
+local ammoVal=(mag and mag:IsA("ValueBase")) and mag or tool:FindFirstChild("Ammo")
+if not ammoVal then return end
+if ammoVal.Value<=Config['Auto Ammo'].Amount then
+lastAmmoBuy=tick()
+buyAmmo(tool.Name)
 end
 end))
--- // FIXED keybind input //
+-- // [新] Auto Armor (juju 式) //
+local lastArmorBuy=0
+track(RunService.Heartbeat:Connect(function()
+if Unloaded or not Started then return end
+if not Config.Purchases.AutoArmor then return end
+if purchasing then return end
+if tick()-lastArmorBuy<3 then return end
+local ch=LocalPlayer.Character if not ch then return end
+local be=ch:FindFirstChild('BodyEffects') if not be then return end
+local a=be:FindFirstChild('Armor') if not a then return end
+local mx=130
+if a.Value/mx <= Config.Purchases.ArmorAt/100 then
+lastArmorBuy=tick()
+purchaseItem("mediumarmor")
+end
+end))
+-- // [修复] 按键绑定: Toggle=切换主开关(与UI同步), Hold=按住生效 //
 track(UserInputService.InputBegan:Connect(function(input)
 if Unloaded or not Started then return end
 if WaitingForKey or BindConsumed then return end
@@ -2175,17 +2107,30 @@ updateKeybindDisplay()
 return
 end
 if matchInput(Config.Keybinds['Target Lock'],input) then
-if bindMode('Target Lock')=='Hold' then
-if not isLocking then isLocking=true;local t=findClosestTarget(Config['Silent Aim'].HitPart,Config.FOV) if t then currentTarget=t.Parent newTargetSignal:Fire(currentTarget) end end
-else
-if isLocking then isLocking=false;currentTarget=nil else local t=findClosestTarget(Config['Silent Aim'].HitPart,Config.FOV) if t then currentTarget=t.Parent isLocking=true newTargetSignal:Fire(currentTarget) end end
+if Config.Keybinds['Target Lock'].Mode=='Hold' then holdStates['Target Lock']=true end
+if Config['Sticky'].Enabled and not isTyping() then
+if stickyLocked then stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil;isLocking=false;stickyTracer.Visible=false
+else lockStickyTarget() end
 end
 return
 end
-local KEYBIND_NAMES={'Silent Aim','Juju Silent Aim','Aim Assist','Trigger Bot','Rage Mode','Ragebot','ESP','Inf Range','Noclip','Speed','Fly'}
+if matchInput(Config.Keybinds['CamLock'],input) then
+if not isTyping() then
+Config['CamLock'].Enabled=not Config['CamLock'].Enabled
+notifyToggle("CamLock",Config['CamLock'].Enabled)
+if not Config['CamLock'].Enabled then unlockCamLock() end
+refreshAllComponents()
+end
+return
+end
+if matchInput(Config.Keybinds['Desync'],input) then
+if not isTyping() then if Config['Desync'].Enabled then toggleDesync(false) else toggleDesync(true) end end
+return
+end
+local KEYBIND_NAMES={'Trigger Bot','Ragebot','ESP','Inf Range','Noclip','Speed','Fly'}
 for _,name in ipairs(KEYBIND_NAMES) do
 if matchInput(Config.Keybinds[name],input) then
-if bindMode(name)=='Hold' then holdStates[name]=true else toggleFeatureFlag(name) end
+if bindMode(name)=='Hold' then holdStates[name]=true else toggleFeatureFlag(name) refreshAllComponents() end
 return
 end
 end
@@ -2214,7 +2159,7 @@ end))
 track(UserInputService.InputEnded:Connect(function(input)
 if Unloaded or not Started then return end
 if matchInput(Config.Keybinds['Target Lock'],input) and Config.Keybinds['Target Lock'].Mode=='Hold' then isLocking=false;currentTarget=nil end
-local KEYBIND_NAMES={'Silent Aim','Juju Silent Aim','Aim Assist','Trigger Bot','Rage Mode','Ragebot','Speed','Fly'}
+local KEYBIND_NAMES={'Trigger Bot','Ragebot','Speed','Fly'}
 for _,name in ipairs(KEYBIND_NAMES) do
 if matchInput(Config.Keybinds[name],input) and bindMode(name)=='Hold' then holdStates[name]=false end
 end
@@ -2222,7 +2167,7 @@ if matchInput(Config.Keybinds['Super Jump'],input) then holdStates['Super Jump']
 if matchInput(Config.Keybinds['Emote'],input) then if emoteTrack then emoteTrack:Stop();emoteTrack=nil end end
 if input.UserInputType==Enum.UserInputType.MouseButton1 then rapidFireActive=false end
 end))
-UI={BG=Color3.fromRGB(13,13,18),Top=Color3.fromRGB(18,18,26),Panel=Color3.fromRGB(22,22,32),Panel2=Color3.fromRGB(30,30,44),Stroke=Color3.fromRGB(58,58,86),Text=Color3.fromRGB(225,225,235),TextDim=Color3.fromRGB(120,120,150),Accent=Color3.fromRGB(124,110,255),ToggleOff=Color3.fromRGB(40,40,56),Green=Color3.fromRGB(80,200,120),Danger=Color3.fromRGB(230,70,90)}
+UI={BG=Color3.fromRGB(11,11,15),Top=Color3.fromRGB(16,16,23),Panel=Color3.fromRGB(20,20,29),Panel2=Color3.fromRGB(28,28,41),Stroke=Color3.fromRGB(56,56,82),Text=Color3.fromRGB(230,230,240),TextDim=Color3.fromRGB(122,122,150),Accent=Color3.fromRGB(124,110,255),ToggleOff=Color3.fromRGB(38,38,54),Green=Color3.fromRGB(80,200,120),Danger=Color3.fromRGB(230,70,90)}
 AccentElements={}
 ScreenGui=Instance.new("ScreenGui");ScreenGui.Name="HateUI";ScreenGui.ResetOnSpawn=false;ScreenGui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;ScreenGui.DisplayOrder=999999
 pcall(function() ScreenGui.IgnoreGuiInset=true end)
@@ -2282,15 +2227,19 @@ local function addResize(px,py)
 local h=Instance.new("TextButton");h.Size=UDim2.new(0,14,0,14);h.AnchorPoint=Vector2.new(px,py);h.Position=UDim2.new(px,0,py,0);h.BackgroundTransparency=1;h.BorderSizePixel=0;h.ZIndex=6;h.Text="";h.Parent=MainFrame
 h.MouseButton1Down:Connect(function()
 local startSize=MainFrame.AbsoluteSize;local startPos=MainFrame.AbsolutePosition
+local startMouse=UserInputService:GetMouseLocation()
 local conn;conn=RunService.RenderStepped:Connect(function()
 local mp=UserInputService:GetMouseLocation()
-local w,hh
-if px==1 then w=mp.X-startPos.X else w=startSize.X+(startPos.X-mp.X) end
-if py==1 then hh=mp.Y-startPos.Y else hh=startSize.Y+(startPos.Y-mp.Y) end
+local dx=mp.X-startMouse.X;local dy=mp.Y-startMouse.Y
+local w=startSize.X;local hh=startSize.Y
+if px==1 then w=startSize.X+dx else w=startSize.X-dx end
+if py==1 then hh=startSize.Y+dy else hh=startSize.Y-dy end
 w=math.clamp(w,520,1400);hh=math.clamp(hh,360,900)
-if px==0 then MainFrame.Position=UDim2.fromOffset(startPos.X+(startSize.X-w),MainFrame.AbsolutePosition.Y) end
-if py==0 then MainFrame.Position=UDim2.new(MainFrame.Position.X.Scale,MainFrame.Position.X.Offset,0,startPos.Y+(startSize.Y-hh)) end
+local newX=startPos.X;local newY=startPos.Y
+if px==0 then newX=startPos.X+(startSize.X-w) end
+if py==0 then newY=startPos.Y+(startSize.Y-hh) end
 MainFrame.Size=UDim2.new(0,w,0,hh)
+MainFrame.Position=UDim2.fromOffset(newX,newY)
 end)
 local up;up=UserInputService.InputEnded:Connect(function(inp) if inp.UserInputType==Enum.UserInputType.MouseButton1 then conn:Disconnect();up:Disconnect() end end)
 end)
@@ -2633,12 +2582,12 @@ for _,o in pairs(keybindDisplayObjects) do pcall(function() o:Remove() end) end
 for _,l in pairs(viewLines) do pcall(function() l:Remove() end) end
 viewLines={}
 for i=1,4 do pcall(function() crossLines[i].l:Remove();crossLines[i].o:Remove() end) end
-for _,n in ipairs(notifications) do pcall(function() n.t:Remove() end) end
+for _,n in ipairs(notifications) do pcall(function() n.t:Remove() end) pcall(function() n.ttl:Remove() end) pcall(function() n.bg:Remove() end) pcall(function() n.edge:Remove() end) end
 for _,x in ipairs(toastLines) do pcall(function() x.t:Remove() end) end
-pcall(function() fovCircle:Remove() end);pcall(function() saFovCircle:Remove() end);pcall(function() aaFovCircle:Remove() end);pcall(function() lockLine:Remove() end)
+pcall(function() fovCircle:Remove() end);pcall(function() aaFovCircle:Remove() end);pcall(function() lockLine:Remove() end);pcall(function() stickyFov:Remove() end);pcall(function() stickyTracer:Remove() end)
 pcall(function() watermarkText:Remove() end)
 pcall(function() particlePart:Destroy() end)
-pcall(function() if auraPart then auraPart:Destroy() end end)
+pcall(function() if auraAtt then auraAtt:Destroy() end end)
 pcall(function() if desyncModel then desyncModel:Destroy() end end)
 pcall(function() if trailObj then trailObj:Destroy() end end)
 pcall(function() for _,c in pairs(Workspace:GetChildren()) do if c.Name=="\0" then c:Destroy() end end end)
@@ -2651,6 +2600,11 @@ pcall(function() sky.SkyboxBk=origSky.Bk;sky.SkyboxDn=origSky.Dn;sky.SkyboxFt=or
 pcall(function() closeGridPopup() end)
 pcall(function() ScreenGui:Destroy() end);pcall(function() hudGui:Destroy() end)
 if type(cleardrawcache)=="function" then pcall(cleardrawcache) end
+pcall(function() if camFov then camFov:Remove() end end)
+pcall(function() if desyncEye then desyncEye:Remove() end end)
+pcall(function() if desyncSetback then desyncSetback:Destroy() end end)
+pcall(function() if auraPart then auraPart:Destroy() end end)
+pcall(function() restoreForcefieldVisuals() end)
 genv.__HateCC_Loaded=false;genv.__HateCC_Unload=nil
 end
 genv.__HateCC_Unload=UnloadScript
@@ -2678,67 +2632,39 @@ local function doStart() Started=true;Launcher.Visible=false;openMenu();updateKe
 launcherButton("Start",110,true,doStart)
 launcherButton("Exit",146,false,function() UnloadScript() end)
 end
+-- // UI BUILD //
 do
 local VA=Config['Visual Awareness']
-local saBox=CreateSection(Pages.Aim.L,"SilentAim")
-local saBtn=CreateToggle(saBox,"SilentAim",function() return Config['Silent Aim'].Enabled end,function(v) Config['Silent Aim'].Enabled=v end)
-attachKeybind(saBtn,Config.Keybinds['Silent Aim'])
-CreateToggle(saBox,"Sticky",function() return Config['Silent Aim'].Sticky end,function(v) Config['Silent Aim'].Sticky=v;if not v then saStickyTarget=nil end end)
-CreateDropdown(saBox,"HitPart",{"Head","UpperTorso","HumanoidRootPart","Closest Part"},function() return Config['Silent Aim'].HitPart end,function(v) Config['Silent Aim'].HitPart=v end)
-CreateToggle(saBox,"UsePrediction",function() return Config['Silent Aim'].UsePrediction end,function(v) Config['Silent Aim'].UsePrediction=v end)
-CreateSlider(saBox,"PredX",0,100,function() return math.floor(Config['Silent Aim'].Prediction.X*100) end,function(v) Config['Silent Aim'].Prediction.X=v/100 end)
-CreateSlider(saBox,"PredY",0,100,function() return math.floor(Config['Silent Aim'].Prediction.Y*100) end,function(v) Config['Silent Aim'].Prediction.Y=v/100 end)
-CreateSlider(saBox,"PredZ",0,100,function() return math.floor(Config['Silent Aim'].Prediction.Z*100) end,function(v) Config['Silent Aim'].Prediction.Z=v/100 end)
-local jsaBox=CreateSection(Pages.Aim.L,"JujuSA")
-local jsaBtn=CreateToggle(jsaBox,"JujuSA",function() return Config['Juju Silent Aim'].Enabled end,function(v) Config['Juju Silent Aim'].Enabled=v end)
-attachKeybind(jsaBtn,Config.Keybinds['Juju Silent Aim'])
-CreateToggle(jsaBox,"JujuSticky",function() return Config['Juju Silent Aim'].Sticky end,function(v) Config['Juju Silent Aim'].Sticky=v;if not v then jujuStickyTarget=nil end end)
-CreateDropdown(jsaBox,"HitPart",{"Head","UpperTorso","HumanoidRootPart","LowerTorso","Closest Part"},function() return Config['Juju Silent Aim'].HitPart end,function(v) Config['Juju Silent Aim'].HitPart=v end)
-CreateSlider(jsaBox,"JujuHitChance",0,100,function() return Config['Juju Silent Aim'].HitChance end,function(v) Config['Juju Silent Aim'].HitChance=v end)
-CreateToggle(jsaBox,"UsePrediction",function() return Config['Juju Silent Aim'].UsePrediction end,function(v) Config['Juju Silent Aim'].UsePrediction=v end)
-CreateToggle(jsaBox,"JujuAntiCurve",function() return Config['Juju Silent Aim'].AntiCurve end,function(v) Config['Juju Silent Aim'].AntiCurve=v end)
-CreateSlider(jsaBox,"JujuACVal",10,500,function() return Config['Juju Silent Aim'].AntiCurveValue end,function(v) Config['Juju Silent Aim'].AntiCurveValue=v end)
-CreateSlider(jsaBox,"JujuMultipoint",0,100,function() return Config['Juju Silent Aim'].Multipoint end,function(v) Config['Juju Silent Aim'].Multipoint=v end)
-CreateDropdown(jsaBox,"JujuAirHB",{"LowerTorso","Head","HumanoidRootPart","UpperTorso"},function() return Config['Juju Silent Aim'].AirHitbox end,function(v) Config['Juju Silent Aim'].AirHitbox=v end)
-CreateToggle(jsaBox,"JujuBacktrack",function() return Config['Juju Silent Aim'].Backtrack end,function(v) Config['Juju Silent Aim'].Backtrack=v end)
-CreateSlider(jsaBox,"JujuBTLife",10,100,function() return math.floor(Config['Juju Silent Aim'].BacktrackLifetime*100) end,function(v) Config['Juju Silent Aim'].BacktrackLifetime=v/100 end)
-local rsBox=CreateSection(Pages.Aim.L,"Resolver")
-CreateToggle(rsBox,"Resolver",function() return Config['Resolver'].Enabled end,function(v) Config['Resolver'].Enabled=v end)
-CreateToggle(rsBox,"ResolverRT",function() return Config['Resolver'].RandomTeleport end,function(v) Config['Resolver'].RandomTeleport=v end)
-CreateToggle(rsBox,"ResolverNet",function() return Config['Resolver'].Network end,function(v) Config['Resolver'].Network=v end)
-CreateSlider(rsBox,"RefreshRate",10,500,function() return math.floor(Config['Resolver'].RefreshRate*1000) end,function(v) Config['Resolver'].RefreshRate=v/1000 end)
-local safBox=CreateSection(Pages.Aim.L,"SAFOV")
-CreateToggle(safBox,"SAFOVEnabled",function() return Config['Silent Aim FOV'].Enabled end,function(v) Config['Silent Aim FOV'].Enabled=v end)
-CreateToggle(safBox,"SAFOVVisible",function() return Config['Silent Aim FOV'].Visible end,function(v) Config['Silent Aim FOV'].Visible=v end)
-CreateSlider(safBox,"SAFOVSize",50,1000,function() return Config['Silent Aim FOV'].Size end,function(v) Config['Silent Aim FOV'].Size=v end)
-CreateSlider(safBox,"SAFOVThickness",1,10,function() return Config['Silent Aim FOV'].Thickness end,function(v) Config['Silent Aim FOV'].Thickness=v end)
-CreateColorPicker(safBox,"SAFOVColor",function() return Config['Silent Aim FOV'].Color end,function(v) Config['Silent Aim FOV'].Color=v end)
-local tbBox=CreateSection(Pages.Aim.L,"TriggerBot")
-local tbBtn=CreateToggle(tbBox,"TriggerBot",function() return Config['Trigger Bot'].Enabled end,function(v) Config['Trigger Bot'].Enabled=v end)
-attachKeybind(tbBtn,Config.Keybinds['Trigger Bot'])
-CreateSlider(tbBox,"TriggerDelay",0,1000,function() return math.floor(Config['Trigger Bot'].Delay*1000) end,function(v) Config['Trigger Bot'].Delay=v/1000 end)
-CreateSlider(tbBox,"TriggerRadH",0,30,function() return Config['Trigger Bot'].HorizontalRadius end,function(v) Config['Trigger Bot'].HorizontalRadius=v end)
-CreateSlider(tbBox,"TriggerRadV",0,30,function() return Config['Trigger Bot'].VerticalRadius end,function(v) Config['Trigger Bot'].VerticalRadius=v end)
-CreateToggle(tbBox,"TriggerJumpPred",function() return Config['Trigger Bot'].JumpPrediction end,function(v) Config['Trigger Bot'].JumpPrediction=v end)
-CreateToggle(tbBox,"SpecificWeapons",function() return Config['Trigger Bot'].SpecificWeapons.Enabled end,function(v) Config['Trigger Bot'].SpecificWeapons.Enabled=v end)
-CreateWeaponBox(tbBox,"WeaponList",function() return Config['Trigger Bot'].SpecificWeapons.Weapons end,function(v) Config['Trigger Bot'].SpecificWeapons.Weapons=v end)
+local stBox=CreateSection(Pages.Aim.L,"StickyAim")
+local stBtn=CreateToggle(stBox,"StickyAim",function() return Config['Sticky'].Enabled end,function(v) Config['Sticky'].Enabled=v;if not v then stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil end end)
+attachKeybind(stBtn,Config.Keybinds['Target Lock'])
+CreateDropdown(stBox,"HitPart",{"Head","UpperTorso","HumanoidRootPart","LowerTorso","Closest Part"},function() return Config['Sticky'].HitPart end,function(v) Config['Sticky'].HitPart=v end)
+CreateDropdown(stBox,"StickyFire",{"Auto","Manual"},function() return Config['Sticky'].AutoFire and "Auto" or "Manual" end,function(v) Config['Sticky'].AutoFire=(v=="Auto") end)
+CreateToggle(stBox,"StickySpectate",function() return Config['Sticky'].Spectate end,function(v) Config['Sticky'].Spectate=v end)
+CreateToggle(stBox,"StickyStomp",function() return Config['Sticky'].StompTarget end,function(v) Config['Sticky'].StompTarget=v end)
+CreateToggle(stBox,"StickyInvBullets",function() return Config['Sticky'].InvisibleBullets end,function(v) Config['Sticky'].InvisibleBullets=v end)
+CreateToggle(stBox,"StickyTracer",function() return Config['Sticky'].Tracer end,function(v) Config['Sticky'].Tracer=v end)
+CreateDropdown(stBox,"StickyTracerMode",{"Mouse","HumanoidRootPart"},function() return Config['Sticky'].TracerMode end,function(v) Config['Sticky'].TracerMode=v end)
+CreateColorPicker(stBox,"StickyTracerColor",function() return Config['Sticky'].TracerColor end,function(v) Config['Sticky'].TracerColor=v end)
+CreateToggle(stBox,"StickyFOV",function() return Config['Sticky'].FOVEnabled end,function(v) Config['Sticky'].FOVEnabled=v end)
+CreateSlider(stBox,"StickyFOVSize",50,1000,function() return Config['Sticky'].FOVSize end,function(v) Config['Sticky'].FOVSize=v end)
+CreateColorPicker(stBox,"StickyFOVColor",function() return Config['Sticky'].FOVColor end,function(v) Config['Sticky'].FOVColor=v end)
+CreateToggle(stBox,"StickyStrafe",function() return Config['Sticky'].Strafe end,function(v) Config['Sticky'].Strafe=v end)
+CreateDropdown(stBox,"StickyStrafeMode",{"Orbit","Random"},function() return Config['Sticky'].StrafeMode end,function(v) Config['Sticky'].StrafeMode=v end)
+CreateSlider(stBox,"StickyStrafeSpeed",1,20,function() return Config['Sticky'].StrafeSpeed end,function(v) Config['Sticky'].StrafeSpeed=v end)
+CreateSlider(stBox,"StickyStrafeOffset",1,20,function() return Config['Sticky'].StrafeXOffset end,function(v) Config['Sticky'].StrafeXOffset=v end)
+CreateToggle(stBox,"StickySpectateStrafe",function() return Config['Sticky'].SpectateStrafe end,function(v) Config['Sticky'].SpectateStrafe=v end)
+WEAPONS={'[Revolver]','[Deagle]','[Glock]','[Silencer]','[Double-Barrel SG]','[TacticalShotgun]','[Shotgun]','[Drum-Shotgun]','[SMG]','[Rifle]','[AK47]','[AR]','[AUG]','[DrumGun]','[P90]','[LMG]','[Knife]'}
 local taBox=CreateSection(Pages.Aim.L,"TargetAim")
 CreateToggle(taBox,"TargetAim",function() return Config.Settings['Target Aim'] end,function(v) Config.Settings['Target Aim']=v end)
 CreateToggle(taBox,"KnockCheck",function() return Config.Settings['Knock Check'] end,function(v) Config.Settings['Knock Check']=v end)
 CreateToggle(taBox,"VisibleCheck",function() return Config.Settings['Visible Check'] end,function(v) Config.Settings['Visible Check']=v end)
-local aaBox=CreateSection(Pages.Aim.R,"AimAssist")
-local aaBtn=CreateToggle(aaBox,"AimAssist",function() return Config['Aim Assist'].Enabled end,function(v) Config['Aim Assist'].Enabled=v end)
-attachKeybind(aaBtn,Config.Keybinds['Aim Assist'])
-CreateToggle(aaBox,"Sticky",function() return Config['Aim Assist'].Sticky end,function(v) Config['Aim Assist'].Sticky=v;if not v then stickyTarget=nil end end)
-CreateDropdown(aaBox,"HitPart",{"Head","UpperTorso","HumanoidRootPart","Closest Part"},function() return Config['Aim Assist'].HitPart end,function(v) Config['Aim Assist'].HitPart=v end)
-CreateDropdown(aaBox,"AssistStyle",{"Camera","Mouse"},function() return Config['Aim Assist'].Style end,function(v) Config['Aim Assist'].Style=v end)
-CreateSlider(aaBox,"Smoothing",0,100,function() return Config['Aim Assist'].Smoothing end,function(v) Config['Aim Assist'].Smoothing=v end)
-CreateToggle(aaBox,"UsePrediction",function() return Config['Aim Assist'].UsePrediction end,function(v) Config['Aim Assist'].UsePrediction=v end)
-CreateSlider(aaBox,"PredX",0,100,function() return math.floor(Config['Aim Assist'].Prediction.X*100) end,function(v) Config['Aim Assist'].Prediction.X=v/100 end)
-CreateSlider(aaBox,"PredY",0,100,function() return math.floor(Config['Aim Assist'].Prediction.Y*100) end,function(v) Config['Aim Assist'].Prediction.Y=v/100 end)
-CreateSlider(aaBox,"PredZ",0,100,function() return math.floor(Config['Aim Assist'].Prediction.Z*100) end,function(v) Config['Aim Assist'].Prediction.Z=v/100 end)
-CreateToggle(aaBox,"AssistFOV",function() return Config['Aim Assist'].FOVEnabled end,function(v) Config['Aim Assist'].FOVEnabled=v end)
-CreateSlider(aaBox,"AssistFOVSize",50,1000,function() return Config['Aim Assist'].FOVSize end,function(v) Config['Aim Assist'].FOVSize=v end)
+local clBox=CreateSection(Pages.Aim.R,"CamLock")
+local clBtn=CreateToggle(clBox,"CamLock",function() return Config['CamLock'].Enabled end,function(v) Config['CamLock'].Enabled=v;if not v then unlockCamLock() end end)
+attachKeybind(clBtn,Config.Keybinds['CamLock'])
+CreateSlider(clBox,"CamLockSmooth",0,100,function() return Config['CamLock'].Smoothness end,function(v) Config['CamLock'].Smoothness=v end)
+
+
 local fovBox=CreateSection(Pages.Aim.R,"FOVEnabled")
 CreateToggle(fovBox,"FOVEnabled",function() return Config.FOV.Enabled end,function(v) Config.FOV.Enabled=v end)
 CreateToggle(fovBox,"FOVVisible",function() return Config.FOV.Visible end,function(v) Config.FOV.Visible=v end)
@@ -2751,6 +2677,9 @@ local VA=Config['Visual Awareness']
 local espBox=CreateSection(Pages.Visuals.L,"ESP")
 local espBtn=CreateToggle(espBox,"ESP",function() return VA.Enabled end,function(v) VA.Enabled=v end)
 attachKeybind(espBtn,Config.Keybinds['ESP'])
+CreateToggle(espBox,"ESPNames",function() return VA.Names end,function(v) VA.Names=v end)
+CreateDropdown(espBox,"ESPNameMode",{"Username","DisplayName","Username (DisplayName)","Username (DisplayName) [UserID]"},function() return VA.NameMode end,function(v) VA.NameMode=v end)
+CreateToggle(espBox,"ESPOutline",function() return VA.Outline end,function(v) VA.Outline=v end)
 CreateToggle(espBox,"ESPBox",function() return VA.Box.Enabled end,function(v) VA.Box.Enabled=v end)
 CreateToggle(espBox,"ESPFill",function() return VA.Fill.Enabled end,function(v) VA.Fill.Enabled=v end)
 CreateToggle(espBox,"ESPChams",function() return VA.Chams.Enabled end,function(v) VA.Chams.Enabled=v end)
@@ -2762,16 +2691,13 @@ CreateToggle(espBox,"HealthBar",function() return VA.HealthBar.Enabled end,funct
 CreateToggle(espBox,"HealthText",function() return VA.HealthBar.ShowText end,function(v) VA.HealthBar.ShowText=v end)
 CreateToggle(espBox,"Skeleton",function() return VA.Skeleton.Enabled end,function(v) VA.Skeleton.Enabled=v end)
 CreateToggle(espBox,"KeybindDisplay",function() return VA.KeybindDisplay end,function(v) VA.KeybindDisplay=v;updateKeybindDisplay() end)
+CreateColorPicker(espBox,"KDPColor",function() return VA.KeybindDisplayColor end,function(v) VA.KeybindDisplayColor=v;updateKeybindDisplay() end)
 CreateToggle(espBox,"AntiRecord",function() return VA.AntiRecord end,function(v) VA.AntiRecord=v end)
 local lpBox=CreateSection(Pages.Visuals.L,"LPVisuals")
 CreateToggle(lpBox,"Trail",function() return Config['Local Player Visuals'].Trail end,function(v) Config['Local Player Visuals'].Trail=v;applyTrail() end)
 CreateColorPicker(lpBox,"TrailColor",function() return Config['Local Player Visuals'].TrailColor end,function(v) Config['Local Player Visuals'].TrailColor=v;applyTrail() end)
 CreateToggle(lpBox,"TrailGradient",function() return Config['Local Player Visuals'].TrailGradient end,function(v) Config['Local Player Visuals'].TrailGradient=v;applyTrail() end)
 CreateColorPicker(lpBox,"GradientColor",function() return Config['Local Player Visuals'].GradientColor end,function(v) Config['Local Player Visuals'].GradientColor=v;applyTrail() end)
-CreateToggle(lpBox,"ForcefieldBody",function() return Config['Local Player Visuals'].ForcefieldBody end,function(v) Config['Local Player Visuals'].ForcefieldBody=v end)
-CreateColorPicker(lpBox,"ForcefieldBodyColor",function() return Config['Local Player Visuals'].ForcefieldBodyColor end,function(v) Config['Local Player Visuals'].ForcefieldBodyColor=v end)
-CreateToggle(lpBox,"ForcefieldHats",function() return Config['Local Player Visuals'].ForcefieldHats end,function(v) Config['Local Player Visuals'].ForcefieldHats=v end)
-CreateColorPicker(lpBox,"ForcefieldHatsColor",function() return Config['Local Player Visuals'].ForcefieldHatsColor end,function(v) Config['Local Player Visuals'].ForcefieldHatsColor=v end)
 CreateToggle(lpBox,"MaterialTools",function() return Config['Local Player Visuals'].MaterialTools end,function(v) Config['Local Player Visuals'].MaterialTools=v;applyMaterialTools() end)
 CreateDropdown(lpBox,"MaterialValue",{"ForceField","Neon","Glass","Ice"},function() return Config['Local Player Visuals'].MaterialToolsValue end,function(v) Config['Local Player Visuals'].MaterialToolsValue=v;applyMaterialTools() end)
 CreateColorPicker(lpBox,"MaterialColor",function() return Config['Local Player Visuals'].MaterialToolsColor end,function(v) Config['Local Player Visuals'].MaterialToolsColor=v;applyMaterialTools() end)
@@ -2779,10 +2705,6 @@ CreateToggle(lpBox,"AccessoryAdder",function() return true end,function() end)
 CreateTextBox(lpBox,"AccessoryID","107473988",function() return accessoryId end,function(v) accessoryId=v end)
 CreateButton(lpBox,"AddAccessory",function() addAccessory(accessoryId) end)
 CreateButton(lpBox,"RemoveAccessory",function() removeAllAccessories() end)
-local paBox=CreateSection(Pages.Visuals.L,"ParticleAura")
-CreateToggle(paBox,"ParticleAura",function() return Config['Particle Aura'].Enabled end,function(v) Config['Particle Aura'].Enabled=v end)
-CreateDropdown(paBox,"AuraValue",{"Swirl","Ritual","Bubble","Rain","Air"},function() return Config['Particle Aura'].Value end,function(v) Config['Particle Aura'].Value=v end)
-CreateColorPicker(paBox,"AuraColor",function() return Config['Particle Aura'].Color end,function(v) Config['Particle Aura'].Color=v;setAuraColor(v) end)
 local dpBox=CreateSection(Pages.Visuals.L,"DesyncPos")
 CreateToggle(dpBox,"DesyncPos",function() return Config['Desynced Position'].Enabled end,function(v) Config['Desynced Position'].Enabled=v end)
 CreateDropdown(dpBox,"DesyncPosMat",{"ForceField","Neon"},function() return Config['Desynced Position'].Value end,function(v) Config['Desynced Position'].Value=v end)
@@ -2832,7 +2754,7 @@ CreateToggle(ohBox,"HitSkeletonOnly",function() return VA.HitSkeleton.OnlyLast e
 CreateToggle(ohBox,"HitParticle",function() return VA.HitParticle.Enabled end,function(v) VA.HitParticle.Enabled=v end)
 CreateDropdown(ohBox,"HitParticleValue",{"Sparks","Splash","Flame","Bubble","Bits","Air"},function() return VA.HitParticle.Value end,function(v) VA.HitParticle.Value=v end)
 CreateToggle(ohBox,"HitSound",function() return VA.HitSound.Enabled end,function(v) VA.HitSound.Enabled=v end)
-CreateDropdown(ohBox,"HitSoundValue",{"Gamesense","Neverlose","Bameware","Bubble","RIFK7","Rust","Cod","Minecraft","Custom"},function() return VA.HitSound.Value end,function(v) VA.HitSound.Value=v end)
+CreateDropdown(ohBox,"HitSoundValue",{"Bubble","Lazer","Pick","Pop","Rust","Sans","Fart","Big","Vine","UwU","Bruh","Skeet","Neverlose","Fatality","Bonk","Minecraft","Gamesense","RIFK7","Bamboo","Crowbar","Weeb","Beep","Bambi","Stone","Old Fatality","Click","Ding","Snow","Laser","Mario","Steve","Call of Duty","Bat","TF2 Critical","Saber","Baimware","Osu","TF2","Slime","Among Us","One","Custom"},function() return VA.HitSound.Value end,function(v) VA.HitSound.Value=v end)
 CreateSlider(ohBox,"HitSoundVolume",0,100,function() return VA.HitSound.Volume end,function(v) VA.HitSound.Volume=v end)
 local wBox=CreateSection(Pages.Visuals.R,"World")
 CreateToggle(wBox,"WorldMod",function() return VA.WorldMod.Enabled end,function(v) VA.WorldMod.Enabled=v;applyWorld() end)
@@ -2842,6 +2764,13 @@ CreateSlider(wBox,"TimeChanger",0,24,function() return VA.WorldMod.ClockTime end
 CreateToggle(wBox,"Skybox",function() return VA.Skybox.Enabled end,function(v) VA.Skybox.Enabled=v;applyWorld() end)
 CreateDropdown(wBox,"Skybox",{"Jungle","Blossom","Red night","Purple default","Foggy"},function() return VA.Skybox.Value end,function(v) VA.Skybox.Value=v;applyWorld() end)
 CreateToggle(wBox,"AspectRatio",function() return VA.AspectRatio.Enabled end,function(v) VA.AspectRatio.Enabled=v;applyAspect() end)
+CreateToggle(wBox,"Atmosphere",function() return VA.WorldMod.Atmosphere end,function(v) VA.WorldMod.Atmosphere=v;applyWorld() end)
+CreateColorPicker(wBox,"AtmosphereColor",function() return VA.WorldMod.AtmosphereColor end,function(v) VA.WorldMod.AtmosphereColor=v;applyWorld() end)
+CreateColorPicker(wBox,"AtmosphereDecay",function() return VA.WorldMod.AtmosphereDecay end,function(v) VA.WorldMod.AtmosphereDecay=v;applyWorld() end)
+CreateSlider(wBox,"AtmosphereDensity",0,100,function() return math.floor(VA.WorldMod.AtmosphereDensity*100) end,function(v) VA.WorldMod.AtmosphereDensity=v/100;applyWorld() end)
+CreateSlider(wBox,"AtmosphereGlare",0,100,function() return VA.WorldMod.AtmosphereGlare end,function(v) VA.WorldMod.AtmosphereGlare=v;applyWorld() end)
+CreateSlider(wBox,"AtmosphereHaze",0,100,function() return VA.WorldMod.AtmosphereHaze end,function(v) VA.WorldMod.AtmosphereHaze=v;applyWorld() end)
+CreateSlider(wBox,"Saturation",-5,5,function() return VA.WorldMod.Saturation end,function(v) VA.WorldMod.Saturation=v;applyWorld() end)
 CreateSlider(wBox,"AspectValue",1,100,function() return VA.AspectRatio.Value end,function(v) VA.AspectRatio.Value=v;applyAspect() end)
 local vBox=CreateSection(Pages.Visuals.R,"ViewHud")
 CreateToggle(vBox,"UnlockZoom",function() return VA.View.UnlockZoom end,function(v) VA.View.UnlockZoom=v;applyView() end)
@@ -2856,7 +2785,7 @@ CreateSlider(vBox,"CrossSpin",0,100,function() return VA.Crosshair.Spin end,func
 CreateSlider(vBox,"CrossSize",2,40,function() return VA.Crosshair.Size end,function(v) VA.Crosshair.Size=v end)
 CreateSlider(vBox,"CrossGap",0,20,function() return VA.Crosshair.Gap end,function(v) VA.Crosshair.Gap=v end)
 CreateToggle(vBox,"Watermark",function() return VA.Watermark.Enabled end,function(v) VA.Watermark.Enabled=v end)
-CreateTextBox(vBox,"WaterText","hate v17",function() return VA.Watermark.Text end,function(v) VA.Watermark.Text=v end)
+CreateTextBox(vBox,"WaterText","hate v16",function() return VA.Watermark.Text end,function(v) VA.Watermark.Text=v end)
 CreateDropdown(vBox,"WaterPos",{"Center","Mouse"},function() return VA.Watermark.Position end,function(v) VA.Watermark.Position=v end)
 CreateSlider(vBox,"WaterY",-400,400,function() return VA.Watermark.YOffset end,function(v) VA.Watermark.YOffset=v end)
 CreateSlider(vBox,"WaterSize",8,24,function() return VA.Watermark.Size end,function(v) VA.Watermark.Size=v end)
@@ -2913,11 +2842,11 @@ CreateToggle(aaBox2,"FaceBackwards",function() return Config['Anti Aim'].FaceBac
 CreateToggle(aaBox2,"Spinbot",function() return Config['Anti Aim'].Spinbot end,function(v) Config['Anti Aim'].Spinbot=v end)
 CreateSlider(aaBox2,"SpinSpeed",1,100,function() return Config['Anti Aim'].SpinbotSpeed end,function(v) Config['Anti Aim'].SpinbotSpeed=v end)
 CreateToggle(aaBox2,"AntiAimViewer",function() return Config['Anti Aim Viewer'].Enabled end,function(v) Config['Anti Aim Viewer'].Enabled=v end)
-CreateToggle(aaBox2,"TeleportBullets2",function() return Config['Teleport Bullets'].Enabled end,function(v) Config['Teleport Bullets'].Enabled=v end)
-CreateToggle(aaBox2,"DestroyCheaters",function() return Config['Destroy Cheaters'].Enabled end,function(v) Config['Destroy Cheaters'].Enabled=v end)
-CreateToggle(aaBox2,"VoidKill",function() return Config['Destroy Cheaters'].VoidKill end,function(v) Config['Destroy Cheaters'].VoidKill=v end)
 local dsBox=CreateSection(Pages.Misc.L,"Desync")
-CreateLabel(dsBox,"用法: 开假同步+防虚空击杀+旋转机器人; 别人将打不中你")
+CreateLabel(dsBox,"假同步(合并): 开启后视角固定不动, 功能照常生效; 可显示实际位置(眼睛)")
+local dsBtn=CreateToggle(dsBox,"Desync",function() return Config['Desync'].Enabled end,function(v) toggleDesync(v) end)
+attachKeybind(dsBtn,Config.Keybinds['Desync'])
+CreateDropdown(dsBox,"DesyncMode",{"Underground","Void"},function() return Config['Desync'].Mode end,function(v) Config['Desync'].Mode=v end)
 CreateToggle(dsBox,"VelocityDesync",function() return Config['Desync'].Velocity end,function(v) Config['Desync'].Velocity=v end)
 CreateDropdown(dsBox,"VelocityMode",{"Zero","Multiplier","Underground","Random","Max","Sky"},function() return Config['Desync'].VelocityValue end,function(v) Config['Desync'].VelocityValue=v end)
 CreateSlider(dsBox,"MultiplierVal",-40,40,function() return math.floor(Config['Desync'].Multiplier*10) end,function(v) Config['Desync'].Multiplier=v/10 end)
@@ -2927,7 +2856,10 @@ CreateDropdown(dsBox,"NetworkMode",{"Simple","Teleport move","Invisible","Lag st
 CreateToggle(dsBox,"RandomTP",function() return Config['Desync'].RandomTeleport end,function(v) Config['Desync'].RandomTeleport=v end)
 CreateSlider(dsBox,"TPHOff",0,100,function() return Config['Desync'].HOffset end,function(v) Config['Desync'].HOffset=v end)
 CreateSlider(dsBox,"TPVOff",0,100,function() return Config['Desync'].VOffset end,function(v) Config['Desync'].VOffset=v end)
-CreateToggle(dsBox,"VoidSpam",function() return Config['Desync'].VoidSpam end,function(v) Config['Desync'].VoidSpam=v end)
+CreateToggle(dsBox,"ShowEye",function() return Config['Desync'].ShowEye end,function(v) Config['Desync'].ShowEye=v end)
+CreateSlider(dsBox,"EyeSize",6,30,function() return Config['Desync'].EyeSize end,function(v) Config['Desync'].EyeSize=v end)
+CreateColorPicker(dsBox,"EyeColor",function() return Config['Desync'].EyeColor end,function(v) Config['Desync'].EyeColor=v end)
+
 local skBox=CreateSection(Pages.Misc.L,"SkinChanger")
 CreateToggle(skBox,"SkinChanger",function() return Config['Skin Changer'].Enabled end,function(v) Config['Skin Changer'].Enabled=v end)
 CreateDropdown(skBox,"SkinWeapon",{'[Revolver]','[Deagle]','[Glock]','[Silencer]','[Double-Barrel SG]','[TacticalShotgun]','[Shotgun]','[Drum-Shotgun]','[SMG]','[Rifle]','[AK47]','[AR]','[AUG]','[DrumGun]','[P90]','[LMG]','[Knife]'},function() return selectedSkinWeapon end,function(v) selectedSkinWeapon=v end)
@@ -2954,17 +2886,7 @@ Config['Auto Buy'].Items=list
 Config['Auto Buy'].ItemsSet=sel
 end)
 end)
-local rgBox=CreateSection(Pages.Misc.R,"RageMode")
-local rgBtn=CreateToggle(rgBox,"RageMode",function() return Config['Rage Mode'].Enabled end,function(v) Config['Rage Mode'].Enabled=v end)
-attachKeybind(rgBtn,Config.Keybinds['Rage Mode'])
-CreateLabel(rgBox,"狂暴目标在 玩家 页按 RG 选择")
-CreateToggle(rgBox,"WallCheck",function() return Config['Rage Mode'].WallCheck end,function(v) Config['Rage Mode'].WallCheck=v end)
-CreateToggle(rgBox,"RageInfRange",function() return Config['Rage Mode'].InfiniteRange end,function(v) Config['Rage Mode'].InfiniteRange=v end)
-CreateColorPicker(rgBox,"RageColor",function() return Config['Rage Mode'].RageColor end,function(v) Config['Rage Mode'].RageColor=v end)
-CreateSlider(rgBox,"RageDelay",10,1000,function() return math.floor(Config['Rage Mode'].Delay*1000) end,function(v) Config['Rage Mode'].Delay=v/1000 end)
-CreateToggle(rgBox,"RageTracers",function() return Config['Rage Mode'].Tracers end,function(v) Config['Rage Mode'].Tracers=v end)
-CreateToggle(rgBox,"RageImpacts",function() return Config['Rage Mode'].Impacts end,function(v) Config['Rage Mode'].Impacts=v end)
--- // RAGEBOT UI (juju.lol) //
+-- // [新] RAGEBOT 模块 UI (juju.lol) //
 local rbBox=CreateSection(Pages.Misc.R,"Ragebot")
 local rbBtn=CreateToggle(rbBox,"Ragebot",function() return Config.Ragebot.Enabled end,function(v)
 Config.Ragebot.Enabled=v
@@ -2985,7 +2907,14 @@ end)
 end)
 CreateToggle(rbBox,"IncludeAimbot",function() return Config.Ragebot.IncludeAimbotTarget end,function(v) Config.Ragebot.IncludeAimbotTarget=v end)
 CreateToggle(rbBox,"AutoEquip",function() return Config.Ragebot.AutoEquip end,function(v) Config.Ragebot.AutoEquip=v end)
-CreateDropdown(rbBox,"AutoEquipWeapon",{'[LMG]','[AK47]','[Rifle]','[AR]','[AUG]','[DrumGun]','[P90]','[SMG]','[Revolver]','[Glock]','[Silencer]','[Deagle]','[Shotgun]','[TacticalShotgun]','[Drum-Shotgun]','[Double-Barrel SG]'},function() return Config.Ragebot.AutoEquipWeapon end,function(v) Config.Ragebot.AutoEquipWeapon=v end)
+CreateButton(rbBox,"AutoEquipWeapon",function()
+local cur={}
+for _,w in ipairs(Config.Ragebot.AutoEquipWeapons or {}) do cur[w]=true end
+openGridPopup(T("AutoEquipWeapon"),{{name=T("AutoEquipWeapon"),items=WEAPONS}},true,cur,nil,function(sel)
+local list={} for k,v in pairs(sel) do if v then table.insert(list,k) end end
+Config.Ragebot.AutoEquipWeapons=list
+end)
+end)
 CreateToggle(rbBox,"AttachTarget",function() return Config.Ragebot.AttachToTarget end,function(v) Config.Ragebot.AttachToTarget=v end)
 CreateDropdown(rbBox,"AttachMode",{"Strafe","Random Teleport"},function() return Config.Ragebot.AttachMode end,function(v) Config.Ragebot.AttachMode=v end)
 CreateSlider(rbBox,"StrafeSpeed",1,100,function() return Config.Ragebot.StrafeSpeed end,function(v) Config.Ragebot.StrafeSpeed=v end)
@@ -2999,6 +2928,12 @@ end)
 CreateToggle(rbBox,"AutoShoot",function() return Config.Ragebot.AutoShoot end,function(v) Config.Ragebot.AutoShoot=v end)
 CreateToggle(rbBox,"AutoStomp",function() return Config.Ragebot.AutoStomp end,function(v) Config.Ragebot.AutoStomp=v end)
 CreateToggle(rbBox,"TeleportBack",function() return Config.Ragebot.TeleportBack end,function(v) Config.Ragebot.TeleportBack=v end)
+CreateToggle(rbBox,"Resolver",function() return Config['Resolver'].Enabled end,function(v) Config['Resolver'].Enabled=v end)
+CreateToggle(rbBox,"ResolverRT",function() return Config['Resolver'].RandomTeleport end,function(v) Config['Resolver'].RandomTeleport=v end)
+CreateToggle(rbBox,"ResolverNet",function() return Config['Resolver'].Network end,function(v) Config['Resolver'].Network=v end)
+CreateSlider(rbBox,"RefreshRate",10,500,function() return math.floor(Config['Resolver'].RefreshRate*1000) end,function(v) Config['Resolver'].RefreshRate=v/1000 end)
+CreateToggle(rbBox,"WallCheck",function() return Config.Ragebot.WallCheck end,function(v) Config.Ragebot.WallCheck=v end)
+CreateToggle(rbBox,"RageInfRange",function() return Config.Ragebot.InfiniteRange end,function(v) Config.Ragebot.InfiniteRange=v end)
 local dcBox=CreateSection(Pages.Misc.R,"DelayChanger")
 CreateToggle(dcBox,"DelayChanger",function() return Config['Delay Changer'].Enabled end,function(v) Config['Delay Changer'].Enabled=v end)
 CreateSlider(dcBox,"DelayMs",0,1000,function() return math.floor(Config['Delay Changer'].Delay*1000) end,function(v) Config['Delay Changer'].Delay=v/1000 end)
@@ -3008,6 +2943,8 @@ CreateSlider(nsBox,"SpreadAmount",0,100,function() return Config.Spread.Amount e
 local rfBox=CreateSection(Pages.Misc.R,"RapidFire")
 CreateToggle(rfBox,"RapidFire",function() return Config['Rapid Fire'].Enabled end,function(v) Config['Rapid Fire'].Enabled=v end)
 CreateSlider(rfBox,"RapidDelay",10,1000,function() return math.floor(Config['Rapid Fire'].Delay*1000) end,function(v) Config['Rapid Fire'].Delay=v/1000 end)
+CreateToggle(rfBox,"RapidFireV2",function() return Config['Rapid Fire v2'].Enabled end,function(v) Config['Rapid Fire v2'].Enabled=v;if v then for _,o in ipairs(game:GetDescendants()) do if o.Name=='ToleranceCooldown' and o:IsA('ValueBase') then o.Value=0 end end end end)
+CreateToggle(rfBox,"RemoveShootAnim",function() return Config['Remove Shoot Animations'].Enabled end,function(v) Config['Remove Shoot Animations'].Enabled=v end)
 local irBox=CreateSection(Pages.Misc.R,"InfRange")
 local irBtn=CreateToggle(irBox,"InfRange",function() return Config['Infinite Range'].Enabled end,function(v) Config['Infinite Range'].Enabled=v end)
 attachKeybind(irBtn,Config.Keybinds['Inf Range'])
@@ -3022,6 +2959,7 @@ CreateToggle(utBox,"CleanScripts",function() return Config.Utility.CleanScripts 
 CreateToggle(utBox,"NoRecoil",function() return Config.Utility.NoRecoil end,function(v) Config.Utility.NoRecoil=v end)
 CreateToggle(utBox,"AutoReload",function() return Config.Utility.AutoReload end,function(v) Config.Utility.AutoReload=v end)
 CreateToggle(utBox,"SmartAutoReload",function() return Config.Utility.SmartAutoReload end,function(v) Config.Utility.SmartAutoReload=v end)
+CreateToggle(utBox,"Pqnd4Kick",function() return Config['Pqnd4 Kick'].Enabled end,function(v) Config['Pqnd4 Kick'].Enabled=v;if v then pqndCreateTool() else pqndRemoveTool() end end)
 CreateSlider(utBox,"SmartReloadDelay",0,100,function() return math.floor(Config.Utility.SmartAutoReloadDelay*100) end,function(v) Config.Utility.SmartAutoReloadDelay=v/100 end)
 CreateToggle(utBox,"RemoveSlowdowns",function() return Config.Utility.RemoveSlowdowns end,function(v) Config.Utility.RemoveSlowdowns=v;applyRemoveSlowdowns() end)
 CreateToggle(utBox,"InstantStand",function() return Config.Utility.InstantStand end,function(v) Config.Utility.InstantStand=v;applyInstantStand() end)
@@ -3054,11 +2992,11 @@ local rgBtn2=Instance.new("TextButton");rgBtn2.Size=UDim2.new(0,30,0,16);rgBtn2.
 local function updateBtns()
 local wl=Whitelist[player.UserId]==true
 local tg=Config.Teleport.Target==player.UserId and Config.Teleport.Enabled
-local rg=Config['Rage Mode'].Target==player.UserId
+local rg=false
 local rb=table.find(Config.Ragebot.Targets,player.UserId)~=nil
 local va=ViewAimLines[player.UserId]==true
 wlBtn.BackgroundColor3=wl and UI.Green or UI.ToggleOff
-rgBtn2.BackgroundColor3=(rg or rb) and Config['Rage Mode'].RageColor or UI.ToggleOff
+rgBtn2.BackgroundColor3=rb and Color3.fromRGB(255,0,0) or UI.ToggleOff
 tgBtn.BackgroundColor3=tg and UI.Accent or UI.ToggleOff
 vaBtn.BackgroundColor3=va and Color3.fromRGB(255,0,255) or UI.ToggleOff
 wlBtn.TextColor3=wl and Color3.new(1,1,1) or UI.Text
@@ -3075,7 +3013,16 @@ buildPlayerList()
 end)
 vaBtn.MouseButton1Click:Connect(function() if ViewAimLines[player.UserId] then ViewAimLines[player.UserId]=nil else ViewAimLines[player.UserId]=true end updateBtns() end)
 wlBtn.MouseButton1Click:Connect(function() if Whitelist[player.UserId] then Whitelist[player.UserId]=nil else Whitelist[player.UserId]=true end updateBtns() end)
-rgBtn2.MouseButton1Click:Connect(function() if Config['Rage Mode'].Target==player.UserId then Config['Rage Mode'].Target=nil else Config['Rage Mode'].Target=player.UserId end buildPlayerList() end)
+rgBtn2.MouseButton1Click:Connect(function()
+if table.find(Config.Ragebot.Targets,player.UserId) then
+local nt={}
+for _,uid in ipairs(Config.Ragebot.Targets) do if uid~=player.UserId then table.insert(nt,uid) end end
+Config.Ragebot.Targets=nt
+else
+table.insert(Config.Ragebot.Targets,player.UserId)
+end
+buildPlayerList()
+end)
 updateBtns()
 end
 end
@@ -3146,9 +3093,589 @@ applyFontAll()
 applyUITransparency()
 updateRainbow()
 applyAspect()
+-- // ============================================================ //
+-- // [整合模块] juju Aimbot / 合并假同步 / Feature Indicators    //
+-- // ============================================================ //
+
+-- ######################## CamLock (自动瞄准, 无需手动锁定) ########################
+camLockTargetPlayer=nil
+camLockActive=false
+function unlockCamLock()
+	camLockActive=false
+	camLockTarget=nil
+	camLockTargetPlayer=nil
+	Camera.CameraType=Enum.CameraType.Custom
+	Camera.CameraSubject=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
+end
+function applyCamLock(dt)
+	if isSelfKnocked() then
+		if camLockActive then unlockCamLock() end
+		return
+	end
+	if not Config['CamLock'].Enabled then
+		if camLockActive then unlockCamLock() end
+		return
+	end
+	local m=UserInputService:GetMouseLocation()
+	local closest=nil;local bd=math.huge
+	for _,pl in ipairs(getValidTargetPlayers()) do
+		local head=pl.Character and pl.Character:FindFirstChild('Head')
+		if head then
+			local sp,on=Camera:WorldToViewportPoint(head.Position)
+			if on then
+				local d=(Vector2.new(sp.X,sp.Y)-m).Magnitude
+				if d<bd then bd=d closest=pl end
+			end
+		end
+	end
+	if not closest then
+		if camLockActive then unlockCamLock() end
+		return
+	end
+	camLockTarget=closest
+	camLockTargetPlayer=closest
+	local head=closest.Character:FindFirstChild('Head') or closest.Character:FindFirstChild('HumanoidRootPart')
+	local myHRP=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart')
+	if not head or not myHRP then return end
+	camLockActive=true
+	Camera.CameraType=Enum.CameraType.Scriptable
+	local f=math.clamp((100-Config['CamLock'].Smoothness)/100,0,1)*math.clamp(dt*60,0,1)
+	local camPos=myHRP.Position+Vector3.new(0,2.2,0)
+	local lookVector=(head.Position-camPos).Unit
+	local cc=Camera.CFrame
+	local smoothedLook=cc.LookVector:Lerp(lookVector,f)
+	Camera.CFrame=CFrame.new(camPos,camPos+smoothedLook)
+end
+
+
+-- ######################## 假同步 (free Desync + Velocity/Network/RandomTP 合并) ########################
+-- ######################## 假同步 (free 逻辑: 视角不变 + 真身眼睛 + 英文状态) ########################
+desyncSetback=nil
+desyncEye=nil
+desyncEyePupil=nil
+desyncStatus=nil
+local function projectClamped(pos)
+	local vp=Camera.ViewportSize
+	local p,on=Camera:WorldToViewportPoint(pos)
+	if on then return Vector2.new(p.X,p.Y) end
+	local center=Vector2.new(vp.X/2,vp.Y/2)
+	local d=Vector2.new(p.X-center.X,p.Y-center.Y)
+	local m=d.Magnitude
+	if m<1 then return center end
+	d=d/m
+	return center+d*(math.min(vp.X,vp.Y)/2-40)
+end
+function toggleDesync(state)
+	Config['Desync'].Enabled=state
+	if state then
+		local hrp=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart')
+		if not desyncSetback then
+			desyncSetback=Instance.new("Part"); desyncSetback.Name="Desync Setback"; desyncSetback.Parent=Workspace; desyncSetback.Size=Vector3.new(2,2,1); desyncSetback.CanCollide=false; desyncSetback.Anchored=true; desyncSetback.Transparency=1
+		end
+		desyncSetback.CFrame=(hrp and (hrp.CFrame*CFrame.new(0,2.5,0))) or CFrame.new()
+		Camera.CameraSubject=desyncSetback
+	else
+		Camera.CameraSubject=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('Humanoid') or Camera.CameraSubject
+		if desyncEye then desyncEye.Visible=false;if desyncEyePupil then desyncEyePupil.Visible=false end end
+	end
+	notifyToggle("Desync",state)
+	refreshAllComponents()
+	updateKeybindDisplay()
+end
+
+task.spawn(function()
+	while task.wait(0) do
+		if Unloaded or not Started then continue end
+		local DS=Config['Desync']
+		local ch=LocalPlayer.Character if not ch then continue end
+		local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then continue end
+		desyncActiveThisFrame=false
+		if not desyncStatus then
+			desyncStatus=Drawing.new("Text");desyncStatus.Size=14;desyncStatus.Font=2;desyncStatus.Outline=true;desyncStatus.OutlineColor=Color3.new(0,0,0);desyncStatus.Visible=false
+		end
+		desyncStatus.Text="Desync: "..(DS.Enabled and "ON" or "OFF")
+		desyncStatus.Color=DS.Enabled and Color3.fromRGB(120,255,120) or Color3.fromRGB(255,90,90)
+		desyncStatus.Position=Vector2.new(15,15)
+		desyncStatus.Visible=true
+		if not DS.Enabled then
+			if desyncEye then desyncEye.Visible=false;if desyncEyePupil then desyncEyePupil.Visible=false end end
+			continue
+		end
+		desyncActiveThisFrame=true
+		if not desyncSetback then
+			desyncSetback=Instance.new("Part"); desyncSetback.Name="Desync Setback"; desyncSetback.Parent=Workspace; desyncSetback.Size=Vector3.new(2,2,1); desyncSetback.CanCollide=false; desyncSetback.Anchored=true; desyncSetback.Transparency=1
+		end
+		Camera.CameraSubject=desyncSetback
+		local old=hrp.CFrame
+		local oldVel=hrp.Velocity
+		local fakePos=old.Position
+		if DS.Mode=='Underground' then fakePos=old.Position-Vector3.new(0,12,0)
+		elseif DS.Mode=='Void' then fakePos=old.Position+Vector3.new(math.random(-444444,444444),math.random(-444444,444444),math.random(-44444,44444)) end
+		if DS.Velocity then
+			local vmode=DS.VelocityValue
+			local r=DS.Random*5.5
+			hrp.Velocity = vmode=='Zero' and Vector3.new() or vmode=='Max' and Vector3.new(63536,63536,63536) or vmode=='Sky' and Vector3.new(0,10000,0) or vmode=='Underground' and Vector3.new(0,-10000,0) or vmode=='Multiplier' and oldVel*DS.Multiplier or Vector3.new(math.random(-r,r),math.random(-r,r),math.random(-r,r))
+		end
+		if DS.Network then
+			local nvmode=DS.NetworkValue
+			if nvmode=='Invisible' then
+				sflag('S2PhysicsSenderRate','2');sflag('PhysicsSenderMaxBandwidthBps','1.047');shp(hrp,'NetworkIsSleeping',doSleep)
+				hrp.Velocity=Vector3.new(math.random(-16384,16384),math.random(-16384,16384),math.random(-16384,16384))
+			elseif nvmode=='Lag step' then
+				sflag('S2PhysicsSenderRate','1');shp(hrp,'NetworkIsSleeping',doSleep);shp(hrp,'NetworkIsSleeping',not doSleep);shp(hrp,'NetworkIsSleeping',doSleep);hrp.Velocity=Vector3.new(0,0,0)
+			elseif nvmode=='Random' then
+				sflag('S2PhysicsSenderRate',math.random(1,15)==1 and '6' or '1')
+				hrp.Velocity=Vector3.new(math.random(-16384,16384),math.random(-16384,16384),math.random(-16384,16384))
+				hrp.CFrame=old*CFrame.Angles(0,math.rad(math.random(1,359)),0)
+				shp(hrp,'NetworkIsSleeping',doSleep)
+			elseif nvmode=='Teleport move' then
+				shp(hrp,'NetworkIsSleeping',doSleep);sflag('S2PhysicsSenderRate','1000');shp(hrp,'NetworkIsSleeping',false);shp(hrp,'NetworkIsSleeping',true);shp(hrp,'NetworkIsSleeping',false)
+			else
+				shp(hrp,'NetworkIsSleeping',doSleep)
+			end
+			doSleep=not doSleep
+		end
+		if DS.RandomTeleport then
+			fakePos=old.Position+Vector3.new(math.random(-DS.HOffset,DS.HOffset),math.random(-DS.VOffset,DS.VOffset),math.random(-DS.HOffset,DS.HOffset))
+		end
+		hrp.CFrame=CFrame.new(fakePos)
+		RunService.RenderStepped:Wait()
+		if desyncSetback then desyncSetback.CFrame=old*CFrame.new(0,2.5,0) end
+		pcall(function() hrp.CFrame=old end)
+		if DS.Velocity then pcall(function() hrp.Velocity=oldVel end) end
+		if DS.ShowEye then
+			local size=DS.EyeSize or 14
+			local color=DS.EyeColor or Color3.new(1,1,1)
+			if not desyncEye then
+				desyncEye=Drawing.new("Circle");desyncEye.Filled=true;desyncEye.NumSides=24;desyncEye.Thickness=2;desyncEye.Visible=false
+				desyncEyePupil=Drawing.new("Circle");desyncEyePupil.Filled=true;desyncEyePupil.NumSides=16;desyncEyePupil.Color=Color3.new(0,0,0);desyncEyePupil.Visible=false
+			end
+			desyncEye.Radius=size;desyncEye.Color=color
+			desyncEyePupil.Radius=size*0.4
+			local p=projectClamped(fakePos)
+			desyncEye.Position=p;desyncEye.Visible=true
+			desyncEyePupil.Position=p;desyncEyePupil.Visible=true
+		else
+			if desyncEye then desyncEye.Visible=false;desyncEyePupil.Visible=false end
+		end
+	end
+end)
+
+
+-- // [修复] Ragebot 自动踩踏 (juju 式独立循环: 扫描 ragebot 目标里被击倒且未死者, 踩完传送回来) //
+local stompLastFire=0
+track(RunService.Heartbeat:Connect(function()
+	if Unloaded or not Started then return end
+	local RB=Config.Ragebot
+	if not (RB.Enabled and bindActive('Ragebot') and RB.AutoStomp) then
+		ragebotBackPos=nil
+		return
+	end
+	local ch=LocalPlayer.Character if not ch then return end
+	local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then return end
+	local stompT=nil
+	for _,uid in ipairs(RB.Targets or {}) do
+		local p=Players:GetPlayerByUserId(uid)
+		if p and p~=LocalPlayer and p.Character then
+			local pbe=p.Character:FindFirstChild('BodyEffects')
+			local pko=pbe and (pbe:FindFirstChild('K.O') or pbe:FindFirstChild('Knocked'))
+			local psd=pbe and pbe:FindFirstChild('SDeath')
+			if pko and pko.Value and not (psd and psd.Value) then stompT=p break end
+		end
+	end
+	if not stompT and ragebotTarget and ragebotTarget~=LocalPlayer and ragebotTarget.Character then
+		local pbe=ragebotTarget.Character:FindFirstChild('BodyEffects')
+		local pko=pbe and (pbe:FindFirstChild('K.O') or pbe:FindFirstChild('Knocked'))
+		local psd=pbe and pbe:FindFirstChild('SDeath')
+		if pko and pko.Value and not (psd and psd.Value) then stompT=ragebotTarget end
+	end
+	if stompT then
+		if not ragebotBackPos then ragebotBackPos=hrp.CFrame end
+		local ut=stompT.Character:FindFirstChild('UpperTorso') or stompT.Character:FindFirstChild('HumanoidRootPart')
+		if ut then hrp.CFrame=CFrame.new(ut.Position+Vector3.new(0,3,0)) end
+		if tick()-stompLastFire>0.03 then
+			stompLastFire=tick()
+			local ev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT')
+			if ev then pcall(function() ev:FireServer('Stomp') end) end
+		end
+	elseif ragebotBackPos then
+		if RB.TeleportBack then pcall(function() hrp.CFrame=ragebotBackPos end) end
+		ragebotBackPos=nil
+	end
+end))
+
+
+-- ######################## Feature Indicators (juju 移植: 右侧热键状态指示) ########################
+indicatorGradientData=""
+pcall(function()
+	if crypt and crypt.base64 and crypt.base64.decode then
+		indicatorGradientData=crypt.base64.decode("iVBORw0KGgoAAAANSUhEUgAAAGkAAAAhCAYAAADaiYU7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACySURBVGhD7dFBCsMwDABBtbSP8v8P+Yu/kBwahRqMiO9Z2AEjozinffXeY9u2T0R8zzNmqrs6V+/S6p8x6264e1vnfE/z9+o4z/6fadxzzvfVHOr+7u0802pX96t31661dryvlR7NSABGAjASgJEAjARgJAAjARgJwEgARgIwEoCRAIwEYCQAIwEYCcBIAEYCMBKAkQCMBGAkACMBGAnASABGAjASgJEAjARgJAAjPV7ED23xMgBp5elFAAAAAElFTkSuQmCC")
+	end
+end)
+function updateKeybindDisplay()
+	for _,o in pairs(keybindDisplayObjects) do pcall(function() o:Remove() end) end
+	keybindDisplayObjects={}
+	local VA=Config['Visual Awareness']
+	if not VA.KeybindDisplay or Unloaded or PanicMode or not Started then return end
+	local size=VA.KeybindDisplaySize or 16
+	local col=VA.KeybindDisplayColor or Color3.new(1,1,1)
+	local font=FONTMAP[VA.KeybindDisplayFont] or 3
+	local vp=Camera.ViewportSize
+	local right=VA.KeybindDisplayPos=='Right'
+	local startX=(indicatorPos.X==0) and (right and (vp.X-240) or 15) or indicatorPos.X
+	local startY=(indicatorPos.X==0) and 40 or indicatorPos.Y
+	local items={}
+	local function add(b,n,enabled,active)
+		if b and getBindKey(b) and getBindKey(b)~='' and enabled then table.insert(items,{k=getBindKey(b),n=n,on=active}) end
+	end
+	add(Config.Keybinds['Target Lock'],"Sticky",Config['Sticky'].Enabled,stickyLocked)
+	add(Config.Keybinds['CamLock'],"CamLock",Config['CamLock'].Enabled,camLockTarget~=nil)
+	add(Config.Keybinds['Ragebot'],"Ragebot",Config.Ragebot.Enabled,Config.Ragebot.Enabled)
+	add(Config.Keybinds['ESP'],"ESP",VA.Enabled,VA.Enabled)
+	add(Config.Keybinds['Speed'],"Speed",Config.Movement.CFrameSpeed,bindActive('Speed'))
+	add(Config.Keybinds['Fly'],"Fly",Config.Movement.CFrameFly,bindActive('Fly'))
+	add(Config.Keybinds['Inf Range'],"Inf Range",Config['Infinite Range'].Enabled,Config['Infinite Range'].Enabled)
+	add(Config.Keybinds['Noclip'],"Noclip",Config.Movement.Noclip,Config.Movement.Noclip)
+	add(Config.Keybinds['Auto Buy'],"Auto Buy",Config['Auto Buy'].Enabled,Config['Auto Buy'].Enabled)
+	add(Config.Keybinds['Desync'],"Desync",Config['Desync'].Enabled,Config['Desync'].Enabled)
+	local useGrad=indicatorGradientData~=""
+	for i,it in ipairs(items) do
+		local txt=Drawing.new("Text"); txt.Text="["..it.k.."] "..it.n; txt.Size=size; txt.Color=it.on and col or Color3.fromRGB(110,110,130); txt.Font=font; txt.Outline=true; txt.OutlineColor=Color3.new(0,0,0); txt.Visible=true
+		local grad
+		if useGrad then
+			grad=Drawing.new("Image"); grad.Data=indicatorGradientData
+		else
+			grad=Drawing.new("Square"); grad.Filled=true
+		end
+		grad.Transparency=it.on and 0.15 or 0.45
+		grad.Color=it.on and Color3.fromRGB(124,110,255) or Color3.fromRGB(35,35,50)
+		grad.Size=Vector2.new(math.max(210,txt.TextBounds.X+40),size+17)
+		grad.ZIndex=1
+		grad.Position=Vector2.new(startX,startY+(i-1)*(size+25))
+		grad.Visible=true
+		txt.Position=Vector2.new(grad.Position.X+10,grad.Position.Y+8)
+		table.insert(keybindDisplayObjects,grad); table.insert(keybindDisplayObjects,txt)
+	end
+end
+
+-- // ============================================================ //
+-- // [整合模块] 粒子光环(合并) / 力场身体/帽子 / Hitsounds / UI  //
+-- // ============================================================ //
+
+-- ######################## 粒子光环 (juju 粒子 + free Aura 合并) ########################
+auraPart=nil
+auraEmitters={}
+local function buildAuraEmitters(selected)
+	for _,e in pairs(auraEmitters) do pcall(function() e:Destroy() end) end
+	auraEmitters={}
+	local A=Config['Local Player Visuals']
+	if not A.ParticleAura then return end
+	if not auraPart then
+		auraPart=Instance.new("Part"); auraPart.Name="HateAura"; auraPart.Size=Vector3.new(0.01,0.01,0.01); auraPart.Transparency=1; auraPart.CanCollide=false; auraPart.Anchored=true; auraPart.Parent=Workspace
+	end
+	auraPart.Size=(selected=='Rain') and Vector3.new(5,0.01,5) or Vector3.new(0.01,0.01,0.01)
+	local function make(props)
+		local e=Instance.new("ParticleEmitter")
+		for k,v in pairs(props) do e[k]=v end
+		e.Parent=auraPart
+		auraEmitters[#auraEmitters+1]=e
+	end
+	local cs=ColorSequence.new(A.ParticleAuraColor)
+	if selected=="Swirl" then
+		make({Texture="rbxassetid://8047533775",Color=cs,Lifetime=NumberRange.new(1,1),Rate=10,LightEmission=0.4,LockedToPart=true,Orientation=Enum.ParticleOrientation.VelocityPerpendicular,RotSpeed=NumberRange.new(200,400),Rotation=NumberRange.new(-180,180),Speed=NumberRange.new(3,6),SpreadAngle=Vector2.new(10,-10),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,3,0),NumberSequenceKeypoint.new(0.64,2,0),NumberSequenceKeypoint.new(1,0.75,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(0.28,0,0),NumberSequenceKeypoint.new(0.7,0,0),NumberSequenceKeypoint.new(1,1,0)}})
+		make({Texture="rbxassetid://8047796070",Color=cs,Lifetime=NumberRange.new(1,1),Rate=10,LightEmission=1,LockedToPart=true,Orientation=Enum.ParticleOrientation.VelocityPerpendicular,RotSpeed=NumberRange.new(100,300),Rotation=NumberRange.new(-180,180),Speed=NumberRange.new(3,5),SpreadAngle=Vector2.new(10,-10),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,3.1,0),NumberSequenceKeypoint.new(0.42,1.4,0),NumberSequenceKeypoint.new(1,0.94,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(0.23,0.03,0),NumberSequenceKeypoint.new(0.63,0.26,0),NumberSequenceKeypoint.new(1,1,0)}})
+	elseif selected=="Bubble" then
+		make({Texture="rbxassetid://1084955012",Color=cs,Lifetime=NumberRange.new(0.33,0.33),Rate=12,LightEmission=1,LockedToPart=true,Rotation=NumberRange.new(-180,180),Speed=NumberRange.new(0,0),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,4.8,0),NumberSequenceKeypoint.new(1,4.8,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,0.88,0),NumberSequenceKeypoint.new(0.5,0.4,0),NumberSequenceKeypoint.new(1,0.88,0)}})
+		make({Texture="rbxassetid://1084955488",Color=cs,Lifetime=NumberRange.new(1,1),Rate=6,LightEmission=1,LockedToPart=true,Rotation=NumberRange.new(-180,180),Speed=NumberRange.new(0,0),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,4,0),NumberSequenceKeypoint.new(1,4,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(0.5,0.7,0),NumberSequenceKeypoint.new(1,1,0)}})
+	elseif selected=="Air" then
+		make({Texture="rbxassetid://10558425570",Color=cs,Lifetime=NumberRange.new(2,2),Rate=75,LightEmission=1,LockedToPart=true,Orientation=Enum.ParticleOrientation.VelocityParallel,RotSpeed=NumberRange.new(200,200),ShapeInOut=Enum.ParticleEmitterShapeInOut.InAndOut,Speed=NumberRange.new(0.01,0.01),SpreadAngle=Vector2.new(-360,360),Squash=NumberSequence.new(0),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,7,0),NumberSequenceKeypoint.new(1,7,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(0.5,0.93,0),NumberSequenceKeypoint.new(1,1,0)},ZOffset=-1})
+	elseif selected=="Ritual" then
+		make({Texture="rbxassetid://564938805",Color=cs,Lifetime=NumberRange.new(1,1),Rate=1,LightEmission=1,LockedToPart=true,Orientation=Enum.ParticleOrientation.VelocityPerpendicular,RotSpeed=NumberRange.new(360,360),Speed=NumberRange.new(0.001,0.001),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,5,0),NumberSequenceKeypoint.new(1,5,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(0.1,0,0),NumberSequenceKeypoint.new(0.83,0,0),NumberSequenceKeypoint.new(1,1,0)}})
+	elseif selected=="Rain" then
+		make({Texture="rbxassetid://419625073",Color=cs,Lifetime=NumberRange.new(200,200),Rate=100,LightInfluence=1,EmissionDirection=Enum.NormalId.Bottom,Speed=NumberRange.new(25,25),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,0.5,0),NumberSequenceKeypoint.new(1,0.5,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,0.5,0),NumberSequenceKeypoint.new(1,0.5,0)},VelocityInheritance=100})
+	elseif selected=="Skibidi RedRizz" then
+		make({Texture="rbxassetid://10558425570",Color=cs,Lifetime=NumberRange.new(2,2),Rate=40,LightEmission=10,LockedToPart=true,Orientation=Enum.ParticleOrientation.VelocityPerpendicular,RotSpeed=NumberRange.new(200,200),SpreadAngle=Vector2.new(-360,360),VelocitySpread=-360,Squash=NumberSequence.new(0),Speed=NumberRange.new(0.01,0.01),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,7,0),NumberSequenceKeypoint.new(1,7,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(0.5,0.5,0),NumberSequenceKeypoint.new(1,1,0)},ZOffset=-1,ShapeInOut=Enum.ParticleEmitterShapeInOut.InAndOut})
+	elseif selected=="Bolts" then
+		make({Texture="rbxassetid://1084955012",Color=cs,Lifetime=NumberRange.new(0.333,0.333),Rate=12,LightEmission=1,LockedToPart=true,Rotation=NumberRange.new(-180,180),Speed=NumberRange.new(0,0),Size=NumberSequence.new{NumberSequenceKeypoint.new(0,4.8,0),NumberSequenceKeypoint.new(1,4.8,0)},Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,0.88,0),NumberSequenceKeypoint.new(0.055,0.98,0),NumberSequenceKeypoint.new(0.111,0.17,0),NumberSequenceKeypoint.new(0.166,0.39,0),NumberSequenceKeypoint.new(0.222,0.12,0),NumberSequenceKeypoint.new(0.277,0.92,0),NumberSequenceKeypoint.new(0.333,0.41,0),NumberSequenceKeypoint.new(0.388,0.21,0),NumberSequenceKeypoint.new(0.444,0.78,0),NumberSequenceKeypoint.new(0.5,0.23,0),NumberSequenceKeypoint.new(0.555,0.78,0),NumberSequenceKeypoint.new(0.61,0.81,0),NumberSequenceKeypoint.new(0.666,0.91,0),NumberSequenceKeypoint.new(0.72,0.87,0),NumberSequenceKeypoint.new(0.777,0.41,0),NumberSequenceKeypoint.new(0.83,0.3,0),NumberSequenceKeypoint.new(0.888,0.16,0),NumberSequenceKeypoint.new(0.943,0.39,0),NumberSequenceKeypoint.new(0.999,0.7,0),NumberSequenceKeypoint.new(1,1,0)}})
+	end
+end
+track(RunService.Heartbeat:Connect(function()
+	local A=Config['Local Player Visuals']
+	if A.ParticleAura then
+		if not auraPart then buildAuraEmitters(A.ParticleAuraValue) end
+		local hrp=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart')
+		if auraPart and hrp then
+			if A.ParticleAuraValue=='Rain' then auraPart.CFrame=hrp.CFrame+Vector3.new(0,3.5,0)
+			elseif A.ParticleAuraValue=='Ritual' then auraPart.CFrame=hrp.CFrame+Vector3.new(0,-2.99,0)
+			else auraPart.CFrame=hrp.CFrame end
+		end
+	elseif auraPart then
+		auraPart:Destroy(); auraPart=nil; auraEmitters={}
+	end
+end))
+
+-- ######################## 力场身体/帽子 (juju 移植) ########################
+local limb_colors={Head="HeadColor",UpperTorso="TorsoColor",LowerTorso="TorsoColor",LeftFoot="LeftLegColor",LeftLowerLeg="LeftLegColor",LeftUpperLeg="LeftLegColor",RightFoot="RightLegColor",RightLowerLeg="RightLegColor",RightUpperLeg="RightLegColor",LeftHand="LeftArmColor",LeftLowerArm="LeftArmColor",LeftUpperArm="LeftArmColor",RightHand="RightArmColor",RightLowerArm="RightArmColor",RightUpperArm="RightArmColor"}
+local function restoreLimbColor(p,hum)
+	pcall(function()
+		local hd=hum and hum.HumanoidDescription
+		local desc=hd and limb_colors[p.Name] and hd[limb_colors[p.Name]] or nil
+		if desc then p.Color=desc end
+	end)
+end
+function applyForcefieldVisuals()
+	local L=Config['Local Player Visuals']
+	local ch=LocalPlayer.Character if not ch then return end
+	local hum=ch:FindFirstChildOfClass('Humanoid')
+	for _,p in pairs(ch:GetChildren()) do
+		if p:IsA('BasePart') and p.Name~='HumanoidRootPart' and p.Name~='RootJoint' then
+			local sz=p.Size
+			if sz and sz.X*sz.Y*sz.Z<0.125 then p.Material=Enum.Material.Plastic; p.Transparency=0
+			elseif L.ForcefieldBody then
+				p.Material=Enum.Material.ForceField; p.Color=L.ForcefieldBodyColor; p.Transparency=L.ForcefieldBodyTransparency
+			else
+				p.Material=Enum.Material.Plastic; p.Transparency=0; restoreLimbColor(p,hum)
+			end
+		elseif p:IsA('Accessory') then
+			local h=p:FindFirstChildOfClass('MeshPart') or p:FindFirstChildOfClass('Part')
+			if h and h.Size.X*h.Size.Y*h.Size.Z>=0.125 then
+				if L.ForcefieldHats then
+					h.Material=Enum.Material.ForceField; h.Color=L.ForcefieldHatsColor; h.Transparency=L.ForcefieldHatsTransparency
+				else
+					h.Material=Enum.Material.Plastic; h.Transparency=0
+				end
+			end
+		end
+	end
+end
+function restoreForcefieldVisuals()
+	local ch=LocalPlayer.Character if not ch then return end
+	local hum=ch:FindFirstChildOfClass('Humanoid')
+	for _,p in pairs(ch:GetChildren()) do
+		if p:IsA('BasePart') and p.Name~='HumanoidRootPart' then p.Material=Enum.Material.Plastic; p.Transparency=0; restoreLimbColor(p,hum)
+		elseif p:IsA('Accessory') then local h=p:FindFirstChildOfClass('MeshPart') or p:FindFirstChildOfClass('Part') if h then h.Material=Enum.Material.Plastic; h.Transparency=0 end end
+	end
+end
+track(LocalPlayer.CharacterAdded:Connect(function() task.wait(1) applyForcefieldVisuals() end))
+
+-- ######################## Hitsounds (free.txt 移植) ########################
+local hitsoundList={
+["Bubble"]="rbxassetid://6534947588",["Lazer"]="rbxassetid://130791043",["Pick"]="rbxassetid://1347140027",["Pop"]="rbxassetid://198598793",["Rust"]="rbxassetid://1255040462",["Sans"]="rbxassetid://3188795283",["Fart"]="rbxassetid://130833677",["Big"]="rbxassetid://5332005053",["Vine"]="rbxassetid://5332680810",["UwU"]="rbxassetid://8679659744",["Bruh"]="rbxassetid://4578740568",["Skeet"]="rbxassetid://5633695679",["Neverlose"]="rbxassetid://6534948092",["Fatality"]="rbxassetid://6534947869",["Bonk"]="rbxassetid://5766898159",["Minecraft"]="rbxassetid://5869422451",["Gamesense"]="rbxassetid://4817809188",["RIFK7"]="rbxassetid://9102080552",["Bamboo"]="rbxassetid://3769434519",["Crowbar"]="rbxassetid://546410481",["Weeb"]="rbxassetid://6442965016",["Beep"]="rbxassetid://8177256015",["Bambi"]="rbxassetid://8437203821",["Stone"]="rbxassetid://3581383408",["Old Fatality"]="rbxassetid://6607142036",["Click"]="rbxassetid://8053704437",["Ding"]="rbxassetid://7149516994",["Snow"]="rbxassetid://6455527632",["Laser"]="rbxassetid://7837461331",["Mario"]="rbxassetid://2815207981",["Steve"]="rbxassetid://4965083997",["Call of Duty"]="rbxassetid://5952120301",["Bat"]="rbxassetid://3333907347",["TF2 Critical"]="rbxassetid://296102734",["Saber"]="rbxassetid://8415678813",["Baimware"]="rbxassetid://3124331820",["Osu"]="rbxassetid://7149255551",["TF2"]="rbxassetid://2868331684",["Slime"]="rbxassetid://6916371803",["Among Us"]="rbxassetid://5700183626",["One"]="rbxassetid://7380502345"}
+track(hitPlayer:Connect(function(pl,char,dmg)
+	local H=Config['Hitsounds']
+	if not H.Enabled then return end
+	local id=hitsoundList[H.Selected] if not id then return end
+	pcall(function()
+		local s=Instance.new("Sound"); s.SoundId=id; s.Volume=H.Volume; s.Parent=Workspace; s:Play()
+		s.Ended:Connect(function() pcall(function() s:Destroy() end) end)
+	end)
+end))
+
+-- ######################## 新增 UI 段 (粒子光环 / 力场 / Feature Indicators / Hitsounds) ########################
+local paBox=CreateSection(Pages.Visuals.L,"ParticleAura")
+CreateToggle(paBox,"ParticleAura",function() return Config['Local Player Visuals'].ParticleAura end,function(v) Config['Local Player Visuals'].ParticleAura=v;if v then buildAuraEmitters(Config['Local Player Visuals'].ParticleAuraValue) elseif auraPart then auraPart:Destroy();auraPart=nil;auraEmitters={} end end)
+CreateDropdown(paBox,"AuraValue",{"Swirl","Bubble","Air","Ritual","Rain","Skibidi RedRizz","Bolts"},function() return Config['Local Player Visuals'].ParticleAuraValue end,function(v) Config['Local Player Visuals'].ParticleAuraValue=v;if Config['Local Player Visuals'].ParticleAura then buildAuraEmitters(v) end end)
+CreateColorPicker(paBox,"AuraColor",function() return Config['Local Player Visuals'].ParticleAuraColor end,function(v) Config['Local Player Visuals'].ParticleAuraColor=v;if Config['Local Player Visuals'].ParticleAura then buildAuraEmitters(Config['Local Player Visuals'].ParticleAuraValue) end end)
+local ffBox=CreateSection(Pages.Visuals.L,"Forcefield")
+CreateToggle(ffBox,"ForcefieldBody",function() return Config['Local Player Visuals'].ForcefieldBody end,function(v) Config['Local Player Visuals'].ForcefieldBody=v;applyForcefieldVisuals() end)
+CreateColorPicker(ffBox,"ForcefieldBodyColor",function() return Config['Local Player Visuals'].ForcefieldBodyColor end,function(v) Config['Local Player Visuals'].ForcefieldBodyColor=v;applyForcefieldVisuals() end)
+CreateToggle(ffBox,"ForcefieldHats",function() return Config['Local Player Visuals'].ForcefieldHats end,function(v) Config['Local Player Visuals'].ForcefieldHats=v;applyForcefieldVisuals() end)
+CreateColorPicker(ffBox,"ForcefieldHatsColor",function() return Config['Local Player Visuals'].ForcefieldHatsColor end,function(v) Config['Local Player Visuals'].ForcefieldHatsColor=v;applyForcefieldVisuals() end)
+local hsBox2=CreateSection(Pages.Aim.R,"Hitsounds (free)")
+CreateToggle(hsBox2,"Hitsounds",function() return Config['Hitsounds'].Enabled end,function(v) Config['Hitsounds'].Enabled=v end)
+CreateDropdown(hsBox2,"HitsoundSelect",{"Bubble","Lazer","Pick","Pop","Rust","Sans","Fart","Big","Vine","UwU","Bruh","Skeet","Neverlose","Fatality","Bonk","Minecraft","Gamesense","RIFK7","Bamboo","Crowbar","Weeb","Beep","Bambi","Stone","Old Fatality","Click","Ding","Snow","Laser","Mario","Steve","Call of Duty","Bat","TF2 Critical","Saber","Baimware","Osu","TF2","Slime","Among Us","One"},function() return Config['Hitsounds'].Selected end,function(v) Config['Hitsounds'].Selected=v end)
+CreateSlider(hsBox2,"HitsoundVolume",1,50,function() return math.floor(Config['Hitsounds'].Volume*10) end,function(v) Config['Hitsounds'].Volume=v/10 end)
+
+-- 新增功能的中文翻译
+Translations.CN.Aimbot="瞄准 (juju)";Translations.CN.AutoSelect="自动选目标";Translations.CN.AutoSelectDelay="选择延迟(ms)";Translations.CN.Sticky="粘住目标";Translations.CN.HitPart="命中部位";Translations.CN.Prediction="预判";Translations.CN.MaxDistance="最大距离";Translations.CN.UntargetKnocked="目标被K.O时解除"
+Translations.CN.SilentAim="静默自瞄";Translations.CN.SilentHitChance="命中率%";Translations.CN.SilentFOV="自瞄FOV";Translations.CN.SilentFOVSize="自瞄FOV大小";Translations.CN.SilentFOVColor="自瞄FOV颜色";Translations.CN.SilentDisablers="自瞄禁用条件";Translations.CN.SilentLine="自瞄线";Translations.CN.SilentLineColor="自瞄线颜色"
+Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistValue="辅助方式";Translations.CN.AssistSmooth="平滑度";Translations.CN.AssistFOV="辅助FOV";Translations.CN.AssistFOVSize="辅助FOV大小";Translations.CN.AssistFOVColor="辅助FOV颜色";Translations.CN.AssistDisablers="辅助禁用条件"
+Translations.CN.Triggerbot="自动扳机";Translations.CN.TriggerDelay="扳机延迟(ms)";Translations.CN.TriggerRadius="扳机半径";Translations.CN.TriggerJumpPred="跳跃预测";Translations.CN.TriggerFirstPerson="仅第一人称"
+Translations.CN.Hitsounds="击杀音效";Translations.CN.HitsoundSelect="音效选择";Translations.CN.HitsoundVolume="音量"
+Translations.CN.Desync="假同步";Translations.CN.DesyncMode="模式";Translations.CN.VelocityDesync="速度假同步";Translations.CN.VelocityMode="速度模式";Translations.CN.MultiplierVal="倍率";Translations.CN.RandomVal="随机值";Translations.CN.NetworkDesync="网络假同步";Translations.CN.NetworkMode="网络模式";Translations.CN.RandomTP="随机传送";Translations.CN.TPHOff="水平偏移";Translations.CN.TPVOff="垂直偏移";Translations.CN.ShowEye="显示实际位置(眼睛)"
+Translations.CN.ParticleAura="粒子光环";Translations.CN.AuraValue="光环类型";Translations.CN.AuraColor="光环颜色"
+Translations.CN.Forcefield="力场";Translations.CN.ForcefieldBody="力场身体";Translations.CN.ForcefieldBodyColor="身体颜色";Translations.CN.ForcefieldHats="力场帽子";Translations.CN.ForcefieldHatsColor="帽子颜色"
+Translations.CN.KDPColor="指示颜色"
+-- ######################## 动画修改器 (free 移植: 14 套动画预设) ########################
+local AnimKeepOnDeath=false
+local AnimOptions={["Idle1"]="http://www.roblox.com/asset/?id=180435571",["Idle2"]="http://www.roblox.com/asset/?id=180435792",["Walk"]="http://www.roblox.com/asset/?id=180426354",["Run"]="http://www.roblox.com/asset/?id=180426354",["Jump"]="http://www.roblox.com/asset/?id=125750702",["Climb"]="http://www.roblox.com/asset/?id=180436334",["Fall"]="http://www.roblox.com/asset/?id=180436148"}
+local AnimSets={
+["Default"]={idle1="http://www.roblox.com/asset/?id=180435571",idle2="http://www.roblox.com/asset/?id=180435792",walk="http://www.roblox.com/asset/?id=180426354",run="http://www.roblox.com/asset/?id=180426354",jump="http://www.roblox.com/asset/?id=125750702",climb="http://www.roblox.com/asset/?id=180436334",fall="http://www.roblox.com/asset/?id=180436148"},
+["Ninja"]={idle1="http://www.roblox.com/asset/?id=656117400",idle2="http://www.roblox.com/asset/?id=656118341",walk="http://www.roblox.com/asset/?id=656121766",run="http://www.roblox.com/asset/?id=656118852",jump="http://www.roblox.com/asset/?id=656117878",climb="http://www.roblox.com/asset/?id=656114359",fall="http://www.roblox.com/asset/?id=656115606"},
+["Superhero"]={idle1="http://www.roblox.com/asset/?id=616111295",idle2="http://www.roblox.com/asset/?id=616113536",walk="http://www.roblox.com/asset/?id=616122287",run="http://www.roblox.com/asset/?id=616117076",jump="http://www.roblox.com/asset/?id=616115533",climb="http://www.roblox.com/asset/?id=616104706",fall="http://www.roblox.com/asset/?id=616108001"},
+["Robot"]={idle1="http://www.roblox.com/asset/?id=616088211",idle2="http://www.roblox.com/asset/?id=616089559",walk="http://www.roblox.com/asset/?id=616095330",run="http://www.roblox.com/asset/?id=616091570",jump="http://www.roblox.com/asset/?id=616090535",climb="http://www.roblox.com/asset/?id=616086039",fall="http://www.roblox.com/asset/?id=616087089"},
+["Cartoon"]={idle1="http://www.roblox.com/asset/?id=742637544",idle2="http://www.roblox.com/asset/?id=742638445",walk="http://www.roblox.com/asset/?id=742640026",run="http://www.roblox.com/asset/?id=742638842",jump="http://www.roblox.com/asset/?id=742637942",climb="http://www.roblox.com/asset/?id=742636889",fall="http://www.roblox.com/asset/?id=742637151"},
+["Catwalk"]={idle1="http://www.roblox.com/asset/?id=133806214992291",idle2="http://www.roblox.com/asset/?id=94970088341563",walk="http://www.roblox.com/asset/?id=109168724482748",run="http://www.roblox.com/asset/?id=81024476153754",jump="http://www.roblox.com/asset/?id=116936326516985",climb="http://www.roblox.com/asset/?id=119377220967554",fall="http://www.roblox.com/asset/?id=92294537340807"},
+["Zombie"]={idle1="http://www.roblox.com/asset/?id=616158929",idle2="http://www.roblox.com/asset/?id=616160636",walk="http://www.roblox.com/asset/?id=616168032",run="http://www.roblox.com/asset/?id=616163682",jump="http://www.roblox.com/asset/?id=616161997",climb="http://www.roblox.com/asset/?id=616156119",fall="http://www.roblox.com/asset/?id=616157476"},
+["Mage"]={idle1="http://www.roblox.com/asset/?id=707742142",idle2="http://www.roblox.com/asset/?id=707855907",walk="http://www.roblox.com/asset/?id=707897309",run="http://www.roblox.com/asset/?id=707861613",jump="http://www.roblox.com/asset/?id=707853694",climb="http://www.roblox.com/asset/?id=707826056",fall="http://www.roblox.com/asset/?id=707829716"},
+["Pirate"]={idle1="http://www.roblox.com/asset/?id=750785693",idle2="http://www.roblox.com/asset/?id=750782770",walk="http://www.roblox.com/asset/?id=750785693",run="http://www.roblox.com/asset/?id=750782770",jump="http://www.roblox.com/asset/?id=750782770",climb="http://www.roblox.com/asset/?id=750782770",fall="http://www.roblox.com/asset/?id=750782770"},
+["Knight"]={idle1="http://www.roblox.com/asset/?id=657595757",idle2="http://www.roblox.com/asset/?id=657568135",walk="http://www.roblox.com/asset/?id=657552124",run="http://www.roblox.com/asset/?id=657564596",jump="http://www.roblox.com/asset/?id=657560148",climb="http://www.roblox.com/asset/?id=657556206",fall="http://www.roblox.com/asset/?id=657552124"},
+["Vampire"]={idle1="http://www.roblox.com/asset/?id=1083465857",idle2="http://www.roblox.com/asset/?id=1083465857",walk="http://www.roblox.com/asset/?id=1083465857",run="http://www.roblox.com/asset/?id=1083465857",jump="http://www.roblox.com/asset/?id=1083465857",climb="http://www.roblox.com/asset/?id=1083465857",fall="http://www.roblox.com/asset/?id=1083465857"},
+["Bubbly"]={idle1="http://www.roblox.com/asset/?id=910004836",idle2="http://www.roblox.com/asset/?id=910009958",walk="http://www.roblox.com/asset/?id=910034870",run="http://www.roblox.com/asset/?id=910025107",jump="http://www.roblox.com/asset/?id=910016857",climb="http://www.roblox.com/asset/?id=910009958",fall="http://www.roblox.com/asset/?id=910009958"},
+["Elder"]={idle1="http://www.roblox.com/asset/?id=845386501",idle2="http://www.roblox.com/asset/?id=845397899",walk="http://www.roblox.com/asset/?id=845403856",run="http://www.roblox.com/asset/?id=845386501",jump="http://www.roblox.com/asset/?id=845386501",climb="http://www.roblox.com/asset/?id=845386501",fall="http://www.roblox.com/asset/?id=845386501"},
+["Toy"]={idle1="http://www.roblox.com/asset/?id=782841498",idle2="http://www.roblox.com/asset/?id=782841498",walk="http://www.roblox.com/asset/?id=782841498",run="http://www.roblox.com/asset/?id=782841498",jump="http://www.roblox.com/asset/?id=782841498",climb="http://www.roblox.com/asset/?id=782841498",fall="http://www.roblox.com/asset/?id=782841498"}
+}
+local AnimNames={"Default","Ninja","Superhero","Robot","Cartoon","Catwalk","Zombie","Mage","Pirate","Knight","Vampire","Bubbly","Elder","Toy"}
+function applyCustomAnimations(character)
+	if not character then return end
+	local Animate=character:FindFirstChild("Animate")
+	if not Animate then return end
+	local ClonedAnimate=Animate:Clone()
+	ClonedAnimate.idle.Animation1.AnimationId=AnimOptions["Idle1"]
+	ClonedAnimate.idle.Animation2.AnimationId=AnimOptions["Idle2"]
+	ClonedAnimate.walk.WalkAnim.AnimationId=AnimOptions["Walk"]
+	ClonedAnimate.run.RunAnim.AnimationId=AnimOptions["Run"]
+	ClonedAnimate.jump.JumpAnim.AnimationId=AnimOptions["Jump"]
+	ClonedAnimate.climb.ClimbAnim.AnimationId=AnimOptions["Climb"]
+	ClonedAnimate.fall.FallAnim.AnimationId=AnimOptions["Fall"]
+	Animate:Destroy()
+	ClonedAnimate.Parent=character
+end
+track(LocalPlayer.CharacterAdded:Connect(function(character)
+	if AnimKeepOnDeath then task.wait(1) applyCustomAnimations(character) end
+end))
+
+-- ######################## God Block 自动格挡 (free 移植) ########################
+local godBlockConn=nil
+local BlockedAnimations={"rbxassetid://2788289281","rbxassetid://507766388","rbxassetid://2788292075","rbxassetid://278829075","rbxassetid://4798175381","rbxassetid://2953512033","rbxassetid://2788309982","rbxassetid://2788312709","rbxassetid://2788313790","rbxassetid://2788316350","rbxassetid://2788315673","rbxassetid://2788314837"}
+pcall(function() ReplicatedStorage:WaitForChild("ClientAnimations").Block.AnimationId="rbxassetid://0" end)
+function startGodBlock()
+	if godBlockConn then godBlockConn:Disconnect() godBlockConn=nil end
+	godBlockConn=RunService.Stepped:Connect(function()
+		if not Config['God Block'].Enabled then return end
+		local ch=LocalPlayer.Character
+		if ch and ch:FindFirstChild('BodyEffects') then
+			local be=ch.BodyEffects
+			if be:FindFirstChild('Block') then be.Block:Destroy() end
+			local tool=ch:FindFirstChildWhichIsA('Tool')
+			if tool and tool:FindFirstChild('Ammo') then
+				pcall(function() ReplicatedStorage.MainEvent:FireServer('Block', false) end)
+			else
+				pcall(function() ReplicatedStorage.MainEvent:FireServer('Block', true) end)
+				task.wait()
+				pcall(function() ReplicatedStorage.MainEvent:FireServer('Block', false) end)
+			end
+		end
+	end)
+end
+function startHideBlockAnims()
+	RunService:BindToRenderStep('Hide - Block', 0, function()
+		if not Config['God Block'].HideAnimations then return end
+		local ch=LocalPlayer.Character
+		if ch then
+			local hum=ch:FindFirstChildWhichIsA('Humanoid')
+			if hum then
+				for _,tr in pairs(hum:GetPlayingAnimationTracks()) do
+					if table.find(BlockedAnimations, tr.Animation and tr.Animation.AnimationId) then pcall(function() tr:Stop() end) end
+				end
+			end
+		end
+	end)
+end
+
+-- ######################## Kill Say (free 移植, 可自定义内容) ########################
+track(hitPlayer:Connect(function(player, char, damage)
+	local KS=Config['Kill Say']
+	if not (KS.Enabled and KS.Message and KS.Message~='') then return end
+	local hum=char and char:FindFirstChildOfClass('Humanoid')
+	if hum and hum.Health<=0 then
+		pcall(function() ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(KS.Message, "All") end)
+	end
+end))
+
+-- ######################## Chat Spy (free 移植) ########################
+local chatSpyEnabled=false
+local chatSpyReady=false
+function setupChatSpy()
+	if chatSpyReady then return end
+	chatSpyReady=true
+	local player=Players.LocalPlayer
+	local getmsg=ReplicatedStorage:WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("OnMessageDoneFiltering")
+	local function onChatted(p,msg)
+		if not chatSpyEnabled then return end
+		if p==player then return end
+		msg=msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
+		local hidden=true
+		local conn=getmsg.OnClientEvent:Connect(function(packet,channel)
+			if packet.SpeakerUserId==p.UserId and packet.Message==msg:sub(#msg-#packet.Message+1) and (channel=="All" or (channel=="Team" and Players[packet.FromSpeaker].Team==player.Team)) then hidden=false end
+		end)
+		task.wait(0.5)
+		conn:Disconnect()
+		if hidden then
+			game:GetService('StarterGui'):SetCore("ChatMakeSystemMessage",{Text="{SPY} ["..p.Name.."]: "..msg,Color=Color3.fromRGB(0,255,255),Font=Enum.Font.SourceSansBold,TextSize=18})
+		end
+	end
+	for _,p in ipairs(Players:GetPlayers()) do p.Chatted:Connect(function(msg) onChatted(p,msg) end) end
+	Players.PlayerAdded:Connect(function(p) p.Chatted:Connect(function(msg) onChatted(p,msg) end) end)
+end
+
+local kbdBox=CreateSection(Pages.Visuals.L,"KeybindDisplay")
+CreateDropdown(kbdBox,"KDPos",{"Left","Right"},function() return Config['Visual Awareness'].KeybindDisplayPos end,function(v) Config['Visual Awareness'].KeybindDisplayPos=v;updateKeybindDisplay() end)
+CreateSlider(kbdBox,"KDSize",8,24,function() return Config['Visual Awareness'].KeybindDisplaySize end,function(v) Config['Visual Awareness'].KeybindDisplaySize=v;updateKeybindDisplay() end)
+CreateDropdown(kbdBox,"KDFont",{"Plex","UI","Flex","Monospace"},function() return Config['Visual Awareness'].KeybindDisplayFont end,function(v) Config['Visual Awareness'].KeybindDisplayFont=v;updateKeybindDisplay() end)
+CreateColorPicker(kbdBox,"KDColor",function() return Config['Visual Awareness'].KeybindDisplayColor end,function(v) Config['Visual Awareness'].KeybindDisplayColor=v;updateKeybindDisplay() end)
+CreateLabel(kbdBox,"热键状态指示: 可拖动调整位置")
+
+-- ######################## 新增功能 UI (Chat Spy / God Block / Kill Say / 动画修改器) ########################
+local spyBox=CreateSection(Pages.Misc.R,"ChatSpy")
+CreateToggle(spyBox,"ChatSpy",function() return chatSpyEnabled end,function(v) chatSpyEnabled=v;if v then setupChatSpy() end end)
+CreateLabel(spyBox,"窥屏: 显示别人的隐藏消息")
+local gbBox=CreateSection(Pages.Misc.R,"GodBlock")
+CreateToggle(gbBox,"GodBlock",function() return Config['God Block'].Enabled end,function(v) Config['God Block'].Enabled=v;if v then startGodBlock() else if godBlockConn then godBlockConn:Disconnect() godBlockConn=nil end end end)
+CreateToggle(gbBox,"HideBlockAnims",function() return Config['God Block'].HideAnimations end,function(v) Config['God Block'].HideAnimations=v end)
+local ksBox=CreateSection(Pages.Misc.R,"KillSay")
+CreateToggle(ksBox,"KillSay",function() return Config['Kill Say'].Enabled end,function(v) Config['Kill Say'].Enabled=v end)
+CreateTextBox(ksBox,"KillSayMsg","输入击杀后说的话",function() return Config['Kill Say'].Message end,function(v) Config['Kill Say'].Message=v end)
+local animBox=CreateSection(Pages.Misc.R,"Animation")
+CreateDropdown(animBox,"Idle1Dropdown",AnimNames,function() return Config['Animations'].Idle1 end,function(v) Config['Animations'].Idle1=v;AnimOptions["Idle1"]=AnimSets[v].idle1;applyCustomAnimations(LocalPlayer.Character) end)
+CreateDropdown(animBox,"Idle2Dropdown",AnimNames,function() return Config['Animations'].Idle2 end,function(v) Config['Animations'].Idle2=v;AnimOptions["Idle2"]=AnimSets[v].idle2;applyCustomAnimations(LocalPlayer.Character) end)
+CreateDropdown(animBox,"WalkDropdown",AnimNames,function() return Config['Animations'].Walk end,function(v) Config['Animations'].Walk=v;AnimOptions["Walk"]=AnimSets[v].walk;applyCustomAnimations(LocalPlayer.Character) end)
+CreateDropdown(animBox,"RunDropdown",AnimNames,function() return Config['Animations'].Run end,function(v) Config['Animations'].Run=v;AnimOptions["Run"]=AnimSets[v].run;applyCustomAnimations(LocalPlayer.Character) end)
+CreateDropdown(animBox,"JumpDropdown",AnimNames,function() return Config['Animations'].Jump end,function(v) Config['Animations'].Jump=v;AnimOptions["Jump"]=AnimSets[v].jump;applyCustomAnimations(LocalPlayer.Character) end)
+CreateDropdown(animBox,"ClimbDropdown",AnimNames,function() return Config['Animations'].Climb end,function(v) Config['Animations'].Climb=v;AnimOptions["Climb"]=AnimSets[v].climb;applyCustomAnimations(LocalPlayer.Character) end)
+CreateDropdown(animBox,"FallDropdown",AnimNames,function() return Config['Animations'].Fall end,function(v) Config['Animations'].Fall=v;AnimOptions["Fall"]=AnimSets[v].fall;applyCustomAnimations(LocalPlayer.Character) end)
+CreateToggle(animBox,"KeepOnDeath",function() return AnimKeepOnDeath end,function(v) AnimKeepOnDeath=v end)
+
+Translations.CN.ChatSpy="聊天窥屏";Translations.CN.GodBlock="自动格挡(God Block)";Translations.CN.HideBlockAnims="隐藏格挡动画";Translations.CN.KillSay="击杀喊话";Translations.CN.KillSayMsg="喊话内容";Translations.CN.Animation="动画修改器";Translations.CN.Idle1Dropdown="待机1";Translations.CN.Idle2Dropdown="待机2";Translations.CN.WalkDropdown="行走";Translations.CN.RunDropdown="奔跑";Translations.CN.JumpDropdown="跳跃";Translations.CN.ClimbDropdown="攀爬";Translations.CN.FallDropdown="下落";Translations.CN.KeepOnDeath="死亡保留";Translations.CN.CamLock="相机锁定(CamLock)";Translations.CN.CamLockSmooth="平滑度";Translations.CN.CamFOV="锁定FOV";Translations.CN.CamFOVVisible="显示FOV";Translations.CN.CamFOVSize="FOV大小";Translations.CN.CamFOVColor="FOV颜色";Translations.CN.KDPos="位置";Translations.CN.KDSize="大小";Translations.CN.KDFont="字体";Translations.CN.KDColor="颜色";Translations.CN.KeybindDisplay="热键指示器"
+
+function buyAmmo(gunName)
+	local nm=cleanName(gunName)
+	local obj=shopNames[nm.."ammo"]
+	if not obj then return end
+	local hrp=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+	if not hrp then return end
+	local oldPosition=hrp.CFrame
+	local currentTool=LocalPlayer.Character:FindFirstChildOfClass("Tool")
+	if currentTool then currentTool.Parent=LocalPlayer.Backpack end
+	pcall(function() obj.detector.MaxActivationDistance=math.huge; obj.detector.RequiresLineOfSight=false end)
+	hrp.CFrame=obj.button.CFrame-Vector3.new(0,8.8,0)
+	task.wait(0.15)
+	for i=1,6 do pcall(function() fireclickdetector(obj.detector) end) task.wait(0.06) end
+	task.wait(0.2)
+	if currentTool then currentTool.Parent=LocalPlayer.Character end
+	hrp.CFrame=oldPosition
+end
+
+
+-- ######################## 左上角开关提示 (英文, 避免问号) ########################
+toggleStatus=nil
+toggleStatusBorn=0
+function notifyToggle(name, on)
+	if not toggleStatus then
+		toggleStatus=Drawing.new("Text");toggleStatus.Size=14;toggleStatus.Font=2;toggleStatus.Outline=true;toggleStatus.OutlineColor=Color3.new(0,0,0);toggleStatus.Visible=false
+	end
+	toggleStatus.Text=name..(on and " ON" or " OFF")
+	toggleStatus.Color=on and Color3.fromRGB(124,110,255) or Color3.fromRGB(150,150,165)
+	toggleStatus.Position=Vector2.new(15,40)
+	toggleStatus.Visible=true
+	toggleStatusBorn=tick()
+end
+track(RunService.RenderStepped:Connect(function()
+	if toggleStatus and toggleStatus.Visible and tick()-toggleStatusBorn>2 then toggleStatus.Visible=false end
+end))
+
 print("==========================================")
-print("  hate v17 FINAL loaded (keybind+ragebot+fixes)")
+print("  hate v17 FINAL loaded")
 print("  UI Open Key: "..(Config.Keybinds['UI Toggle'].Key or "RightShift"))
 print("  F9 = Panic Hide")
-print("=== HATE v17 COMPLETE ===")
 print("==========================================")
