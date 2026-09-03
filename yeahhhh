@@ -85,7 +85,7 @@ cfg('God Block',{Enabled=false,HideAnimations=false})
 cfg('Kill Say',{Enabled=false,Message=''})
 cfg('Animations',{Idle1='Default',Idle2='Default',Walk='Default',Run='Default',Jump='Default',Climb='Default',Fall='Default'})
 cfg('Trigger Bot',{Enabled=false,Delay=0.1,HorizontalRadius=0,VerticalRadius=0,JumpPrediction=false,SpecificWeapons={Enabled=false,Weapons={}}})
-cfg('Ragebot',{Enabled=false,Targets={},IncludeAimbotTarget=false,AutoEquip=false,AutoEquipWeapons={},AutoStomp=false,TeleportBack=false,AttachToTarget=false,AttachMode='Strafe',StrafeSpeed=50,HOffset=10,VOffset=10,TeleportBullets=false,ViewTarget=false,AutoShoot=false,WallCheck=false,InfiniteRange=false,DisableIfKnocked=true,ShootDelay=0.12,MaxDistance=500,PacketShoot=true,RequireResolver=true,SpeedLimit=45})
+cfg('Ragebot',{Enabled=false,Targets={},IncludeAimbotTarget=false,AutoEquip=false,AutoEquipWeapons={},AutoStomp=false,TeleportBack=false,AttachToTarget=false,AttachMode='Strafe',StrafeSpeed=50,HOffset=10,VOffset=10,TeleportBullets=false,ViewTarget=false,AutoShoot=false,WallCheck=false,InfiniteRange=false,DisableIfKnocked=true,MaxDistance=500})
 cfg('Resolver',{Enabled=false,RandomTeleport=false,Network=false,RefreshRate=0.095})
 cfg('Desync',{Enabled=false,Mode='Underground',ShowEye=false,EyeSize=14,EyeColor=Color3.new(1,1,1),Velocity=false,VelocityValue='Zero',Multiplier=0.2,Random=5,Network=false,NetworkValue='Simple',RandomTeleport=false,HOffset=60,VOffset=25,MoveOnly=true,Depth=0})
 cfg('Anti Aim',{AnimationLag=false,AnimationLagValue=50,AnimationSpam=false,AnimationSpamValue='Floss',ClientPitch=false,ClientPitchValue=90,FaceBackwards=false,Spinbot=false,SpinbotSpeed=50})
@@ -453,8 +453,8 @@ Translations.CN.RagePacketShoot="包体射击(向服务器发送伤害)";Transla
 Translations.CN.GridEmpty="这里没有可显示的内容";Translations.CN.GridHintSingle="左键点击即选择并关闭";Translations.CN.GridHintMulti="左键勾选/取消, 右键清空勾选, Esc 关闭";Translations.CN.CatAll="全部已知物品"
 Translations.EN.AimAssist="Aim assist";Translations.EN.AssistStyle="Assist style";Translations.EN.SmoothStyle="Smoothing style";Translations.EN.HSmoothness="Horizontal smoothness";Translations.EN.VSmoothness="Vertical smoothness";Translations.EN.HPrediction="Horizontal prediction";Translations.EN.VPrediction="Vertical prediction";Translations.EN.JumpOffset="Jump offset";Translations.EN.Multipoint="Multipoint";Translations.EN.DontAimVertically="Don't aim vertically";Translations.EN.JumpPrediction="Jump prediction";Translations.EN.AAUseFOV="Use FOV (assist)";Translations.EN.AAFOVVisible="Show FOV";Translations.EN.AAFOVSize="Assist FOV size";Translations.EN.AAFOVThick="FOV thickness";Translations.EN.AAFOVColor="FOV color";Translations.EN.AssistDisablers="Disable when";Translations.EN.FallbackCamera="Camera fallback"
 Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistStyle="辅助方式";Translations.CN.SmoothStyle="平滑风格";Translations.CN.HSmoothness="水平平滑度";Translations.CN.VSmoothness="垂直平滑度";Translations.CN.HPrediction="水平预测";Translations.CN.VPrediction="垂直预测";Translations.CN.JumpOffset="跳跃偏移";Translations.CN.Multipoint="多点命中";Translations.CN.DontAimVertically="不修正垂直";Translations.CN.JumpPrediction="跳跃预测";Translations.CN.AAUseFOV="启用FOV(辅助)";Translations.CN.AAFOVVisible="显示FOV";Translations.CN.AAFOVSize="辅助FOV大小";Translations.CN.AAFOVThick="FOV粗细";Translations.CN.AAFOVColor="FOV颜色";Translations.CN.AssistDisablers="禁用条件";Translations.CN.FallbackCamera="相机回退";Translations.EN.AimTargetHelp="Target: auto-selects the closest player inside FOV";Translations.CN.AimTargetHelp="目标: 自动锁定 FOV 内最近的人";Translations.EN.AAFOVMouse="FOV follows mouse";Translations.CN.AAFOVMouse="FOV跟随鼠标光标";Translations.EN.AutoPrediction="Auto prediction (+ping)";Translations.CN.AutoPrediction="自动预测(叠加Ping)";Translations.EN.JumpPredictionVal="Jump prediction (ms)";Translations.CN.JumpPredictionVal="跳跃预测(ms)";Translations.EN.SmoothLockHint="Smoothness: 1 = hard lock, higher = smoother";Translations.EN.AimStatusOff="Aim assist is OFF";Translations.CN.AimStatusOff="瞄准辅助未开启";Translations.EN.AimStatusLocked="Target";Translations.CN.AimStatusLocked="已锁定";Translations.EN.AimStatusNone="No target";Translations.CN.AimStatusNone="未选到目标";Translations.EN.AimStatusFound="candidates";Translations.CN.AimStatusFound="候选";Translations.EN.AimStatusFov="FOV";Translations.CN.AimStatusFov="FOV"
-Translations.EN.MoveOnly="Only while moving";Translations.EN.DesyncDepth="Desync depth";Translations.EN.EyeSize="Eye size";Translations.EN.NoBinds="No keybinds";Translations.EN.Desync="Desync";Translations.EN.ShowEye="Show eye";Translations.EN.RandomTP="Random teleport";Translations.EN.TPHOff="Teleport horizontal";Translations.EN.TPVOff="Teleport vertical";Translations.EN.KDPColor="Indicator color";Translations.EN.KeybindDisplay="Keybind indicator"
-Translations.CN.MoveOnly="仅移动时生效";Translations.CN.DesyncDepth="假同步深度";Translations.CN.EyeSize="眼睛大小";Translations.CN.NoBinds="暂无按键绑定";Translations.CN.Desync="假同步 (Desync)";Translations.CN.ShowEye="显示眼睛(实时位置)";Translations.CN.RandomTP="随机传送";Translations.CN.TPHOff="水平随机范围";Translations.CN.TPVOff="垂直随机范围";Translations.CN.KDPColor="指示器颜色";Translations.CN.KeybindDisplay="按键绑定显示"
+Translations.EN.MoveOnly="Only while moving";Translations.EN.ColorBtn="Colors";Translations.EN.DesyncDepth="Desync depth";Translations.EN.EyeSize="Eye size";Translations.EN.NoBinds="No keybinds";Translations.EN.Desync="Desync";Translations.EN.ShowEye="Show eye";Translations.EN.RandomTP="Random teleport";Translations.EN.TPHOff="Teleport horizontal";Translations.EN.TPVOff="Teleport vertical";Translations.EN.KDPColor="Indicator color";Translations.EN.KeybindDisplay="Keybind indicator"
+Translations.CN.MoveOnly="仅移动时生效";Translations.CN.ColorBtn="颜色";Translations.CN.DesyncDepth="假同步深度";Translations.CN.EyeSize="眼睛大小";Translations.CN.NoBinds="暂无按键绑定";Translations.CN.Desync="假同步 (Desync)";Translations.CN.ShowEye="显示眼睛(实时位置)";Translations.CN.RandomTP="随机传送";Translations.CN.TPHOff="水平随机范围";Translations.CN.TPVOff="垂直随机范围";Translations.CN.KDPColor="指示器颜色";Translations.CN.KeybindDisplay="按键绑定显示"
 Translations.CN.EyeColor="眼睛颜色";Translations.CN.HitSoundValue="音效";Translations.CN.StatColors="状态条颜色";Translations.CN.CustomShoot="自定义开枪音效";Translations.CN.ShootSoundValue="开枪音效";Translations.CN.ShootVolume="开枪音量"
 Translations.EN.None="None";Translations.EN.ModeToggle="Toggle";Translations.EN.ModeHold="Hold";Translations.CN.None="未绑定";Translations.EN.TabMisc="Misc";Translations.EN.TabPlayers="Players";Translations.EN.TabSettings="Settings"
 function T(k) return (Translations[CurrentLang] and Translations[CurrentLang][k]) or Translations.EN[k] or k end
@@ -827,20 +827,22 @@ do
 -- // [新] RAGEBOT 主循环 (juju.lol 式) //
 ragebotViewTarget=nil
 ragebotFakePos=nil
-local lastRageShot=0
-rageShotPending=0;rageShootEvent=nil
-function rageFireShot(gun,origin,aim,part,packet)
+function rageFireShot(gun)
 if not gun then return end
-local handle=gun:FindFirstChild('Handle')
-if not handle then return end
-if packet then
-if not rageShootEvent then rageShootEvent=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT') end
-if rageShootEvent then
-pcall(function() rageShootEvent:FireServer('ShootGun',handle,origin,aim,part,Vector3.new(0,0,-1)) end)
-return
-end
-end
+-- // [juju] 让游戏自己的武器代码开枪: 射击伤害由游戏本体发给服务器, 服务器枪械状态始终同步 //
+-- // 旧实现自己伪造 ShootGun 包体, 服务器端状态对不上: 第一次能用, 重开总开关后就被一直拒绝 //
 pcall(function() gun:Activate() end)
+end
+-- // [juju] 停止自动射击后延迟 0.5s Deactivate 武器 (对应 juju 的 terminate/do_terminate) //
+rageAutoFiring=false;rageAutoTerminate=0
+function rageAutoStop()
+if not rageAutoFiring then return end
+rageAutoTerminate=rageAutoTerminate>0 and rageAutoTerminate or tick()
+if tick()-rageAutoTerminate>0.5 then
+local g=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Tool')
+if g then pcall(function() g:Deactivate() end) end
+rageAutoFiring=false;rageAutoTerminate=0
+end
 end
 function rageRestoreView()
 if not ragebotViewTarget then return end
@@ -889,11 +891,13 @@ local ch=LocalPlayer.Character if not ch then rageRestoreView() return end
 local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then rageRestoreView() return end
 local hum=ch:FindFirstChildOfClass('Humanoid')
 if not hum or hum.Health<=0 or isSelfKnocked() then
-ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageShotPending=0;rageRestoreView()
+rageAutoStop()
+ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView()
 return
 end
 if not (RB.Enabled and bindActive('Ragebot')) then
-ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageShotPending=0;rageRestoreView()
+rageAutoStop()
+ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView()
 return
 end
 local candidates={}
@@ -909,17 +913,17 @@ local dup=false for _,p in ipairs(candidates) do if p==at then dup=true break en
 if not dup then table.insert(candidates,at) end
 end
 end
-if #candidates==0 then ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageShotPending=0;rageRestoreView() return end
+if #candidates==0 then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView() return end
 local closest=nil;local bd=math.huge
 for _,pl in ipairs(candidates) do
 local d=(pl.Character.HumanoidRootPart.Position-hrp.Position).Magnitude
 if d<bd then bd=d closest=pl end
 end
-if not closest then ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageShotPending=0;rageRestoreView() return end
+if not closest then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView() return end
 ragebotTarget=closest
 local tChar=closest.Character
 local tHrp=tChar:FindFirstChild('HumanoidRootPart')
-if not tHrp then ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageShotPending=0;rageRestoreView() return end
+if not tHrp then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView() return end
 ragebotAimPart=tChar:FindFirstChild('Head') or tHrp
 -- // [修复] 解析器以前只在"吸附瞄准"里跑, ragebot 从来没调用过, 也算出来的回溯点也没人用 -> 三个解析功能全是死的 //
 ragebotFakePos=updateResolver(closest,tChar,tHrp)
@@ -966,19 +970,14 @@ local ammo=gun:FindFirstChild('Ammo')
 local canFire=((not ammo) or ammo.Value>0) and not tKnocked and not tChar:FindFirstChild('GRABBING_CONSTRAINT')
 local forcefield=tChar:FindFirstChild('ForceField')
 if canFire and forcefield and forcefield:FindFirstChild('On') then canFire=forcefield.On.Value==false end
-local tv2=tHrp.AssemblyLinearVelocity
-if typeof(tv2)~="Vector3" then tv2=tHrp.Velocity or Vector3.new() end
-local unstable=tv2.Magnitude>(RB.SpeedLimit or 45)
-local resolved=ragebotFakePos~=nil
-if canFire and tick()-lastRageShot>=math.max(RB.ShootDelay or 0.12,0.02) then
+if canFire then
 local origin=gun.Handle.Position
 local aimTarget=ragebotFakePos or ragebotAimPart.Position
-if RB.TeleportBullets then origin=aimTarget end
 local dir=aimTarget-origin
 local mag=dir.Magnitude
 local maxD=RB.InfiniteRange and 9e9 or (RB.MaxDistance or 500)
 local blocked=false
-if RB.WallCheck and not RB.TeleportBullets then
+if RB.WallCheck then
 local rp=RaycastParams.new()
 local filter={ch,tChar}
 local ign=Workspace:FindFirstChild('Ignored')
@@ -988,23 +987,18 @@ rp.FilterType=Enum.RaycastFilterType.Exclude
 blocked=Workspace:Raycast(origin,dir.Unit*math.max(mag,0.001),rp)~=nil
 end
 if (not blocked) and mag<=maxD then
--- // [修复] 不再每帧裸发 ShootGun -> ping 无限上涨卡死 //
--- // 目标移速过快/在反瞄准且解析器还没解析到: 这一发先预留(最多只留1发), 解析到的瞬间才向服务器补发, 0.35s 解析不到就丢弃, 绝不堆积 //
-local holdShot=(RB.RequireResolver and unstable and not resolved) or (RB.RequireResolver and forcefield~=nil and not resolved)
-if holdShot then
-if rageShotPending==0 then rageShotPending=tick() end
+-- // [juju] 条件满足就让游戏本体开火: 游戏自带射速限制, 不会无限发包, ping 不会叠加 //
+-- // 目标移速过快/反瞄准时, Mouse.Hit 钩子自动切到解析器解析点, 解析到就打解析点 //
+rageAutoFiring=true;rageAutoTerminate=0
+rageFireShot(gun)
 else
-if rageShotPending>0 then rageShotPending=0 end
-lastRageShot=tick()
-rageFireShot(gun,origin,aimTarget,ragebotAimPart,RB.PacketShoot~=false)
+rageAutoStop()
 end
+else
+rageAutoStop()
 end
-end
--- // 解析器解析到(或超时)立刻把预留的那一发补发出去, 只有一发不会堆积 //
-if rageShotPending>0 and (resolved or tick()-rageShotPending>0.35) then
-if resolved then lastRageShot=tick() rageFireShot(gun,gun.Handle.Position,ragebotFakePos or ragebotAimPart.Position,ragebotAimPart,RB.PacketShoot~=false) end
-rageShotPending=0
-end
+else
+rageAutoStop()
 end
 end
 end))
@@ -2298,16 +2292,11 @@ else stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil end
 if not aimApplyBound then applyAimbot(dt) end
 updateAimFOV()
 end))
--- // [修复] 宽高比: juju 原版是独立循环跑的, 这里原来放在大 RenderStepped 回调里, 前面任何功能报错宽高比就被跳过, 表现为完全没效果 //
--- // 每帧先重建单位 CFrame 再乘缩放, 防止缩放逐帧累积漂移 //
+-- // [juju] 宽高比: 直接沿用 juju 原版 camera.CFrame*=multiplier (独立连接, 不受其他功能报错影响) //
 track(RunService.RenderStepped:Connect(function()
 if Unloaded or not Started then return end
 if Config['Visual Awareness'].AspectRatio.Enabled then
-pcall(function()
-local cf=Camera.CFrame
-local base=CFrame.new(cf.Position,cf.Position+cf.LookVector,cf.UpVector)
-Camera.CFrame=base*aspectMult
-end)
+pcall(function() Camera.CFrame=Camera.CFrame*aspectMult end)
 end
 end))
 track(RunService.RenderStepped:Connect(function()
@@ -2785,46 +2774,16 @@ local prevPop=ColorPopup;local prevCatch=ColorCatcher
 if prevPop then prevPop.Visible=false end
 if prevCatch then prevCatch.Visible=false end
 ColorPopup=nil;ColorCatcher=nil
-local W=240;local H=200
-local popup=Instance.new("Frame");popup.Size=UDim2.new(0,W,0,H)
-local ax=anchor.AbsolutePosition.X;local ay=anchor.AbsolutePosition.Y+anchor.AbsoluteSize.Y+4
-popup.Position=UDim2.fromOffset(math.clamp(ax,4,Camera.ViewportSize.X-W-4),math.clamp(ay,4,Camera.ViewportSize.Y-H-4))
-popup.BackgroundColor3=UI.BG;popup.BackgroundTransparency=curT();popup.BorderSizePixel=0;popup.ZIndex=100;popup.Parent=PopupParent;addStroke(popup,UI.Accent)
-local title=Instance.new("TextLabel");title.Name="HateBold";title.Size=UDim2.new(1,-40,0,16);title.Position=UDim2.new(0,10,0,8);title.BackgroundTransparency=1;title.Text=titleText;title.TextColor3=UI.Text;title.Font=Enum.Font.GothamBold;title.TextSize=12;title.TextXAlignment=Enum.TextXAlignment.Left;title.ZIndex=101;title.Parent=popup
-local chip=Instance.new("Frame");chip.Size=UDim2.new(0,20,0,20);chip.Position=UDim2.new(1,-30,0,6);chip.BackgroundColor3=getColor();chip.BorderSizePixel=0;chip.ZIndex=101;chip.Parent=popup;addStroke(chip,UI.Line)
-local hex=Instance.new("TextLabel");hex.Size=UDim2.new(0,58,0,12);hex.Position=UDim2.new(1,-92,0,12);hex.BackgroundTransparency=1;hex.Text="";hex.TextColor3=UI.TextDim;hex.Font=Enum.Font.Code;hex.TextSize=10;hex.TextXAlignment=Enum.TextXAlignment.Right;hex.ZIndex=101;hex.Parent=popup
-local orig=getColor()
-local cs={orig.R,orig.G,orig.B}
-local function sync()
-local r=math.floor(cs[1]*255+0.5);local g=math.floor(cs[2]*255+0.5);local b=math.floor(cs[3]*255+0.5)
-chip.BackgroundColor3=Color3.fromRGB(r,g,b)
-hex.Text=string.format("#%02X%02X%02X",r,g,b)
-pcall(function() setColor(Color3.fromRGB(r,g,b)) end)
-end
-for i,ch in ipairs({"R","G","B"}) do
-local y=34+(i-1)*42
-local lab=Instance.new("TextLabel");lab.Size=UDim2.new(0,14,0,14);lab.Position=UDim2.new(0,12,0,y+6);lab.BackgroundTransparency=1;lab.Text=ch;lab.TextColor3=UI.Accent;lab.Font=Enum.Font.GothamBold;lab.TextSize=11;lab.ZIndex=101;lab.Parent=popup
-local trk=Instance.new("Frame");trk.Size=UDim2.new(1,-76,0,4);trk.Position=UDim2.new(0,34,0,y+10);trk.BackgroundColor3=UI.Panel2;trk.BorderSizePixel=0;trk.ZIndex=101;trk.Parent=popup
-local fl=Instance.new("Frame");fl.Size=UDim2.new(cs[i],0,1,0);fl.BackgroundColor3=UI.Accent;fl.BorderSizePixel=0;fl.ZIndex=102;fl.Parent=trk
-local vl=Instance.new("TextLabel");vl.Size=UDim2.new(0,30,0,14);vl.Position=UDim2.new(1,-38,0,y+5);vl.BackgroundTransparency=1;vl.Text=tostring(math.floor(cs[i]*255+0.5));vl.TextColor3=UI.Text;vl.Font=Enum.Font.Code;vl.TextSize=10;vl.TextXAlignment=Enum.TextXAlignment.Right;vl.ZIndex=101;vl.Parent=popup
-local hit=Instance.new("Frame");hit.Size=UDim2.new(1,-76,0,16);hit.Position=UDim2.new(0,34,0,y+2);hit.BackgroundTransparency=1;hit.ZIndex=103;hit.Parent=popup
-local function apply(px)
-local rr=math.clamp((px-trk.AbsolutePosition.X)/trk.AbsoluteSize.X,0,1)
-cs[i]=rr
-sync()
-vl.Text=tostring(math.floor(cs[i]*255+0.5))
-fl.Size=UDim2.new(cs[i],0,1,0)
-end
-hit.InputBegan:Connect(function(inp)
-if inp.UserInputType==Enum.UserInputType.MouseButton1 then
-apply(inp.Position.X)
-local mc=UserInputService.InputChanged:Connect(function(mi) if mi.UserInputType==Enum.UserInputType.MouseMovement then apply(mi.Position.X) end end)
-inp.Changed:Connect(function() if inp.UserInputState==Enum.UserInputState.End then pcall(function() mc:Disconnect() end) end end)
-end end)
-end
-local okBtn=Instance.new("TextButton");okBtn.Size=UDim2.new(0,70,0,22);okBtn.Position=UDim2.new(1,-146,1,-30);okBtn.BackgroundColor3=UI.Accent;okBtn.BorderSizePixel=0;okBtn.Text=T("OK");okBtn.TextColor3=Color3.new(1,1,1);okBtn.Font=UI_Font;okBtn.TextSize=11;okBtn.AutoButtonColor=false;okBtn.ZIndex=101;okBtn.Parent=popup
-local cancelBtn=Instance.new("TextButton");cancelBtn.Size=UDim2.new(0,70,0,22);cancelBtn.Position=UDim2.new(1,-70,1,-30);cancelBtn.BackgroundColor3=UI.Panel2;cancelBtn.BorderSizePixel=0;cancelBtn.Text=T("Cancel");cancelBtn.TextColor3=UI.TextDim;cancelBtn.Font=UI_Font;cancelBtn.TextSize=11;cancelBtn.AutoButtonColor=false;cancelBtn.ZIndex=101;cancelBtn.Parent=popup;addStroke(cancelBtn)
-local catcher
+-- // [重写] 色板式选择器: 一堆颜色摆在一起, 点哪个用哪个 (旧版 R/G/B 滑块会被拦截层抢点击, 一滑就关) //
+local colors={}
+for _,c in ipairs(Palette) do table.insert(colors,c) end
+local okc,curc=pcall(getColor)
+if okc and curc and not table.find(colors,curc) then table.insert(colors,1,curc) end
+local cols=5;local sw=36;local gap=8
+local rows=math.ceil(#colors/cols)
+local W=12+cols*sw+(cols-1)*gap+12
+local H=32+rows*sw+(rows-1)*gap+12
+local popup,catcher
 local function closePicker()
 if ColorPopup==popup then pcall(function() popup:Destroy() end) end
 if catcher and ColorCatcher==catcher then pcall(function() catcher:Destroy() end) end
@@ -2832,17 +2791,28 @@ ColorPopup=prevPop;ColorCatcher=prevCatch
 if prevPop then prevPop.Visible=true end
 if prevCatch then prevCatch.Visible=true end
 end
-okBtn.MouseButton1Click:Connect(closePicker)
-cancelBtn.MouseButton1Click:Connect(function() pcall(function() setColor(orig) end) closePicker() end)
-catcher=Instance.new("TextButton");catcher.Size=UDim2.new(1,0,1,0);catcher.BackgroundTransparency=1;catcher.Text="";catcher.ZIndex=95;catcher.AutoButtonColor=false;catcher.Parent=PopupParent
+-- // [修复] 拦截层必须比弹窗先创建: GUI 命中测试按 Children 倒序, 后创建的先收到点击, 旧版点色块实际点到拦截层直接关面板 //
+catcher=Instance.new('TextButton');catcher.Size=UDim2.new(1,0,1,0);catcher.BackgroundTransparency=1;catcher.Text='';catcher.ZIndex=95;catcher.AutoButtonColor=false;catcher.Parent=PopupParent
 catcher.MouseButton1Click:Connect(closePicker)
+popup=Instance.new('Frame');popup.Size=UDim2.new(0,W,0,H)
+local ax=anchor.AbsolutePosition.X;local ay=anchor.AbsolutePosition.Y+anchor.AbsoluteSize.Y+4
+popup.Position=UDim2.fromOffset(math.clamp(ax,4,Camera.ViewportSize.X-W-4),math.clamp(ay,4,Camera.ViewportSize.Y-H-4))
+popup.BackgroundColor3=UI.BG;popup.BackgroundTransparency=curT();popup.BorderSizePixel=0;popup.ZIndex=100;popup.Parent=PopupParent;addStroke(popup,UI.Accent)
+local title=Instance.new('TextLabel');title.Name='HateBold';title.Size=UDim2.new(1,-20,0,16);title.Position=UDim2.new(0,10,0,8);title.BackgroundTransparency=1;title.Text=titleText;title.TextColor3=UI.Text;title.Font=Enum.Font.GothamBold;title.TextSize=12;title.TextXAlignment=Enum.TextXAlignment.Left;title.ZIndex=101;title.Parent=popup
+for i,c in ipairs(colors) do
+local x=12+(i-1)%cols*(sw+gap)
+local y=32+math.floor((i-1)/cols)*(sw+gap)
+local s=Instance.new('TextButton');s.Size=UDim2.new(0,sw,0,sw);s.Position=UDim2.fromOffset(x,y);s.BackgroundColor3=c;s.BorderSizePixel=0;s.Text='';s.AutoButtonColor=false;s.ZIndex=101;s.Parent=popup
+if i==1 and okc then addStroke(s,UI.Accent) end
+s.MouseButton1Click:Connect(function() pcall(function() setColor(c) end) closePicker() end)
+end
 ColorPopup=popup;ColorCatcher=catcher
 end
 function CreateColorPicker(parent,langKey,GetFunc,SetFunc)
 local row=Instance.new("Frame");row.Size=UDim2.new(1,0,0,22);row.BackgroundTransparency=1;row.Parent=parent
 local lbl=Instance.new("TextLabel");lbl.Size=UDim2.new(1,-74,1,0);lbl.Position=UDim2.new(0,5,0,0);lbl.BackgroundTransparency=1;lbl.TextXAlignment=Enum.TextXAlignment.Left;lbl.TextColor3=UI.TextDim;lbl.Font=UI_Font;lbl.TextSize=11;lbl.Parent=row;registerLang(lbl,langKey)
 local cur=Instance.new("TextButton");cur.Size=UDim2.new(0,14,0,14);cur.Position=UDim2.new(1,-68,0.5,-7);cur.BackgroundColor3=GetFunc();cur.BorderSizePixel=0;cur.Text="";cur.AutoButtonColor=false;cur.Parent=row;addStroke(cur)
-local btn=Instance.new("TextButton");btn.Size=UDim2.new(0,46,0,16);btn.Position=UDim2.new(1,-50,0.5,-8);btn.BackgroundColor3=UI.Panel2;btn.BorderSizePixel=0;btn.Text="RGB";btn.TextColor3=UI.Text;btn.Font=UI_Font;btn.TextSize=10;btn.AutoButtonColor=false;btn.Parent=row;addStroke(btn)
+local btn=Instance.new("TextButton");btn.Size=UDim2.new(0,46,0,16);btn.Position=UDim2.new(1,-50,0.5,-8);btn.BackgroundColor3=UI.Panel2;btn.BorderSizePixel=0;btn.Text=T("ColorBtn");btn.TextColor3=UI.Text;btn.Font=UI_Font;btn.TextSize=10;btn.AutoButtonColor=false;btn.Parent=row;addStroke(btn)
 btn.MouseEnter:Connect(function() tweenUI(btn,{BackgroundColor3=UI.Hover}) end)
 btn.MouseLeave:Connect(function() tweenUI(btn,{BackgroundColor3=UI.Panel2}) end)
 local function openPicker() openRgbPicker(btn,T(langKey),function() return GetFunc() end,function(c) SetFunc(c) end) end
@@ -2896,7 +2866,7 @@ for i,entry in ipairs(entries) do
 local r=Instance.new("Frame");r.Size=UDim2.new(1,-16,0,22);r.Position=UDim2.new(0,8,0,26+(i-1)*24);r.BackgroundTransparency=1;r.ZIndex=101;r.Parent=popup
 local l=Instance.new("TextLabel");l.Size=UDim2.new(0,120,1,0);l.BackgroundTransparency=1;l.Font=UI_Font;l.TextSize=11;l.TextXAlignment=Enum.TextXAlignment.Left;l.TextColor3=UI.TextDim;l.Text=T(entry[1]);l.ZIndex=101;l.Parent=r
 local chip=Instance.new("Frame");chip.Size=UDim2.new(0,14,0,14);chip.Position=UDim2.new(1,-102,0.5,-7);chip.BackgroundColor3=entry[2]();chip.BorderSizePixel=0;chip.ZIndex=101;chip.Parent=r;addStroke(chip,UI.Line)
-local rb=Instance.new("TextButton");rb.Size=UDim2.new(0,46,0,16);rb.Position=UDim2.new(1,-84,0.5,-8);rb.BackgroundColor3=UI.Panel2;rb.BorderSizePixel=0;rb.Text="RGB";rb.TextColor3=UI.Text;rb.Font=UI_Font;rb.TextSize=10;rb.AutoButtonColor=false;rb.ZIndex=102;rb.Parent=r;addStroke(rb)
+local rb=Instance.new("TextButton");rb.Size=UDim2.new(0,46,0,16);rb.Position=UDim2.new(1,-84,0.5,-8);rb.BackgroundColor3=UI.Panel2;rb.BorderSizePixel=0;rb.Text=T("ColorBtn");rb.TextColor3=UI.Text;rb.Font=UI_Font;rb.TextSize=10;rb.AutoButtonColor=false;rb.ZIndex=102;rb.Parent=r;addStroke(rb)
 rb.MouseButton1Click:Connect(function() openRgbPicker(rb,T(entry[1]),function() return entry[2]() end,function(c) entry[3](c) end) end)
 local function Upd() pcall(function() chip.BackgroundColor3=entry[2]() end) end
 Upd()
@@ -3523,12 +3493,8 @@ CreateToggle(rbBox,"ResolverRT",function() return Config['Resolver'].RandomTelep
 CreateToggle(rbBox,"ResolverNet",function() return Config['Resolver'].Network end,function(v) Config['Resolver'].Network=v end)
 CreateSlider(rbBox,"RefreshRate",10,500,function() return math.floor(Config['Resolver'].RefreshRate*1000) end,function(v) Config['Resolver'].RefreshRate=v/1000 end)
 CreateToggle(rbBox,"WallCheck",function() return Config.Ragebot.WallCheck end,function(v) Config.Ragebot.WallCheck=v end)
-CreateToggle(rbBox,"RagePacketShoot",function() return Config.Ragebot.PacketShoot~=false end,function(v) Config.Ragebot.PacketShoot=v end)
-CreateToggle(rbBox,"RageRequireResolver",function() return Config.Ragebot.RequireResolver end,function(v) Config.Ragebot.RequireResolver=v end)
-CreateSlider(rbBox,"RageSpeedLimit",0,200,function() return Config.Ragebot.SpeedLimit end,function(v) Config.Ragebot.SpeedLimit=v end)
 CreateToggle(rbBox,"RageInfRange",function() return Config.Ragebot.InfiniteRange end,function(v) Config.Ragebot.InfiniteRange=v end)
 CreateToggle(rbBox,"RageDisableKnocked",function() return Config.Ragebot.DisableIfKnocked end,function(v) Config.Ragebot.DisableIfKnocked=v end)
-CreateSlider(rbBox,"RageShootDelay",20,1000,function() return math.floor((Config.Ragebot.ShootDelay or 0.12)*1000) end,function(v) Config.Ragebot.ShootDelay=v/1000 end)
 CreateSlider(rbBox,"RageMaxDist",50,2000,function() return Config.Ragebot.MaxDistance or 500 end,function(v) Config.Ragebot.MaxDistance=v end)
 local dcBox=CreateSection(Pages.Misc.R,"DelayChanger")
 CreateToggle(dcBox,"DelayChanger",function() return Config['Delay Changer'].Enabled end,function(v) Config['Delay Changer'].Enabled=v end)
