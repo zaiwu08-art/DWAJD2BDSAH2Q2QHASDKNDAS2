@@ -1,0 +1,113 @@
+--[[
+	==================== XXX Hub 登录器 ====================
+	· 本文件可以公开放 GitHub，不含任何核心代码
+	· 用户拿到的一行代码：loadstring(game:HttpGet("本文件raw链接"))()
+	· 记得把 RG_LOADER 换成你后台"加载脚本"里的地址
+	======================================================
+]]
+
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+
+-- ▼▼▼ 唯一需要改的地方：你后台的官方 loader 地址 ▼▼▼
+local RG_LOADER = "https://api.redstoneguard.xyz/api/loader/e72c9fef-5068-40e3-9a50-6deae3c34612/init"
+
+local SAVE_FILE = "xxxhub_key.txt" -- 记密文件，名字自己定
+
+---------------- 建UI ----------------
+local gui = Instance.new("ScreenGui")
+gui.Name = "XXXHubLogin"
+pcall(function() gui.Parent = game:GetService("CoreGui") end)
+if not gui.Parent then gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui") end
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 320, 0, 190)
+frame.Position = UDim2.new(0.5, -160, 0.5, -95)
+frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+frame.BorderSizePixel = 0
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0, 44)
+title.BackgroundTransparency = 1
+title.Text = "XXX Hub — 卡密登录"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 17
+
+local keyBox = Instance.new("TextBox", frame)
+keyBox.Size = UDim2.new(1, -40, 0, 38)
+keyBox.Position = UDim2.new(0, 20, 0, 52)
+keyBox.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+keyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyBox.PlaceholderText = "粘贴你的卡密"
+keyBox.ClearTextOnFocus = false
+Instance.new("UICorner", keyBox).CornerRadius = UDim.new(0, 6)
+
+local btn = Instance.new("TextButton", frame)
+btn.Size = UDim2.new(1, -40, 0, 38)
+btn.Position = UDim2.new(0, 20, 0, 100)
+btn.BackgroundColor3 = Color3.fromRGB(0, 122, 255)
+btn.Text = "验证并加载"
+btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+btn.TextSize = 15
+Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6)
+
+local status = Instance.new("TextLabel", frame)
+status.Size = UDim2.new(1, -40, 0, 24)
+status.Position = UDim2.new(0, 20, 0, 148)
+status.BackgroundTransparency = 1
+status.TextColor3 = Color3.fromRGB(255, 90, 90)
+status.TextSize = 12
+status.Text = ""
+
+---------------- 拖动窗口 ----------------
+local dragging, dragStart, startPos
+frame.InputBegan:Connect(function(i)
+	if i.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true; dragStart = i.Position; startPos = frame.Position
+	end
+end)
+frame.InputEnded:Connect(function(i)
+	if i.UserInputType == Enum.UserInputType.MouseButton1 then dragging = false end
+end)
+UIS.InputChanged:Connect(function(i)
+	if dragging and i.UserInputType == Enum.UserInputType.MouseMovement then
+		local d = i.Position - dragStart
+		frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + d.X,
+			startPos.Y.Scale, startPos.Y.Offset + d.Y)
+	end
+end)
+
+---------------- 记住卡密（自动降级，不支持的执行器会跳过） ----------------
+pcall(function()
+	if isfile and isfile(SAVE_FILE) then
+		local k = readfile(SAVE_FILE)
+		if k and k ~= "" then keyBox.Text = k end
+	end
+end)
+
+---------------- 登录逻辑 ----------------
+btn.MouseButton1Click:Connect(function()
+	local key = keyBox.Text
+	if key == "" then status.Text = "请先输入卡密" return end
+
+	status.Text = "验证中..."
+	status.TextColor3 = Color3.fromRGB(255, 255, 150)
+
+	-- 核心：运行时写入 RG loader 读取的全局变量（变量名必须是 scriptkey）
+	scriptkey = key
+	pcall(function() getgenv().scriptkey = key end)
+
+	-- 调官方 loader，卡密/HWID/封禁/日志全部由 RG 服务器自动处理
+	local ok, err = pcall(function()
+		loadstring(game:HttpGet(RG_LOADER))()
+	end)
+
+	if ok then
+		pcall(function() writefile(SAVE_FILE, key) end) -- 验证通过才记密
+		gui:Destroy() -- 核心脚本已启动，关闭登录窗
+	else
+		status.Text = "验证失败: " .. tostring(err)
+		status.TextColor3 = Color3.fromRGB(255, 90, 90)
+	end
+end)
