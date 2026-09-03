@@ -51,18 +51,12 @@ cfg('FOV',{Enabled=false,Visible=true,Size=120,Thickness=1.5,Color=Color3.fromRG
 cfg('Lock Line',{Enabled=false,Color=Color3.fromRGB(138,110,255),Thickness=1.5})
 cfg('Sticky',{Enabled=false,HitPart='Head',AutoFire=true,FireDelay=0.12,Spectate=false,StompTarget=false,InvisibleBullets=false,Tracer=true,TracerMode='Mouse',TracerColor=Color3.fromRGB(255,255,255),FOVEnabled=false,FOVSize=150,FOVColor=Color3.fromRGB(255,80,80),TargetColor=Color3.fromRGB(255,0,0),Strafe=false,StrafeMode='Orbit',StrafeSpeed=5,StrafeXOffset=5,SpectateStrafe=false})
 cfg('Aimbot',{Enabled=false,AutoSelect=true,AutoSelectDelay=0.03,Sticky=false,HitPart='Head',AirHitPart='LowerTorso',MaxDistance=1500,UseFOV=true,FOVVisible=true,FOVSize=600,FOVThickness=1.5,FOVColor=Color3.fromRGB(138,110,255),Style='Mouse',WallCheck=false})
-cfg('Aim Assist',{Enabled=false,Style='Camera',SmoothStyle='Direction',HSmoothness=10,VSmoothness=10,HPrediction=0,VPrediction=0,UseFOV=true,FOVVisible=true,FOVSize=600,FOVThickness=1.5,FOVColor=Color3.fromRGB(138,110,255),JumpOffset=0,Multipoint=0,DontAimVertically=false,JumpPrediction=true,FallbackCamera=true,Disablers={},HitPart='Head',AirHitPart='LowerTorso',MaxDistance=0,Sticky=true,AutoSelect=true,AutoSelectDelay=0.03,WallCheck=false,FOVMouse=false,AutoPrediction=true,JumpPredictionValue=0.1})
-DISABLERS={'No Gun','Third Person','Out of FOV','Behind Wall','Ping Spike','Off Screen','Typing'}
-DISABLERS_CN={['No Gun']='没有武器',['Third Person']='第三人称',['Out of FOV']='超出FOV',['Behind Wall']='被墙阻挡',['Ping Spike']='Ping波动',['Off Screen']='屏幕外',['Typing']='正在打字'}
+cfg('Aim Assist',{Enabled=false,Style='Camera',SmoothStyle='Direction',HSmoothness=10,VSmoothness=10,HPrediction=0,VPrediction=0,UseFOV=true,FOVVisible=true,FOVSize=600,FOVThickness=1.5,FOVColor=Color3.fromRGB(138,110,255),JumpOffset=0,Multipoint=0,DontAimVertically=false,JumpPrediction=true,FallbackCamera=true,HitPart='Head',AirHitPart='LowerTorso',MaxDistance=0,Sticky=true,AutoSelect=true,AutoSelectDelay=0.03,WallCheck=false,FOVMouse=false,AutoPrediction=true,JumpPredictionValue=0.1})
 -- // [新增] 辅助瞄准配置消毒: 旧存档(juju 替换前的字段)可能带着会把功能永久锁死的值 //
 -- // 例如 禁用条件 全开 / FOV 只有几十像素 / 最大距离为 0, 这里统一拉回可用区间 //
 function sanitizeAimConfig()
 local AA=Config['Aim Assist']
 if type(AA)~='table' then return end
-if type(AA.Disablers)~='table' then AA.Disablers={} end
-local clean={}
-for _,n in ipairs(AA.Disablers) do if table.find(DISABLERS,n) and #clean<3 then table.insert(clean,n) end end
-AA.Disablers=clean
 if type(AA.FOVSize)~='number' then AA.FOVSize=600 end
 AA.FOVSize=math.clamp(AA.FOVSize,50,1500)
 if type(AA.FOVThickness)~='number' then AA.FOVThickness=1.5 end
@@ -159,12 +153,11 @@ if Config.__BindResetV19==nil then Config.__BindResetV19=true for _,b in pairs(C
 if Config.__AimV20==nil then
 Config.__AimV20=true
 local AA=Config['Aim Assist']
-AA.Disablers={};AA.Style='Camera';AA.FOVMouse=false
+AA.Style='Camera';AA.FOVMouse=false
 AA.UseFOV=true;AA.FOVVisible=true;AA.FOVSize=600;AA.FOVThickness=1.5
 AA.MaxDistance=0;AA.WallCheck=false;AA.Sticky=true;AA.AutoSelect=true;AA.AutoSelectDelay=0.03
 AA.HitPart='Head';AA.AirHitPart='LowerTorso';AA.Multipoint=0;AA.JumpOffset=0;AA.AutoPrediction=true;AA.JumpPredictionValue=0.1
 end
-if Config.__AimDisablersV19==nil then Config.__AimDisablersV19=true Config['Aim Assist'].Disablers={} end
 sanitizeAimConfig()
 for k,b in pairs(Config.Keybinds) do if type(b)~="table" then Config.Keybinds[k]={Key='',Mode='Toggle'} else if b.Key==nil then b.Key='' end if b.Mode==nil then b.Mode='Toggle' end end end
 local Players=game:GetService("Players")
@@ -569,8 +562,8 @@ Translations.EN.RagePacketShoot="Packet shoot (send damage to server)";Translati
 Translations.CN.RageDisableKnocked="目标被K时停止吸附";Translations.CN.RageShootDelay="Ragebot射速(ms)";Translations.CN.RageMaxDist="Ragebot最大距离"
 Translations.CN.RagePacketShoot="包体射击(向服务器发送伤害)";Translations.CN.RageRequireResolver="仅解析到目标时开枪";Translations.CN.RageSpeedLimit="目标移速阈值(解析门控)"
 Translations.CN.GridEmpty="这里没有可显示的内容";Translations.CN.GridHintSingle="左键点击即选择并关闭";Translations.CN.GridHintMulti="左键勾选/取消, 右键清空勾选, Esc 关闭";Translations.CN.CatAll="全部已知物品"
-Translations.EN.AimAssist="Aim assist";Translations.EN.AssistStyle="Assist style";Translations.EN.SmoothStyle="Smoothing style";Translations.EN.HSmoothness="Horizontal smoothness";Translations.EN.VSmoothness="Vertical smoothness";Translations.EN.HPrediction="Horizontal prediction";Translations.EN.VPrediction="Vertical prediction";Translations.EN.JumpOffset="Jump offset";Translations.EN.Multipoint="Multipoint";Translations.EN.DontAimVertically="Don't aim vertically";Translations.EN.JumpPrediction="Jump prediction";Translations.EN.AAUseFOV="Use FOV (assist)";Translations.EN.AAFOVVisible="Show FOV";Translations.EN.AAFOVSize="Assist FOV size";Translations.EN.AAFOVThick="FOV thickness";Translations.EN.AAFOVColor="FOV color";Translations.EN.AssistDisablers="Disable when";Translations.EN.FallbackCamera="Camera fallback"
-Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistStyle="辅助方式";Translations.CN.SmoothStyle="平滑风格";Translations.CN.HSmoothness="水平平滑度";Translations.CN.VSmoothness="垂直平滑度";Translations.CN.HPrediction="水平预测";Translations.CN.VPrediction="垂直预测";Translations.CN.JumpOffset="跳跃偏移";Translations.CN.Multipoint="多点命中";Translations.CN.DontAimVertically="不修正垂直";Translations.CN.JumpPrediction="跳跃预测";Translations.CN.AAUseFOV="启用FOV(辅助)";Translations.CN.AAFOVVisible="显示FOV";Translations.CN.AAFOVSize="辅助FOV大小";Translations.CN.AAFOVThick="FOV粗细";Translations.CN.AAFOVColor="FOV颜色";Translations.CN.AssistDisablers="禁用条件";Translations.CN.FallbackCamera="相机回退";Translations.EN.AimTargetHelp="Target: auto-selects the closest player inside FOV";Translations.CN.AimTargetHelp="目标: 自动锁定 FOV 内最近的人";Translations.EN.AAFOVMouse="FOV follows mouse";Translations.CN.AAFOVMouse="FOV跟随鼠标光标";Translations.EN.AutoPrediction="Auto prediction (+ping)";Translations.CN.AutoPrediction="自动预测(叠加Ping)";Translations.EN.JumpPredictionVal="Jump prediction (ms)";Translations.CN.JumpPredictionVal="跳跃预测(ms)";Translations.EN.SmoothLockHint="Smoothness: 1 = hard lock, higher = smoother";Translations.EN.AimStatusOff="Aim assist is OFF";Translations.CN.AimStatusOff="瞄准辅助未开启";Translations.EN.AimStatusLocked="Target";Translations.CN.AimStatusLocked="已锁定";Translations.EN.AimStatusNone="No target";Translations.CN.AimStatusNone="未选到目标";Translations.EN.AimStatusFound="candidates";Translations.CN.AimStatusFound="候选";Translations.EN.AimStatusFov="FOV";Translations.CN.AimStatusFov="FOV"
+Translations.EN.AimAssist="Aim assist";Translations.EN.AssistStyle="Assist style";Translations.EN.SmoothStyle="Smoothing style";Translations.EN.HSmoothness="Horizontal smoothness";Translations.EN.VSmoothness="Vertical smoothness";Translations.EN.HPrediction="Horizontal prediction";Translations.EN.VPrediction="Vertical prediction";Translations.EN.JumpOffset="Jump offset";Translations.EN.Multipoint="Multipoint";Translations.EN.DontAimVertically="Don't aim vertically";Translations.EN.JumpPrediction="Jump prediction";Translations.EN.AAUseFOV="Use FOV (assist)";Translations.EN.AAFOVVisible="Show FOV";Translations.EN.AAFOVSize="Assist FOV size";Translations.EN.AAFOVThick="FOV thickness";Translations.EN.AAFOVColor="FOV color";Translations.EN.FallbackCamera="Camera fallback"
+Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistStyle="辅助方式";Translations.CN.SmoothStyle="平滑风格";Translations.CN.HSmoothness="水平平滑度";Translations.CN.VSmoothness="垂直平滑度";Translations.CN.HPrediction="水平预测";Translations.CN.VPrediction="垂直预测";Translations.CN.JumpOffset="跳跃偏移";Translations.CN.Multipoint="多点命中";Translations.CN.DontAimVertically="不修正垂直";Translations.CN.JumpPrediction="跳跃预测";Translations.CN.AAUseFOV="启用FOV(辅助)";Translations.CN.AAFOVVisible="显示FOV";Translations.CN.AAFOVSize="辅助FOV大小";Translations.CN.AAFOVThick="FOV粗细";Translations.CN.AAFOVColor="FOV颜色";Translations.CN.FallbackCamera="相机回退";Translations.EN.AimTargetHelp="Target: auto-selects the closest player inside FOV";Translations.CN.AimTargetHelp="目标: 自动锁定 FOV 内最近的人";Translations.EN.AAFOVMouse="FOV follows mouse";Translations.CN.AAFOVMouse="FOV跟随鼠标光标";Translations.EN.AutoPrediction="Auto prediction (+ping)";Translations.CN.AutoPrediction="自动预测(叠加Ping)";Translations.EN.JumpPredictionVal="Jump prediction (ms)";Translations.CN.JumpPredictionVal="跳跃预测(ms)";Translations.EN.SmoothLockHint="Smoothness: 1 = hard lock, higher = smoother";Translations.EN.AimStatusOff="Aim assist is OFF";Translations.CN.AimStatusOff="瞄准辅助未开启";Translations.EN.AimStatusLocked="Target";Translations.CN.AimStatusLocked="已锁定";Translations.EN.AimStatusNone="No target";Translations.CN.AimStatusNone="未选到目标";Translations.EN.AimStatusFound="candidates";Translations.CN.AimStatusFound="候选";Translations.EN.AimStatusFov="FOV";Translations.CN.AimStatusFov="FOV"
 Translations.EN.SortPlanName="Plan name";Translations.CN.SortPlanName="方案名称";Translations.EN.SortPlanSave="Save current order";Translations.CN.SortPlanSave="保存当前排序";Translations.EN.SortPlanPick="Select plan";Translations.CN.SortPlanPick="选择方案";Translations.EN.SortPlanApply="Apply plan";Translations.CN.SortPlanApply="应用方案";Translations.EN.SortPlanDel="Delete plan";Translations.CN.SortPlanDel="删除方案";Translations.EN.SortPlanNone="No saved plan";Translations.CN.SortPlanNone="暂无已保存方案"
 Translations.EN.MoveOnly="Only while moving";Translations.EN.ColorBtn="Colors";Translations.EN.DesyncDepth="Desync depth";Translations.EN.EyeSize="Eye size";Translations.EN.NoBinds="No keybinds";Translations.EN.Desync="Desync";Translations.EN.ShowEye="Show eye";Translations.EN.RandomTP="Random teleport";Translations.EN.TPHOff="Teleport horizontal";Translations.EN.TPVOff="Teleport vertical";Translations.EN.KDPColor="Indicator color";Translations.EN.KeybindDisplay="Keybind indicator"
 Translations.CN.MoveOnly="仅移动时生效";Translations.CN.ColorBtn="颜色";Translations.CN.DesyncDepth="假同步深度";Translations.CN.EyeSize="眼睛大小";Translations.CN.NoBinds="暂无按键绑定";Translations.CN.Desync="假同步 (Desync)";Translations.CN.ShowEye="显示眼睛(实时位置)";Translations.CN.RandomTP="随机传送";Translations.CN.TPHOff="水平随机范围";Translations.CN.TPVOff="垂直随机范围";Translations.CN.KDPColor="指示器颜色";Translations.CN.KeybindDisplay="按键绑定显示"
@@ -589,7 +582,6 @@ phone="手机",lockpick="开锁器",lockpicker="开锁器",key="钥匙",bag="背
 flashlight="手电筒",flashbang="闪光弹",grenade="手榴弹",grenadelauncher="榴弹发射器",pepperspray="胡椒喷雾",teargas="催泪瓦斯",
 basketball="篮球",sledgehammer="大锤",pitchfork="干草叉",riotmask="防暴面具",surgeonmask="外科面具",paintballmask="彩弹面具",ninjamask="忍者面具",whip="鞭子",hairglue="发胶",pencil="铅笔",stopsign="停车牌",defaultmoveset="默认动作",foodscart="食物车",flowers="花",tele="传送"}
 function itemDisplay(n) if CurrentLang=="CN" then return ItemCN[n] or n end return n end
-if DISABLERS_CN then for k,v in pairs(DISABLERS_CN) do ItemCN[k]=v end end
 function getWeaponDisplayName(n) if not n or n=="" then return T("NoWeapon") end return itemDisplay(n) end
 function serializeValue(v,ind)
 ind=ind or "   "
@@ -622,6 +614,7 @@ function deleteConfigFile(n) pcall(function() if delfile and isfile(CONFIG_FOLDE
 function newSignal() local s={c={}} function s:Fire(...) for _,cb in ipairs(s.c) do task.spawn(cb,...) end end function s:Connect(cb) table.insert(s.c,cb) return {Disconnect=function() for i,v in ipairs(s.c) do if v==cb then table.remove(s.c,i) break end end end} end return s end
 hitPlayer=newSignal()
 newTargetSignal=newSignal()
+local localBulletHit={}
 function isPlayerKnockedOrKO(pl)
 if not Config.Settings['Knock Check'] then return false end
 return isCharKO(pl and pl.Character)
@@ -641,24 +634,27 @@ local res=Workspace:Raycast(origin,dir.Unit*dir.Magnitude,rp)
 return res==nil or res.Instance:IsDescendantOf(ch)
 end
 function isPartVisible(part)
+function isPartVisible(part)
 local ok,res=pcall(function()
 if not part or not part.Parent then return false end
-local ch=part.Parent
+local ch=part:FindFirstAncestorOfClass('Model') or part.Parent
 local origin=Camera.CFrame.Position
 local dir=part.Position-origin
-local mag=math.max(dir.Magnitude,0.001)
+local mag=dir.Magnitude
+if mag<0.1 then return true end
 local rp=RaycastParams.new()
-local filter={LocalPlayer.Character,ch}
+local filter={}
+if LocalPlayer.Character then table.insert(filter,LocalPlayer.Character) end
+table.insert(filter,ch)
 local ign=getIgnoredFolder()
 if ign then table.insert(filter,ign) end
 rp.FilterDescendantsInstances=filter
 rp.FilterType=Enum.RaycastFilterType.Exclude
-local hit=Workspace:Raycast(origin,dir.Unit*mag,rp)
+local hit=Workspace:Raycast(origin,dir.Unit*(mag*0.995),rp)
 return hit==nil or hit.Instance:IsDescendantOf(ch)
 end)
-return ok and res or true
+return ok and res==true or not ok
 end
-function getClosestBodyPart(ch)
 local best,bd=nil,math.huge
 for _,n in ipairs({"Head","UpperTorso","HumanoidRootPart","LowerTorso","LeftUpperArm","RightUpperArm","LeftHand","RightHand","LeftUpperLeg","RightUpperLeg","LeftFoot","RightFoot"}) do
 local p=ch:FindFirstChild(n)
@@ -1599,27 +1595,51 @@ local SkinModules=ReplicatedStorage:FindFirstChild('SkinModules')
 local SkinData=nil;local AppliedSkins={}
 local function LoadSkinData()
 if SkinData then return SkinData end
-local data
-if SkinModules and SkinModules:IsA('ModuleScript') then
-local ok,res=pcall(function() return require(SkinModules:Clone()) end)
-if ok and type(res)=='table' and next(res)~=nil then data=res end
+local function looksLikeSkins(t,depth)
+if not t or type(t)~='table' or depth>2 then return false end
+local n=0
+for k,v in pairs(t) do
+if type(k)=='string' and k:find('%[') and k:find('%]') and (type(v)=='table' or type(v)=='string') then n=n+1 end
 end
-if not data then
-for _,ms in ipairs(ReplicatedStorage:GetDescendants()) do
+return n>=2
+end
+local function tryModule(ms)
+if not ms or not ms:IsA('ModuleScript') then return nil end
+local ok,res=pcall(function() return require(ms:Clone()) end)
+if not ok or type(res)~='table' or next(res)==nil then return nil end
+if looksLikeSkins(res,1) then return res end
+for k,v in pairs(res) do
+if type(k)=='string' and type(v)=='table' and (k:lower():find('skin') or k:lower():find('weapon') or k:lower():find('gun')) and looksLikeSkins(v,2) then return v end
+end
+return nil
+end
+local merged={}
+local function merge(t) for k,v in pairs(t) do merged[k]=v end end
+local function scanRoot(root)
+if not root then return end
+for _,ms in ipairs(root:GetDescendants()) do
 if ms:IsA('ModuleScript') and ms.Name:lower():find('skin') then
-local ok2,res2=pcall(function() return require(ms:Clone()) end)
-if ok2 and type(res2)=='table' and next(res2)~=nil then
-local hasWeapon=false
-for k,_ in pairs(res2) do
-if type(k)=='string' and k:find('%[') then hasWeapon=true break end
-end
-if hasWeapon then data=res2 break end
+local r=tryModule(ms)
+if r then merge(r) return end
 end
 end
 end
+-- // [修复] 皮肤数据源兜底: SkinModules 模块 -> ReplicatedStorage/StarterPack/StarterPlayer 名称含 skin 的模块 -> 全模块内容扫描(武器名[xx]为键) //
+local rm=ReplicatedStorage:FindFirstChild('SkinModules')
+if rm and rm:IsA('ModuleScript') then local r=tryModule(rm) if r then merge(r) end end
+if next(merged)==nil then scanRoot(ReplicatedStorage) end
+if next(merged)==nil then scanRoot(game:GetService('StarterPack')) end
+if next(merged)==nil then scanRoot(game:GetService('StarterPlayer')) end
+if next(merged)==nil then
+for _,ms in ipairs(ReplicatedStorage:GetDescendants()) do
+if ms:IsA('ModuleScript') then
+local r=tryModule(ms)
+if r then merge(r) break end
 end
-SkinData=data
-return data
+end
+end
+SkinData=next(merged) and merged or nil
+return SkinData
 end
 local function skinDataFor(data,weaponName)
 if not data or not weaponName then return nil end
@@ -1923,7 +1943,7 @@ local old=hum.Health
 track(hum:GetPropertyChangedSignal("Health"):Connect(function()
 local h=hum.Health
 local diff=old-h
-if diff>0 and recentlyShot() then hitPlayer:Fire(player,char,math.floor(diff)) end
+if diff>0 and (recentlyShot() or (localBulletHit[player] and tick()<=localBulletHit[player])) then hitPlayer:Fire(player,char,math.floor(diff)) end
 old=h
 end))
 end
@@ -2250,11 +2270,28 @@ end
 end
 local beam=findBeam()
 if not beam then return end
-local to=findBulletEnd(obj,beam) or (beam.Attachment1 and beam.Attachment1.WorldCFrame.Position or nil) or from
+local to=findBulletEnd(obj,beam) or (beam.Attachment1 and beam.Attachment1.WorldCFrame.Position or nil)
+if not to or (to-from).Magnitude<1 then return end
 local hrp=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 -- // [juju] 本地/敌人判定: recently_shot (弹药减少/开火事件) 或 枪口位置匹配 last_shot_position //
 local isLocal=recentlyShot() or (lastShotPosC and (obj.Position-lastShotPosC).Magnitude<1) or (hrp and (obj.Position-hrp.Position).Magnitude<10)
 if isLocal then lastShotPosC=obj.Position end
+-- // [修复] 本地子弹命中归因: 记录被本地子弹打中的角色, 让命中特效在伤害落地瞬间触发(不再依赖 recentlyShot 0.5s 窗口) //
+if isLocal then
+local okR,resR=pcall(function()
+local rp2=RaycastParams.new()
+local f2={}
+if LocalPlayer.Character then table.insert(f2,LocalPlayer.Character) end
+rp2.FilterDescendantsInstances=f2
+rp2.FilterType=Enum.RaycastFilterType.Exclude
+return Workspace:Raycast(from,to-from,rp2)
+end)
+if okR and resR then
+local model=resR.Instance and resR.Instance:FindFirstAncestorOfClass('Model')
+local pl2=model and Players:GetPlayerFromCharacter(model)
+if pl2 and pl2~=LocalPlayer then localBulletHit[pl2]=tick()+1.2 end
+end
+end
 if isLocal then
 newLocalBullet:Fire(from,to)
 else
@@ -2347,7 +2384,7 @@ local div=below.Y-above.Y
 local h=div*6
 local w=div*4
 local vpos=Vector2.new(below.X-w/2,below.Y-h/2)
-local nc=VA.Color;local bc=VA.Box.Color
+local nc=VA.NameTagColor or VA.Color;local bc=VA.Box.Color
 -- // [修复] 只要被任一瞄准功能锁定(吸附瞄准 / 瞄准辅助 / Ragebot), 名字+方框立刻变红 //
 local lockCol=VA.TargetColor or Color3.fromRGB(255,0,0)
 local isLockedTarget=(currentTarget and currentTarget.Parent==ch)
@@ -2807,7 +2844,9 @@ end
 end))
 track(RunService.RenderStepped:Connect(function()
 if Unloaded or not Started then return end
-if not Config['Infinite Range'].Enabled or not infRangeActive then return end
+local irOn=(Config['Infinite Range'] and Config['Infinite Range'].Enabled==true) or (Config.Ragebot and Config.Ragebot.InfiniteRange==true)
+if irOn~=infRangeActive then infRangeActive=irOn end
+if not irOn then return end
 local ch=LocalPlayer.Character if not ch then return end
 local tool=ch:FindFirstChildOfClass("Tool") if not tool then return end
 if tool~=irState.tool or tick()-irState.lastScan>2 then irState.tool=tool;irState.lastScan=tick();irScan(tool) end
@@ -3699,14 +3738,6 @@ CreateSlider(aaBox,"AAFOVSize",50,1500,function() return Config['Aim Assist'].FO
 CreateSlider(aaBox,"AAFOVThick",1,10,function() return Config['Aim Assist'].FOVThickness end,function(v) Config['Aim Assist'].FOVThickness=v;updateAimFOV() end)
 CreateToggle(aaBox,"AAFOVVisible",function() return Config['Aim Assist'].FOVVisible end,function(v) Config['Aim Assist'].FOVVisible=v;updateAimFOV() end)
 CreateToggle(aaBox,"AAFOVMouse",function() return Config['Aim Assist'].FOVMouse==true end,function(v) Config['Aim Assist'].FOVMouse=v;updateAimFOV() end)
-CreateButton(aaBox,"AssistDisablers",function()
-	local cur={}
-	for _,n in ipairs(Config['Aim Assist'].Disablers or {}) do cur[n]=true end
-	openGridPopup(T("AssistDisablers"),{{name=T("AssistDisablers"),items=DISABLERS}},true,cur,nil,function(sel)
-		local list={} for k,v in pairs(sel) do if v then table.insert(list,k) end end
-		Config['Aim Assist'].Disablers=list
-	end)
-end)
 CreateToggle(aaBox,"FallbackCamera",function() return Config['Aim Assist'].FallbackCamera end,function(v) Config['Aim Assist'].FallbackCamera=v end)
 
 
@@ -4247,30 +4278,6 @@ local function partVelocity(p)
 	return v
 end
 
-local function isThirdPerson()
-	-- // [修复] 旧判定"相机离头>3.5st"在 da hood 默认机位下永远成立 -> 辅助瞄准被永久禁用 //
-	-- // 改用 juju 判定: 鼠标未锁定在屏幕中心 = 第三人称 //
-	local ok,mb=pcall(function() return UserInputService.MouseBehavior end)
-	if not ok or mb==nil then return false end
-	return mb~=Enum.MouseBehavior.LockCenter
-end
-
--- // [修复] 这些"禁用条件"只属于辅助瞄准(Aim Assist), 以前当成全局闸门, 一勾就把 Aimbot/Sticky 一起废掉 //
-local function hasAssistDisabler(AA)
-	local d=AA.Disablers or {}
-	if table.find(d,'Typing') and isTyping() then return true end
-	if table.find(d,'No Gun') then
-		local tool=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Tool')
-		-- // [修复] da hood 的枪械不一定有 Ammo 子对象, 旧判定会把辅助瞄准永久关掉 //
-		if not (tool and (getToolAmmo(tool) or string.match(tool.Name,'^%['))) then return true end
-	end
-	if table.find(d,'Third Person') and isThirdPerson() then return true end
-	if table.find(d,'Ping Spike') then
-		local p=serverPing()
-		if pingBase>0 and p>(pingBase*1.6+80) then return true end
-	end
-	return false
-end
 
 -- // [重写] 命中部位/最大距离/隔墙 等目标条件全部归到"瞄准辅助"名下 (原 Aimbot 模块已删除) //
 local function aimHitPart(AA,ch)
@@ -4351,15 +4358,15 @@ local function aimFovRadius()
 	return 0
 end
 local function aimWallCheck()
-	local AA=Config['Aim Assist']
-	if table.find(AA.Disablers or {},'Behind Wall') then return true end
-	return AA.WallCheck==true
+	return Config['Aim Assist'].WallCheck==true
 end
 -- // [修复] FOV 中心点: 默认锁死屏幕中心; 打开"FOV跟随鼠标光标"后跟着真实光标走 //
 function aimCenter()
 	local AA=Config['Aim Assist']
 	-- // [修复] “FOV跟随鼠标光标”: 始终取自跟踪的光标位置 (游戏内指针被LockCenter锁定, GetMouseLocation恒为定点) //
 	if AA.FOVMouse then
+		local okMB,mb=pcall(function() return UserInputService.MouseBehavior end)
+		if okMB and mb and mb~=Enum.MouseBehavior.Default then return Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2) end
 		if mouseCursorPos then return mouseCursorPos end
 		local ok,ml=pcall(function() return UserInputService:GetMouseLocation() end)
 		if ok and ml then return ml end
@@ -4369,11 +4376,6 @@ end
 local function passesTargetCheck(pl,part,pos,dist,onScreen)
 	local AA=Config['Aim Assist']
 	if not onScreen then return false end
-	if table.find(AA.Disablers or {},'Off Screen') then
-		local vp=Camera.ViewportSize
-		local sp2,ons2=Camera:WorldToViewportPoint(part.Position)
-		if not ons2 or sp2.X<0 or sp2.Y<0 or sp2.X>vp.X or sp2.Y>vp.Y then return false end
-	end
 	local md=AA.MaxDistance or 0
 	if md>0 then
 		local my=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart')
@@ -4476,8 +4478,8 @@ local function smoothAlpha(v,dt)
 	local s=tonumber(v) or 10
 	if s<=1 then return 1 end
 	local t=math.clamp((s-1)/19,0,1)
-	local k=math.lerp(420,2.5,t)
-	return math.clamp(1-math.exp(-k*math.max(dt or 0.016,0.0001)),0,1)
+	local a=1-t*0.95
+	return math.clamp(a,0.05,1)
 end
 local function aimSmoothAA(AA,dt)
 	local aH=smoothAlpha(AA.HSmoothness,dt)
@@ -4496,7 +4498,7 @@ function applyAimbotImpl(dt)
 		if aaFovCircle then aaFovCircle.Visible=false end
 		return
 	end
-	if isSelfKnocked() or hasAssistDisabler(AA) then
+	if isSelfKnocked() then
 		aimAssistPart=nil
 		if aimCamActive then restoreAimCamera() end
 		return
@@ -5005,8 +5007,8 @@ CreateSlider(hsBox2,"HitsoundVolume",1,50,function() return math.floor(Config['H
 
 -- 新增功能的中文翻译
 Translations.CN.Aimbot="瞄准 (juju)";Translations.CN.AutoSelect="自动选目标";Translations.CN.AutoSelectDelay="选择延迟(ms)";Translations.CN.Sticky="粘住目标";Translations.CN.HitPart="命中部位";Translations.CN.Prediction="预判";Translations.CN.MaxDistance="最大距离";Translations.CN.UntargetKnocked="目标被K.O时解除"
-Translations.CN.SilentAim="静默自瞄";Translations.CN.SilentHitChance="命中率%";Translations.CN.SilentFOV="自瞄FOV";Translations.CN.SilentFOVSize="自瞄FOV大小";Translations.CN.SilentFOVColor="自瞄FOV颜色";Translations.CN.SilentDisablers="自瞄禁用条件";Translations.CN.SilentLine="自瞄线";Translations.CN.SilentLineColor="自瞄线颜色"
-Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistValue="辅助方式";Translations.CN.AssistSmooth="平滑度";Translations.CN.AssistFOV="辅助FOV";Translations.CN.AssistFOVSize="辅助FOV大小";Translations.CN.AssistFOVColor="辅助FOV颜色";Translations.CN.AssistDisablers="辅助禁用条件"
+Translations.CN.SilentAim="静默自瞄";Translations.CN.SilentHitChance="命中率%";Translations.CN.SilentFOV="自瞄FOV";Translations.CN.SilentFOVSize="自瞄FOV大小";Translations.CN.SilentFOVColor="自瞄FOV颜色";Translations.CN.SilentLine="自瞄线";Translations.CN.SilentLineColor="自瞄线颜色"
+Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistValue="辅助方式";Translations.CN.AssistSmooth="平滑度";Translations.CN.AssistFOV="辅助FOV";Translations.CN.AssistFOVSize="辅助FOV大小";Translations.CN.AssistFOVColor="辅助FOV颜色";
 Translations.CN.Triggerbot="自动扳机";Translations.CN.TriggerDelay="扳机延迟(ms)";Translations.CN.TriggerRadius="扳机半径";Translations.CN.TriggerJumpPred="跳跃预测";Translations.CN.TriggerFirstPerson="仅第一人称"
 Translations.CN.Hitsounds="击杀音效";Translations.CN.HitsoundSelect="音效选择";Translations.CN.HitsoundVolume="音量"
 Translations.CN.Desync="假同步";Translations.CN.DesyncMode="模式";Translations.CN.VelocityDesync="速度假同步";Translations.CN.VelocityMode="速度模式";Translations.CN.MultiplierVal="倍率";Translations.CN.RandomVal="随机值";Translations.CN.NetworkDesync="网络假同步";Translations.CN.NetworkMode="网络模式";Translations.CN.RandomTP="随机传送";Translations.CN.TPHOff="水平偏移";Translations.CN.TPVOff="垂直偏移";Translations.CN.ShowEye="显示实际位置(眼睛)"
