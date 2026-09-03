@@ -51,7 +51,7 @@ cfg('FOV',{Enabled=false,Visible=true,Size=120,Thickness=1.5,Color=Color3.fromRG
 cfg('Lock Line',{Enabled=false,Color=Color3.fromRGB(138,110,255),Thickness=1.5})
 cfg('Sticky',{Enabled=false,HitPart='Head',AutoFire=true,FireDelay=0.12,Spectate=false,StompTarget=false,InvisibleBullets=false,Tracer=true,TracerMode='Mouse',TracerColor=Color3.fromRGB(255,255,255),FOVEnabled=false,FOVSize=150,FOVColor=Color3.fromRGB(255,80,80),TargetColor=Color3.fromRGB(255,0,0),Strafe=false,StrafeMode='Orbit',StrafeSpeed=5,StrafeXOffset=5,SpectateStrafe=false})
 cfg('Aimbot',{Enabled=false,AutoSelect=true,AutoSelectDelay=0.03,Sticky=false,HitPart='Head',AirHitPart='LowerTorso',MaxDistance=1500,UseFOV=true,FOVVisible=true,FOVSize=600,FOVThickness=1.5,FOVColor=Color3.fromRGB(138,110,255),Style='Mouse',WallCheck=false})
-cfg('Aim Assist',{Enabled=false,Style='Camera',SmoothStyle='Direction',HSmoothness=50,VSmoothness=50,HPrediction=0,VPrediction=0,UseFOV=true,FOVVisible=true,FOVSize=600,FOVThickness=1.5,FOVColor=Color3.fromRGB(138,110,255),JumpOffset=0,Multipoint=0,DontAimVertically=false,JumpPrediction=true,FallbackCamera=true,Disablers={},HitPart='Head',AirHitPart='LowerTorso',MaxDistance=0,Sticky=true,AutoSelect=true,AutoSelectDelay=0.03,WallCheck=false,FOVMouse=false,AutoPrediction=true,JumpPredictionValue=0.1})
+cfg('Aim Assist',{Enabled=false,Style='Camera',SmoothStyle='Direction',HSmoothness=10,VSmoothness=10,HPrediction=0,VPrediction=0,UseFOV=true,FOVVisible=true,FOVSize=600,FOVThickness=1.5,FOVColor=Color3.fromRGB(138,110,255),JumpOffset=0,Multipoint=0,DontAimVertically=false,JumpPrediction=true,FallbackCamera=true,Disablers={},HitPart='Head',AirHitPart='LowerTorso',MaxDistance=0,Sticky=true,AutoSelect=true,AutoSelectDelay=0.03,WallCheck=false,FOVMouse=false,AutoPrediction=true,JumpPredictionValue=0.1})
 DISABLERS={'No Gun','Third Person','Out of FOV','Behind Wall','Ping Spike','Off Screen','Typing'}
 DISABLERS_CN={['No Gun']='没有武器',['Third Person']='第三人称',['Out of FOV']='超出FOV',['Behind Wall']='被墙阻挡',['Ping Spike']='Ping波动',['Off Screen']='屏幕外',['Typing']='正在打字'}
 -- // [新增] 辅助瞄准配置消毒: 旧存档(juju 替换前的字段)可能带着会把功能永久锁死的值 //
@@ -71,13 +71,17 @@ if AA.Style~='Mouse' and AA.Style~='Camera' then AA.Style='Camera' end
 if type(AA.HitPart)~='string' then AA.HitPart='Head' end
 if type(AA.AirHitPart)~='string' then AA.AirHitPart='LowerTorso' end
 if type(AA.AutoSelectDelay)~='number' or AA.AutoSelectDelay<=0 then AA.AutoSelectDelay=0.03 end
-if type(AA.HSmoothness)~='number' then AA.HSmoothness=50 end
-if type(AA.VSmoothness)~='number' then AA.VSmoothness=50 end
+if type(AA.HSmoothness)~='number' then AA.HSmoothness=10 end
+if type(AA.VSmoothness)~='number' then AA.VSmoothness=10 end
 if AA.FOVMouse==nil then AA.FOVMouse=false end
 if AA.AutoPrediction==nil then AA.AutoPrediction=true end
 if type(AA.JumpPredictionValue)~='number' then AA.JumpPredictionValue=0.1 end
-AA.HSmoothness=math.clamp(tonumber(AA.HSmoothness) or 50,1,100)
-AA.VSmoothness=math.clamp(tonumber(AA.VSmoothness) or 50,1,100)
+-- // [修复] 旧档为 1-100 档: 先折算成新的 1-20 档再夹取, 避免旧值被夹到最软端 //
+if tonumber(AA.HSmoothness) and tonumber(AA.HSmoothness)>20 then AA.HSmoothness=math.clamp(math.round(tonumber(AA.HSmoothness)/5),1,20) end
+AA.HSmoothness=math.clamp(tonumber(AA.HSmoothness) or 10,1,20)
+-- // [修复] 旧档为 1-100 档: 先折算成新的 1-20 档再夹取, 避免旧值被夹到最软端 //
+if tonumber(AA.VSmoothness) and tonumber(AA.VSmoothness)>20 then AA.VSmoothness=math.clamp(math.round(tonumber(AA.VSmoothness)/5),1,20) end
+AA.VSmoothness=math.clamp(tonumber(AA.VSmoothness) or 10,1,20)
 AA.Multipoint=math.clamp(tonumber(AA.Multipoint) or 0,0,100)
 end
 cfg('Hitsounds',{Enabled=false,Selected='Bubble',Volume=1})
@@ -85,12 +89,12 @@ cfg('God Block',{Enabled=false,HideAnimations=false})
 cfg('Kill Say',{Enabled=false,Message=''})
 cfg('Animations',{Idle1='Default',Idle2='Default',Walk='Default',Run='Default',Jump='Default',Climb='Default',Fall='Default'})
 cfg('Trigger Bot',{Enabled=false,Delay=0.1,HorizontalRadius=0,VerticalRadius=0,JumpPrediction=false,SpecificWeapons={Enabled=false,Weapons={}}})
-cfg('Ragebot',{Enabled=false,Targets={},IncludeAimbotTarget=false,AutoEquip=false,AutoEquipWeapons={},AutoStomp=false,TeleportBack=false,AttachToTarget=false,AttachMode='Strafe',StrafeSpeed=50,HOffset=10,VOffset=10,TeleportBullets=false,ViewTarget=false,AutoShoot=false,WallCheck=false,InfiniteRange=false,DisableIfKnocked=true,MaxDistance=500})
+cfg('Ragebot',{Enabled=false,Targets={},IncludeAimbotTarget=false,AutoEquip=false,AutoEquipWeapons={},AutoStomp=false,TeleportBack=false,AttachToTarget=false,AttachMode='Strafe',StrafeSpeed=50,HOffset=10,VOffset=10,TeleportBullets=false,ViewTarget=false,AutoShoot=false,WallCheck=false,InfiniteRange=false,DisableIfKnocked=true,MaxDistance=500,DesyncPosition=false})
 cfg('Resolver',{Enabled=false,RandomTeleport=false,Network=false,RefreshRate=0.095})
 cfg('Desync',{Enabled=false,Mode='Underground',ShowEye=false,EyeSize=14,EyeColor=Color3.new(1,1,1),Velocity=false,VelocityValue='Zero',Multiplier=0.2,Random=5,Network=false,NetworkValue='Simple',RandomTeleport=false,HOffset=60,VOffset=25,MoveOnly=true,Depth=0})
 cfg('Anti Aim',{AnimationLag=false,AnimationLagValue=50,AnimationSpam=false,AnimationSpamValue='Floss',ClientPitch=false,ClientPitchValue=90,FaceBackwards=false,Spinbot=false,SpinbotSpeed=50})
 cfg('Anti Aim Viewer',{Enabled=false})
-cfg('Local Player Visuals',{Trail=false,TrailColor=Color3.fromRGB(0,255,255),TrailGradient=false,GradientColor=Color3.fromRGB(255,0,255),MaterialTools=false,MaterialToolsValue='ForceField',MaterialToolsColor=Color3.fromRGB(0,255,255),ForcefieldBody=false,ForcefieldBodyColor=Color3.fromRGB(0,255,255),ForcefieldBodyTransparency=0.3,ForcefieldHats=false,ForcefieldHatsColor=Color3.fromRGB(0,255,255),ForcefieldHatsTransparency=0.3,ParticleAura=false,ParticleAuraValue='Swirl',ParticleAuraColor=Color3.fromRGB(0,255,38)})
+cfg('Local Player Visuals',{Trail=false,TrailColor=Color3.fromRGB(0,255,255),TrailGradient=false,GradientColor=Color3.fromRGB(255,0,255),MaterialTools=false,MaterialToolsValue='ForceField',MaterialToolsColor=Color3.fromRGB(0,255,255),ForcefieldBody=false,ForcefieldBodyColor=Color3.fromRGB(0,255,255),ForcefieldBodyTransparency=0.3,ForcefieldHats=false,ForcefieldHatsColor=Color3.fromRGB(0,255,255),ForcefieldHatsTransparency=0.3,ParticleAura=false,ParticleAuraValue='Swirl',ParticleAuraColor=Color3.fromRGB(0,255,38),AccessoryAdder=false})
 cfg('Desynced Position',{Enabled=false,Value='ForceField',Color=Color3.fromRGB(153,196,39),Highlight=false,OutlineColor=Color3.fromRGB(0,0,0)})
 cfg('Skin Changer',{Enabled=false,Skins={}})
 cfg('Spread',{Enabled=false,Amount=0,SpecificWeapons={Enabled=false,Weapons={}}})
@@ -139,7 +143,7 @@ cfg('Rapid Fire',{Enabled=false,Delay=0.1,SpecificWeapons={Enabled=false,Weapons
 cfg('Rapid Fire v2',{Enabled=false})
 cfg('Remove Shoot Animations',{Enabled=false})
 cfg('Teleport',{Enabled=false,Mode='Follow',Distance=5,Speed=50,Target=nil})
-cfg('Utility',{AntiTrip=false,AntiStomp=false,CleanScripts=false,NoRecoil=false,AutoReload=false,SmartAutoReload=false,SmartAutoReloadDelay=0.03,RemoveSlowdowns=false,InstantStand=false,NoSit=false,NoVoidKill=false,AutoSort=false})
+cfg('Utility',{AntiTrip=false,AntiStomp=false,CleanScripts=false,NoRecoil=false,AutoReload=false,SmartAutoReload=false,SmartAutoReloadDelay=0.03,RemoveSlowdowns=false,InstantStand=false,NoSit=false,NoVoidKill=false,AutoSort=false,AutoSortSlots={'','','','','','','','',''},SortPlans={}})
 cfg('Double Tap',{Enabled=false,Weapons={'[Revolver]','[Silencer]','[Glock]','[Deagle]'}})
 cfg('Purchases',{Style='Hidden',AutoArmor=false,ArmorAt=20})
 cfg('Auto Buy',{Enabled=false,Items={},ItemsSet={}})
@@ -173,11 +177,125 @@ local Lighting=game:GetService("Lighting")
 local InsertService=game:GetService("InsertService")
 local Camera=Workspace.CurrentCamera
 local LocalPlayer=Players.LocalPlayer
+-- // [juju] 游戏配置层: 攻击参数(arg) / 主远程(MainEvent/MAINEVENT) / BodyEffects取值名 / 子弹对象名 / 商店目录 / 弹药名 //
+-- // 当前游戏找不到时自动兜底扫描: 名字含 main 的 RemoteEvent(ReplicatedStorage) + 名字含 ignore 的文件夹(Workspace) //
+GameCfg=(function()
+local info={
+["Da Downhill"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO",shopNames={"Shops"},ignoredPath={"MAP","Ignored"}},
+["Da Uphill"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO",shopNames={"BuyPads"},ignoredPath={"MAP","Ignored"}},
+["Da Bank"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO",shopNames={"BuyPads"},ignoredPath={"MAP","Ignored"}},
+["Da Bot Aim Trainer"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO"},
+["Da Strike"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO",shopNames={"Pads"},ignoredPath={"MAP","Ignored"}},
+["OG-DAHOOD"]={arg="lenakistoptouchingme",eventName="MainEvent",knocked="K.O",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="BULLET_RAYS",bulletFolder="__ign",ammoName="Ammo"},
+["5235037897"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO",shopNames={"Pads"},ignoredPath={"MAP","Ignored"}},
+["6101464687"]={arg="UpdateMousePos",eventName="MainEvent",knocked="K.O",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="bulletray",bulletFolder="__ign",ammoName="Ammo"},
+["6340045507"]={arg="UpdateMousePos",eventName="MainEvent",knocked="K.O",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="BULLET_RAYS",bulletFolder="__ign",ammoName="Ammo"},
+["6473925582"]={arg="MOUSE",eventName="MAINEVENT",knocked="Knocked",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="Part",bulletFolder="__ws",ammoName="AMMO"},
+["6133438581"]={arg="UpdateMousePos",eventName="MainEvent",knocked="K.O",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="bulletray",bulletFolder="__ign",ammoName="Ammo"},
+["4312377180"]={arg="UpdateMousePos",eventName="MainEvent",knocked="K.O",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="BULLET_RAYS",bulletFolder="__ign",ammoName="Ammo"},
+["Der Hood"]={arg="skid",eventName="MainEvent",knocked="K.O",armor="Armor",dead="Dead",grabbed="Grabbed",bulletName="BULLET_RAYS",bulletFolder="__ign",ammoName="Ammo"}
+}
+local place=''
+pcall(function() place=game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name end)
+local entry
+for _,nm in ipairs({'Da Downhill','Da Uphill','Da Bank','Da Strike','Da Bot Aim Trainer','Der Hood','OG-DAHOOD','Hood Customs'}) do
+if place:find(nm,1,true) then entry=info[nm] break end
+end
+if not entry then entry=info[tostring(game.PlaceId)] end
+local g={
+arg=(entry and entry.arg) or 'UpdateMousePos',
+eventName=(entry and entry.eventName) or 'MainEvent',
+folderName='BodyEffects',
+knocked=(entry and entry.knocked) or 'K.O',
+armor=(entry and entry.armor) or 'Armor',
+dead=(entry and entry.dead) or 'Dead',
+grabbed=(entry and entry.grabbed) or 'Grabbed',
+bulletName=(entry and entry.bulletName) or 'BULLET_RAYS',
+bulletFolderKey=(entry and entry.bulletFolder) or '__ign',
+shopNames=(entry and entry.shopNames) or {'Shop','Shops','BuyPads','Pads'},
+ammoName=(entry and entry.ammoName) or 'Ammo',
+ignoredPath=(entry and entry.ignoredPath) or nil,
+event=nil,ignored=nil,shop=nil,bulletFolder=nil
+}
+return g
+end)()
+function getMainEvent()
+if GameCfg.event then return GameCfg.event end
+local r=ReplicatedStorage:FindFirstChild(GameCfg.eventName)
+if not r then r=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT') end
+if not r then
+for _,x in ipairs(ReplicatedStorage:GetDescendants()) do
+if x:IsA('RemoteEvent') and x.Name~='OnMainChannelSet' and x.Name:lower():find('main') then r=x break end
+end
+end
+GameCfg.event=r
+return r
+end
+function getMainEventName()
+local e=getMainEvent()
+return (e and e.Name) or GameCfg.eventName
+end
+function getIgnoredFolder()
+if GameCfg.ignored then return GameCfg.ignored end
+local f=Workspace:FindFirstChild('Ignored')
+if not f and GameCfg.ignoredPath then
+local p=Workspace:FindFirstChild(GameCfg.ignoredPath[1])
+if p then for i=2,#GameCfg.ignoredPath do p=p:FindFirstChild(GameCfg.ignoredPath[i]) end end
+f=p
+end
+if not f then
+for _,x in ipairs(Workspace:GetChildren()) do
+if x:IsA('Folder') and x.Name:lower():find('ignore') then f=x break end
+end
+end
+GameCfg.ignored=f
+return f
+end
+function getShopFolder()
+if GameCfg.shop then return GameCfg.shop end
+local f=nil
+local ig=getIgnoredFolder()
+if ig then for _,n in ipairs(GameCfg.shopNames) do local s=ig:FindFirstChild(n) if s then f=s break end end end
+GameCfg.shop=f
+return f
+end
+function getBulletFolder()
+if GameCfg.bulletFolder then return GameCfg.bulletFolder end
+local f
+if GameCfg.bulletFolderKey=='__ws' then f=Workspace
+else f=getIgnoredFolder() or Workspace end
+GameCfg.bulletFolder=f
+return f
+end
+function getToolAmmo(tool)
+if not tool then return nil end
+local names={GameCfg.ammoName}
+if GameCfg.ammoName~='Ammo' then table.insert(names,'Ammo') end
+if GameCfg.ammoName~='AMMO' then table.insert(names,'AMMO') end
+for _,n in ipairs(names) do
+local a=tool:FindFirstChild(n)
+if a and a:IsA('ValueBase') then return a end
+end
+return nil
+end
+function isCharKO(ch)
+if not ch then return false end
+local be=ch:FindFirstChild(GameCfg.folderName) or ch:FindFirstChild('BodyEffects')
+if not be then return false end
+local names={GameCfg.knocked}
+if GameCfg.knocked~='K.O' then table.insert(names,'K.O') end
+if GameCfg.knocked~='Knocked' then table.insert(names,'Knocked') end
+for _,n in ipairs(names) do
+local v=be:FindFirstChild(n)
+if v and v.Value==true then return true end
+end
+return false
+end
 local Mouse=LocalPlayer:GetMouse()
 currentTarget=nil;isLocking=false
 triggerEnabled=false
 stickyLocked=false;stickyTargetPlayer=nil
-ragebotTarget=nil;ragebotAimPart=nil;rageStrafeAngle=0;rageStompBusy=false;rageAttachLast=0;ragebotBackPos=nil
+ragebotTarget=nil;ragebotAimPart=nil;rageStrafeAngle=0;rageStompBusy=false;rageAttachLast=0;ragebotBackPos=nil;rageDesyncBase=nil;rageDesyncTarget=nil;rageDesyncActive=false
 espLabels={};BaseSpeed=16
 rapidFireActive=false;infRangeActive=false;lastRapidShot=0;lastTriggerClick=0;rapidPatched={}
 Unloaded=false;PanicMode=false;Started=false
@@ -193,7 +311,7 @@ buildPlayerList=nil;buildConfigList=nil;configNameBox=nil
 ApplySkinToTool=nil;RemoveSkinFromTool=nil;GetSkinList=nil
 UI_Font=Enum.Font.Code;rainbowConn=nil;rainbowHue=0.72;hudTextRef=nil
 shotTime=0;flyActive=false;speedActive=false;emoteTrack=nil
-lastStickyShot=0
+lastStickyShot=0;lastRageShot=0
 ViewAimLines={};viewLines={};spinAngle=0;origNeckC1=nil
 animSpamTrack=nil;animSpamId=nil;animLagLast=0;animLagFreeze=false
 resolverState={};desyncModel=nil;desyncModelLast=0;desyncActiveThisFrame=false;doSleep=false;voidSpamLast=0;didVoidKill=nil
@@ -453,6 +571,7 @@ Translations.CN.RagePacketShoot="包体射击(向服务器发送伤害)";Transla
 Translations.CN.GridEmpty="这里没有可显示的内容";Translations.CN.GridHintSingle="左键点击即选择并关闭";Translations.CN.GridHintMulti="左键勾选/取消, 右键清空勾选, Esc 关闭";Translations.CN.CatAll="全部已知物品"
 Translations.EN.AimAssist="Aim assist";Translations.EN.AssistStyle="Assist style";Translations.EN.SmoothStyle="Smoothing style";Translations.EN.HSmoothness="Horizontal smoothness";Translations.EN.VSmoothness="Vertical smoothness";Translations.EN.HPrediction="Horizontal prediction";Translations.EN.VPrediction="Vertical prediction";Translations.EN.JumpOffset="Jump offset";Translations.EN.Multipoint="Multipoint";Translations.EN.DontAimVertically="Don't aim vertically";Translations.EN.JumpPrediction="Jump prediction";Translations.EN.AAUseFOV="Use FOV (assist)";Translations.EN.AAFOVVisible="Show FOV";Translations.EN.AAFOVSize="Assist FOV size";Translations.EN.AAFOVThick="FOV thickness";Translations.EN.AAFOVColor="FOV color";Translations.EN.AssistDisablers="Disable when";Translations.EN.FallbackCamera="Camera fallback"
 Translations.CN.AimAssist="瞄准辅助";Translations.CN.AssistStyle="辅助方式";Translations.CN.SmoothStyle="平滑风格";Translations.CN.HSmoothness="水平平滑度";Translations.CN.VSmoothness="垂直平滑度";Translations.CN.HPrediction="水平预测";Translations.CN.VPrediction="垂直预测";Translations.CN.JumpOffset="跳跃偏移";Translations.CN.Multipoint="多点命中";Translations.CN.DontAimVertically="不修正垂直";Translations.CN.JumpPrediction="跳跃预测";Translations.CN.AAUseFOV="启用FOV(辅助)";Translations.CN.AAFOVVisible="显示FOV";Translations.CN.AAFOVSize="辅助FOV大小";Translations.CN.AAFOVThick="FOV粗细";Translations.CN.AAFOVColor="FOV颜色";Translations.CN.AssistDisablers="禁用条件";Translations.CN.FallbackCamera="相机回退";Translations.EN.AimTargetHelp="Target: auto-selects the closest player inside FOV";Translations.CN.AimTargetHelp="目标: 自动锁定 FOV 内最近的人";Translations.EN.AAFOVMouse="FOV follows mouse";Translations.CN.AAFOVMouse="FOV跟随鼠标光标";Translations.EN.AutoPrediction="Auto prediction (+ping)";Translations.CN.AutoPrediction="自动预测(叠加Ping)";Translations.EN.JumpPredictionVal="Jump prediction (ms)";Translations.CN.JumpPredictionVal="跳跃预测(ms)";Translations.EN.SmoothLockHint="Smoothness: 1 = hard lock, higher = smoother";Translations.EN.AimStatusOff="Aim assist is OFF";Translations.CN.AimStatusOff="瞄准辅助未开启";Translations.EN.AimStatusLocked="Target";Translations.CN.AimStatusLocked="已锁定";Translations.EN.AimStatusNone="No target";Translations.CN.AimStatusNone="未选到目标";Translations.EN.AimStatusFound="candidates";Translations.CN.AimStatusFound="候选";Translations.EN.AimStatusFov="FOV";Translations.CN.AimStatusFov="FOV"
+Translations.EN.SortPlanName="Plan name";Translations.CN.SortPlanName="方案名称";Translations.EN.SortPlanSave="Save current order";Translations.CN.SortPlanSave="保存当前排序";Translations.EN.SortPlanPick="Select plan";Translations.CN.SortPlanPick="选择方案";Translations.EN.SortPlanApply="Apply plan";Translations.CN.SortPlanApply="应用方案";Translations.EN.SortPlanDel="Delete plan";Translations.CN.SortPlanDel="删除方案";Translations.EN.SortPlanNone="No saved plan";Translations.CN.SortPlanNone="暂无已保存方案"
 Translations.EN.MoveOnly="Only while moving";Translations.EN.ColorBtn="Colors";Translations.EN.DesyncDepth="Desync depth";Translations.EN.EyeSize="Eye size";Translations.EN.NoBinds="No keybinds";Translations.EN.Desync="Desync";Translations.EN.ShowEye="Show eye";Translations.EN.RandomTP="Random teleport";Translations.EN.TPHOff="Teleport horizontal";Translations.EN.TPVOff="Teleport vertical";Translations.EN.KDPColor="Indicator color";Translations.EN.KeybindDisplay="Keybind indicator"
 Translations.CN.MoveOnly="仅移动时生效";Translations.CN.ColorBtn="颜色";Translations.CN.DesyncDepth="假同步深度";Translations.CN.EyeSize="眼睛大小";Translations.CN.NoBinds="暂无按键绑定";Translations.CN.Desync="假同步 (Desync)";Translations.CN.ShowEye="显示眼睛(实时位置)";Translations.CN.RandomTP="随机传送";Translations.CN.TPHOff="水平随机范围";Translations.CN.TPVOff="垂直随机范围";Translations.CN.KDPColor="指示器颜色";Translations.CN.KeybindDisplay="按键绑定显示"
 Translations.CN.EyeColor="眼睛颜色";Translations.CN.HitSoundValue="音效";Translations.CN.StatColors="状态条颜色";Translations.CN.CustomShoot="自定义开枪音效";Translations.CN.ShootSoundValue="开枪音效";Translations.CN.ShootVolume="开枪音量"
@@ -505,12 +624,10 @@ hitPlayer=newSignal()
 newTargetSignal=newSignal()
 function isPlayerKnockedOrKO(pl)
 if not Config.Settings['Knock Check'] then return false end
-if pl.Character then local be=pl.Character:FindFirstChild("BodyEffects") if be then local ko=be:FindFirstChild("K.O") if ko and ko.Value==true then return true end local kn=be:FindFirstChild("Knocked") if kn and kn.Value==true then return true end end end
-return false
+return isCharKO(pl and pl.Character)
 end
 function isSelfKnocked()
-if LocalPlayer.Character then local be=LocalPlayer.Character:FindFirstChild("BodyEffects") if be then local ko=be:FindFirstChild("K.O") if ko and ko.Value==true then return true end local kn=be:FindFirstChild("Knocked") if kn and kn.Value==true then return true end end end
-return false
+return isCharKO(LocalPlayer.Character)
 end
 function canSeeTarget(part)
 if not Config.Settings['Visible Check'] then return true end
@@ -532,7 +649,7 @@ local dir=part.Position-origin
 local mag=math.max(dir.Magnitude,0.001)
 local rp=RaycastParams.new()
 local filter={LocalPlayer.Character,ch}
-local ign=Workspace:FindFirstChild('Ignored')
+local ign=getIgnoredFolder()
 if ign then table.insert(filter,ign) end
 rp.FilterDescendantsInstances=filter
 rp.FilterType=Enum.RaycastFilterType.Exclude
@@ -622,7 +739,7 @@ local hi=math.max(math.floor(placeholder),lo)
 local divisor=math.random(lo,hi)/100
 if divisor<=0 then divisor=0.01 end
 local newp=hrp.Position-(validOffset*(magnitude/divisor))
-st.forcePos=newp
+st.forcePos=newp;st.lastForce=now
 st.lastMoveDir=md
 task.delay(0.03,function() if resolverState[pl]==st and st.forcePos==newp then st.forcePos=nil end end)
 end
@@ -630,7 +747,7 @@ if RS.Network then
 local sleeping=ghp(hrp,'NetworkIsSleeping')
 if sleeping then st.lastSleep=now end
 if st.lastSleep and now-st.lastSleep<0.3 then
-st.forcePos=lastPosition
+st.forcePos=lastPosition;st.lastForce=now
 task.delay(0.3,function() if resolverState[pl]==st and st.forcePos==lastPosition then st.forcePos=nil end end)
 end
 end
@@ -738,7 +855,7 @@ end
 grm.__namecall=function(self,...)
 local args=table.pack(...)
 local method=getnamecallmethod and getnamecallmethod() or nil
-if not checkcaller() and method=="FireServer" and self.Name=="MainEvent" then
+if not checkcaller() and method=="FireServer" and (self.Name==getMainEventName() or self.Name=='MainEvent' or self.Name=='MAINEVENT') then
 if args[1]=='ShootGun' and Config['Double Tap'].Enabled then
 local handle=args[2]
 local toolName=(typeof(handle)=="Instance") and (handle.Parent and handle.Parent.Name) or nil
@@ -747,7 +864,7 @@ local ok=false
 for _,w in ipairs(Config['Double Tap'].Weapons) do if w==toolName then ok=true break end end
 if ok then
 local tool=handle.Parent
-local ammo=tool and tool:FindFirstChild("Ammo")
+local ammo=getToolAmmo(tool)
 if not ammo or ammo.Value>=2 then
 task.delay(0.05,function()
 if Unloaded then return end
@@ -827,11 +944,27 @@ do
 -- // [新] RAGEBOT 主循环 (juju.lol 式) //
 ragebotViewTarget=nil
 ragebotFakePos=nil
+-- // [juju] Ragebot Desync position: 吸附结束时清除网络层欺骗 //
+function rageDesyncClear()
+if rageDesyncActive then
+rageDesyncActive=false;rageDesyncBase=nil;rageDesyncTarget=nil
+local ch=LocalPlayer.Character
+local hrp=ch and ch:FindFirstChild('HumanoidRootPart')
+if hrp then shp(hrp,'NetworkOrigin',nil) end
+end
+end
 function rageFireShot(gun)
-if not gun then return end
--- // [juju] 让游戏自己的武器代码开枪: 射击伤害由游戏本体发给服务器, 服务器枪械状态始终同步 //
--- // 旧实现自己伪造 ShootGun 包体, 服务器端状态对不上: 第一次能用, 重开总开关后就被一直拒绝 //
-pcall(function() gun:Activate() end)
+if not gun or not gun.Parent then return false end
+-- // [juju] 不真实开枪: 直接向服务器发送 ShootGun 伤害包 (与 Sticky 自动开火相同) //
+-- // 无本地枪口/子弹特效; 调用处有 0.09s 限速, 防止持续发包导致 ping 无休止上升 //
+local ev=getMainEvent()
+if not ev then return false end
+local handle=gun:FindFirstChild('Handle')
+if not handle then return false end
+local origin=handle.Position
+local aimPos=ragebotFakePos or ragebotAimPart.Position
+local ok=pcall(function() ev:FireServer('ShootGun',handle,origin,aimPos,ragebotAimPart,Vector3.new(0,0,-1)) end)
+return ok
 end
 -- // [juju] 停止自动射击后延迟 0.5s Deactivate 武器 (对应 juju 的 terminate/do_terminate) //
 rageAutoFiring=false;rageAutoTerminate=0
@@ -850,7 +983,7 @@ ragebotViewTarget=nil
 local h=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
 if h then pcall(function() Camera.CameraSubject=h end) end
 end
-track(LocalPlayer.CharacterAdded:Connect(function() ragebotViewTarget=nil end))
+track(LocalPlayer.CharacterAdded:Connect(function() ragebotViewTarget=nil;rageDesyncActive=false;rageDesyncBase=nil;rageDesyncTarget=nil end))
 -- // [新增] 统一的 RG 目标写入入口: 玩家列表的 RG 按钮 和 Ragebot 的"选择目标"弹窗 共用同一份状态 //
 -- // 取消某个人的 RG 时, 观战/吸附/子弹传送/解析 等所有子功能会立刻对他停止, 相机也会交还给自己 //
 function setRagebotTargets(newList)
@@ -892,12 +1025,12 @@ local hrp=ch:FindFirstChild('HumanoidRootPart') if not hrp then rageRestoreView(
 local hum=ch:FindFirstChildOfClass('Humanoid')
 if not hum or hum.Health<=0 or isSelfKnocked() then
 rageAutoStop()
-ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView()
+ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView();rageDesyncClear()
 return
 end
 if not (RB.Enabled and bindActive('Ragebot')) then
 rageAutoStop()
-ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView()
+ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView();rageDesyncClear()
 return
 end
 local candidates={}
@@ -913,17 +1046,17 @@ local dup=false for _,p in ipairs(candidates) do if p==at then dup=true break en
 if not dup then table.insert(candidates,at) end
 end
 end
-if #candidates==0 then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView() return end
+if #candidates==0 then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView();rageDesyncClear() return end
 local closest=nil;local bd=math.huge
 for _,pl in ipairs(candidates) do
 local d=(pl.Character.HumanoidRootPart.Position-hrp.Position).Magnitude
 if d<bd then bd=d closest=pl end
 end
-if not closest then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView() return end
+if not closest then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView();rageDesyncClear() return end
 ragebotTarget=closest
 local tChar=closest.Character
 local tHrp=tChar:FindFirstChild('HumanoidRootPart')
-if not tHrp then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView() return end
+if not tHrp then rageAutoStop() ragebotTarget=nil;ragebotAimPart=nil;ragebotFakePos=nil;rageRestoreView();rageDesyncClear() return end
 ragebotAimPart=tChar:FindFirstChild('Head') or tHrp
 -- // [修复] 解析器以前只在"吸附瞄准"里跑, ragebot 从来没调用过, 也算出来的回溯点也没人用 -> 三个解析功能全是死的 //
 ragebotFakePos=updateResolver(closest,tChar,tHrp)
@@ -941,32 +1074,39 @@ pcall(function() Camera.CameraSubject=th end)
 ragebotViewTarget=closest
 else rageRestoreView() end
 else rageRestoreView() end
-local tbe=tChar:FindFirstChild('BodyEffects')
-local tKnocked=false
-if tbe then
-local ko=tbe:FindFirstChild('K.O') or tbe:FindFirstChild('Knocked')
-if ko and ko.Value then tKnocked=true end
-end
+local tKnocked=isCharKO(tChar)
 -- // [修复] 吸附不再限帧(每帧跟随), 并且向前预判对手速度, 见下面 anchor 计算 //
 if RB.AttachToTarget and not (RB.DisableIfKnocked and tKnocked) then
--- // [修复] 客户端看到的对手位置本来就是延迟的, 直接 TP 到"上一帧的位置"必然慢一步(跟在屁股后面) //
--- // 这里按对手速度向前预判一个心跳/ping 步长再吸附, 高速目标也能跟得上 //
+-- // [修复] 客户端看到的对手位置本来就是延迟的, 直接 TP 到上一帧位置必然慢一步 //
+-- // // 按对手速度向前预判一个心跳/ping 步长再吸附, 高速目标也能跟得上 //
 local tv=tHrp.AssemblyLinearVelocity
 if typeof(tv)~="Vector3" then tv=tHrp.Velocity or Vector3.new() end
 local anchor=tHrp.Position+tv*math.max(dt*2,0.1)
+local cf
 if RB.AttachMode=='Random Teleport' then
-hrp.CFrame=CFrame.new(anchor+Vector3.new(math.random(-RB.HOffset,RB.HOffset),math.random(-RB.VOffset,RB.VOffset),math.random(-RB.HOffset,RB.HOffset)))
+cf=CFrame.new(anchor+Vector3.new(math.random(-RB.HOffset,RB.HOffset),math.random(-RB.VOffset,RB.VOffset),math.random(-RB.HOffset,RB.HOffset)))
 else
 rageStrafeAngle=rageStrafeAngle+math.clamp((RB.StrafeSpeed*15)*dt,0,360)
 if rageStrafeAngle>360 then rageStrafeAngle=0 end
 local base=anchor+Vector3.new(0,RB.VOffset or 10,0)
-hrp.CFrame=CFrame.Angles(0,math.rad(rageStrafeAngle),0)*CFrame.new(0,0,-(RB.HOffset or 10))+base
+cf=CFrame.Angles(0,math.rad(rageStrafeAngle),0)*CFrame.new(0,0,-(RB.HOffset or 10))+base
 end
+if RB.DesyncPosition then
+-- // [juju Target 区 Desync position] 服务器端位置保持在吸附前原位(网络层欺骗), 只有客户端视觉贴到目标 //
+-- // // 配合 Desynced Position 视觉体可以看到服务器认为你在的位置 //
+if not rageDesyncActive then rageDesyncBase=hrp.Position end
+rageDesyncTarget=closest
+rageDesyncActive=true
+shp(hrp,'NetworkOrigin',CFrame.new(rageDesyncBase))
+else
+rageDesyncClear()
+end
+hrp.CFrame=cf
 end
 local gun=ch:FindFirstChildOfClass('Tool')
 if gun and gun:FindFirstChild('Handle') and gun.Name~='[RPG]' then
 if RB.AutoShoot then
-local ammo=gun:FindFirstChild('Ammo')
+local ammo=getToolAmmo(gun)
 local canFire=((not ammo) or ammo.Value>0) and not tKnocked and not tChar:FindFirstChild('GRABBING_CONSTRAINT')
 local forcefield=tChar:FindFirstChild('ForceField')
 if canFire and forcefield and forcefield:FindFirstChild('On') then canFire=forcefield.On.Value==false end
@@ -980,17 +1120,23 @@ local blocked=false
 if RB.WallCheck then
 local rp=RaycastParams.new()
 local filter={ch,tChar}
-local ign=Workspace:FindFirstChild('Ignored')
+local ign=getIgnoredFolder()
 if ign then table.insert(filter,ign) end
 rp.FilterDescendantsInstances=filter
 rp.FilterType=Enum.RaycastFilterType.Exclude
 blocked=Workspace:Raycast(origin,dir.Unit*math.max(mag,0.001),rp)~=nil
 end
 if (not blocked) and mag<=maxD then
--- // [juju] 条件满足就让游戏本体开火: 游戏自带射速限制, 不会无限发包, ping 不会叠加 //
--- // 目标移速过快/反瞄准时, Mouse.Hit 钩子自动切到解析器解析点, 解析到就打解析点 //
-rageAutoFiring=true;rageAutoTerminate=0
-rageFireShot(gun)
+-- // [juju] 直接向服务器发伤害包, 不本地真开枪; 限速 0.09s 防止 ping 无休止上升 //
+-- // 配合解析器: 目标不稳定(移速过快/假同步反瞄准)时预留射击, 解析到 (forcePos) 的瞬间立刻发出 //
+local rSt=resolverState[closest]
+local rUnstable=rSt and rSt.lastForce and (tick()-rSt.lastForce)<0.6
+if (not rUnstable or ragebotFakePos~=nil) then
+if tick()-lastRageShot>=0.09 then
+lastRageShot=tick()
+if rageFireShot(gun) then rageAutoFiring=true;rageAutoTerminate=0 end
+end
+end
 else
 rageAutoStop()
 end
@@ -1017,11 +1163,10 @@ local ch=LocalPlayer.Character if not ch then return end
 local pl=stickyTargetPlayer
 local tCh=pl and pl.Character
 if not tCh or not tCh.Parent then stickyLocked=false;stickyTargetPlayer=nil;currentTarget=nil;stickyTracer.Visible=false stickyRestoreView() return end
-local be=tCh:FindFirstChild('BodyEffects')
-local isKO=be and ((be:FindFirstChild('K.O') and be['K.O'].Value) or (be:FindFirstChild('Knocked') and be.Knocked.Value))
+local isKO=isCharKO(tCh)
 local isGrabbed=tCh:FindFirstChild('GRABBING_CONSTRAINT')~=nil
 local ST=Config['Sticky']
-local ev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT')
+local ev=getMainEvent()
 if ST.StompTarget and isKO and not isGrabbed then
 local ut=tCh:FindFirstChild('UpperTorso')
 local lhrp=ch:FindFirstChild('HumanoidRootPart')
@@ -1066,8 +1211,8 @@ if on and to then stickyTracer.Visible=true;stickyTracer.From=Vector2.new(cpos.X
 else stickyTracer.Visible=false end
 local tool=ch:FindFirstChildOfClass('Tool')
 local handle=tool and tool:FindFirstChild('Handle')
-if ST.AutoFire and handle and tool and tool:FindFirstChild('Ammo') and not isKO and not isGrabbed then
-local ammoVal=tool:FindFirstChild('Ammo')
+if ST.AutoFire and handle and tool and getToolAmmo(tool) and not isKO and not isGrabbed then
+local ammoVal=getToolAmmo(tool)
 -- // [修复] 和 ragebot 一样的老问题: 以前每个 Heartbeat 裸发一次 ShootGun (~60次/秒), //
 -- // 打不中时服务器一直收包收尾不了 -> ping 无限上涨直到卡死. 这里加射击间隔限流. //
 if (not ammoVal) or ammoVal.Value>0 then
@@ -1181,10 +1326,16 @@ if DP.Enabled and ch and ch:FindFirstChild('HumanoidRootPart') then
 if not desyncModel then buildDesyncModel(ch) end
 if desyncModel and tick()-desyncModelLast>0.2 then
 desyncModelLast=tick()
+local rageHrp=ch:FindFirstChild('HumanoidRootPart')
+local rageShow=rageDesyncActive and rageDesyncBase and rageHrp and (rageDesyncBase-rageHrp.Position).Magnitude>3.5
 for _,p in pairs(ch:GetChildren()) do
 local m=desyncModel:FindFirstChild(p.Name)
 if m and (p:IsA('Part') or p:IsA('MeshPart')) then
-if not desyncActiveThisFrame then m.CFrame=p.CFrame end
+if rageShow then
+m.CFrame=CFrame.new(p.Position+(rageDesyncBase-rageHrp.Position))*(p.CFrame-p.Position)
+elseif not desyncActiveThisFrame then
+m.CFrame=p.CFrame
+end
 end
 end
 end
@@ -1193,6 +1344,15 @@ if desyncModel then pcall(function() desyncModel:Destroy() end) desyncModel=nil 
 end
 end))
 track(LocalPlayer.CharacterAdded:Connect(function() desyncModel=nil end))
+track(LocalPlayer.CharacterAdded:Connect(function(ch)
+task.wait(0.8)
+if Unloaded then return end
+if not Config['Local Player Visuals'].AccessoryAdder then return end
+for id,_ in pairs(accTemplates) do
+task.wait(0.15)
+equipAccessory(id)
+end
+end))
 function applyTrail()
 if trailObj then pcall(function() trailObj:Destroy() end) trailObj=nil end
 local ch=LocalPlayer.Character; local hrp=ch and ch:FindFirstChild('HumanoidRootPart')
@@ -1207,39 +1367,88 @@ t.Lifetime=0.5;t.LightEmission=1;t.Parent=hrp
 trailObj=t
 end
 end
-function applyMaterialTools()
-local ch=LocalPlayer.Character if not ch then return end
-local L=Config['Local Player Visuals']
-if not L.MaterialTools then return end
-local mat=Enum.Material[L.MaterialToolsValue] or Enum.Material.ForceField
-for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then
-for _,d in pairs(t:GetDescendants()) do if d:IsA('MeshPart') or d:IsA('Part') then d.Material=mat; if d:IsA('MeshPart') then d.TextureID='' end; d.Color=L.MaterialToolsColor end end
-end end
-end
-function addAccessory(id)
+matToolOrig={}
+local function applyMatToTool(tool,enabled)
 pcall(function()
-if not id or not tonumber(id) then return end
-local asset=InsertService:LoadAsset(tonumber(id))
-if not asset then return end
-local acc=asset:FindFirstChildOfClass("Accessory") or (asset:IsA("Accessory") and asset or nil)
-if not acc then asset:Destroy() return end
-acc.Parent=nil
+if not tool or not tool:IsA('Tool') then return end
+local handle=tool:FindFirstChild('Handle')
+if not handle or not handle:IsA('BasePart') then return end
+local L=Config['Local Player Visuals']
+if not matToolOrig[tool] then
+local def=tool:FindFirstChild('Default')
+matToolOrig[tool]={
+hTex=handle:IsA('MeshPart') and handle.TextureID or nil,
+hMat=handle.Material,hCol=handle.Color,
+dTex=def and def:IsA('MeshPart') and def.TextureID or nil,
+dMat=def and def:IsA('BasePart') and def.Material or nil,
+dCol=def and def:IsA('BasePart') and def.Color or nil}
+end
+local o=matToolOrig[tool]
+local mat=enabled and (Enum.Material[L.MaterialToolsValue] or Enum.Material.ForceField) or (o.hMat or Enum.Material.Plastic)
+local col=enabled and L.MaterialToolsColor or (o.hCol or Color3.new(1,1,1))
+handle.Material=mat;handle.Color=col
+if handle:IsA('MeshPart') then handle.TextureID=enabled and '' or (o.hTex or '') end
+local def=tool:FindFirstChild('Default')
+if def and def:IsA('BasePart') then
+def.Material=mat;def.Color=col
+if def:IsA('MeshPart') then def.TextureID=enabled and '' or (o.dTex or '') end
+local first=def:GetChildren()[1]
+if first and first:IsA('BasePart') then first.Material=mat;first.Color=col end
+end
+end)
+end
+function applyMaterialTools()
+local ch=LocalPlayer.Character
+local L=Config['Local Player Visuals']
+local function each(fn)
+if ch then for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then fn(t) end end end
+for _,t in pairs(LocalPlayer.Backpack:GetChildren()) do if t:IsA('Tool') then fn(t) end end
+end
+each(function(t) applyMatToTool(t,L.MaterialTools) end)
+end
+track(LocalPlayer.CharacterAdded:Connect(function(ch)
+task.wait(0.6)
+if Unloaded then return end
+if not Config['Local Player Visuals'].MaterialTools then return end
+for _,t in pairs(ch:GetChildren()) do if t:IsA('Tool') then task.wait(0.1) applyMatToTool(t,true) end end
+end))
+accTemplates={}
+function equipAccessory(id)
+pcall(function()
+local tpl=accTemplates[id]
+if not tpl then return end
 local ch=LocalPlayer.Character
 local hum=ch and ch:FindFirstChildOfClass('Humanoid')
 local head=ch and ch:FindFirstChild('Head')
-if not hum or not head then acc:Destroy() return end
+if not hum or not head then return end
+for _,a in pairs(addedAccessories) do if a.Name==tostring(id) then pcall(function() a:Destroy() end) end end
+local acc=tpl:Clone()
+acc.Name=tostring(id)
 hum:AddAccessory(acc)
 local h=acc:FindFirstChild('Handle')
 if h then
 h.CanCollide=false
 local at=h:FindFirstChildOfClass('Attachment')
-local w=Instance.new('Weld')
+local w=Instance.new('Weld');w.Name='HateAccWeld'
 w.Part0=h;w.Part1=head
 w.C0=at and at.CFrame or CFrame.new(0,0,0)
 w.C1=CFrame.new(0,0.6,0)
 w.Parent=h
 end
 table.insert(addedAccessories,acc)
+end)
+end
+function addAccessory(id)
+pcall(function()
+id=tonumber(id)
+if not id then return end
+if not accTemplates[id] then
+local ok,asset=pcall(function() return InsertService:LoadLocalAsset("rbxassetid://"..id) end)
+if not ok or not asset then return end
+accTemplates[id]=asset
+end
+if not Config['Local Player Visuals'].AccessoryAdder then Config['Local Player Visuals'].AccessoryAdder=true end
+equipAccessory(id)
 end)
 end
 function pqndCreateTool()
@@ -1253,7 +1462,7 @@ local hum=chr:FindFirstChild("Humanoid")
 if hum then local at=hum:LoadAnimation(anim) at:AdjustSpeed(3.4) at:Play() end
 task.wait(0.6)
 local boom=LocalPlayer.Backpack:FindFirstChild("[Boombox]")
-local ev=ReplicatedStorage:FindFirstChild("MainEvent") or ReplicatedStorage:FindFirstChild("MAINEVENT")
+local ev=getMainEvent()
 if boom and ev then
 boom.Parent=LocalPlayer.Character
 ev:FireServer("Boombox",tonumber(Config['Pqnd4 Kick'].SoundId))
@@ -1303,8 +1512,8 @@ end)
 end
 if Config['Anti Aim Viewer'].Enabled and target and target.Parent then
 pcall(function()
-local ev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT')
-if ev then ev:FireServer('UpdateMousePos',target.Position) end
+local ev=getMainEvent()
+if ev then ev:FireServer(GameCfg.arg,target.Position) end
 end)
 end
 end))
@@ -1338,45 +1547,143 @@ end
 end
 function applyNoVoidKill() pcall(function() Workspace.FallenPartsDestroyHeight=Config.Utility.NoVoidKill and -9e9 or -500 end) end
 function doAutoSort()
+pcall(function()
 local bp=LocalPlayer.Backpack
-local order={'[Revolver]','[Glock]','[Silencer]','[Deagle]','[Shotgun]','[SMG]','[AR]','[AK47]','[Rifle]','[LMG]','[P90]','[AUG]','[DrumGun]'}
-local tools={}
-for _,t in pairs(bp:GetChildren()) do if t:IsA('Tool') then table.insert(tools,t) end end
-table.sort(tools,function(a,b) local ai,bi=#order+1,#order+1 for i,n in ipairs(order) do if a.Name==n then ai=i end if b.Name==n then bi=i end end return ai<bi end)
-for _,t in ipairs(tools) do pcall(function() t.Parent=LocalPlayer end) end
-for _,t in ipairs(tools) do pcall(function() t.Parent=bp end) end
+if not bp then return end
+local slots=Config.Utility.AutoSortSlots or {}
+local children=bp:GetChildren()
+local done={}
+for i=1,#children do
+pcall(function() children[i].Parent=LocalPlayer end)
 end
+for i=1,9 do
+local f=slots[i]
+if not f or f=='' then continue end
+for j=1,#children do
+local c=children[j]
+if c and c.Parent==LocalPlayer and not done[c.Name] and c.Name:lower():find(f:lower(),1,true) then
+pcall(function() c.Parent=bp end)
+done[c.Name]=true
+end
+end
+end
+for j=1,#children do
+local c=children[j]
+if c and c.Parent==LocalPlayer and not done[c.Name] then
+pcall(function() c.Parent=bp end)
+end
+end
+end)
+end
+-- // [juju] 实时监控: 背包物品变化 / 重生后若开着自动排序就立刻重排 //
+task.spawn(function()
+local sortLock=false
+local function sortSoon()
+if sortLock then return end
+sortLock=true
+task.wait(0.35)
+sortLock=false
+if Unloaded then return end
+if not Config.Utility.AutoSort then return end
+doAutoSort()
+end
+track(LocalPlayer.Backpack.ChildAdded:Connect(function() sortSoon() end))
+track(LocalPlayer.Backpack.ChildRemoving:Connect(function() sortSoon() end))
+track(LocalPlayer.CharacterAdded:Connect(function()
+task.wait(1)
+if Unloaded then return end
+if Config.Utility.AutoSort then doAutoSort() end
+end))
+end)
 local SkinModules=ReplicatedStorage:FindFirstChild('SkinModules')
 local SkinData=nil;local AppliedSkins={}
-local function LoadSkinData() if SkinData then return SkinData end if SkinModules and SkinModules:IsA('ModuleScript') then local ok,res=pcall(function() return require(SkinModules:Clone()) end) if ok then SkinData=res end end return SkinData end
+local function LoadSkinData()
+if SkinData then return SkinData end
+local data
+if SkinModules and SkinModules:IsA('ModuleScript') then
+local ok,res=pcall(function() return require(SkinModules:Clone()) end)
+if ok and type(res)=='table' and next(res)~=nil then data=res end
+end
+if not data then
+for _,ms in ipairs(ReplicatedStorage:GetDescendants()) do
+if ms:IsA('ModuleScript') and ms.Name:lower():find('skin') then
+local ok2,res2=pcall(function() return require(ms:Clone()) end)
+if ok2 and type(res2)=='table' and next(res2)~=nil then
+local hasWeapon=false
+for k,_ in pairs(res2) do
+if type(k)=='string' and k:find('%[') then hasWeapon=true break end
+end
+if hasWeapon then data=res2 break end
+end
+end
+end
+end
+SkinData=data
+return data
+end
+local function skinDataFor(data,weaponName)
+if not data or not weaponName then return nil end
+local ws=data[weaponName]
+if ws then return ws end
+local m=weaponName:match('%[(.-)%]')
+if m and data[m] then return data[m] end
+local lk=weaponName:lower()
+for k2,v2 in pairs(data) do
+if type(k2)=='string' and k2:lower()==lk then return v2 end
+end
+return nil
+end
 GetSkinList=function(weaponName)
 local list={'None'}
 local data=LoadSkinData() if not data then return list end
-local ws=data[weaponName]
+local ws=skinDataFor(data,weaponName)
 if ws then for name in pairs(ws) do table.insert(list,name) end table.sort(list) end
 return list
 end
 RemoveSkinFromTool=function(tool)
-local rec=AppliedSkins[tool] if not rec then return end
-for _,c in pairs(rec.Clones or {}) do pcall(function() c:Destroy() end) end
-local def=tool:FindFirstChild('Default')
-if def and def:IsA('MeshPart') then def.TextureID=rec.OrigTex or def.TextureID def.Transparency=rec.OrigTrans or 0 end
-if rec.Sound and rec.OrigSound then rec.Sound.SoundId=rec.OrigSound end
+local rec=AppliedSkins[tool]
+if not rec then return end
+for part,o in pairs(rec.Parts or {}) do
+pcall(function()
+if part and part.Parent then
+part.TextureID=o.tex
+part.Transparency=o.trans
+end
+end)
+end
+if rec.Sound and rec.OrigSound then pcall(function() rec.Sound.SoundId=rec.OrigSound end) end
 AppliedSkins[tool]=nil
 end
 ApplySkinToTool=function(tool,skinName)
 if not tool then return end
-local handle=tool:FindFirstChild('Handle') if not handle then return end
+-- // [修复] 收集所有 BasePart (刀 Handle 是普通 Part, 只收 MeshPart 会导致 0 候选而更换失败) //
+local candidates={}
+local handle=tool:FindFirstChild('Handle')
+if handle and handle:IsA('BasePart') then table.insert(candidates,handle) end
 local def=tool:FindFirstChild('Default')
-if not def or not def:IsA('MeshPart') then def=handle:FindFirstChildOfClass('MeshPart') end
-if not def then return end
+if def and def:IsA('BasePart') then table.insert(candidates,def) end
+for _,d in pairs(tool:GetDescendants()) do
+if d:IsA('BasePart') and not table.find(candidates,d) then table.insert(candidates,d) end
+end
+if #candidates==0 then return end
 if AppliedSkins[tool] and AppliedSkins[tool].SkinName==skinName then return end
 RemoveSkinFromTool(tool)
-local rec={SkinName=skinName,OrigTex=def.TextureID,OrigTrans=def.Transparency,Clones={}}
+local rec={SkinName=skinName,Parts={}}
 for _,d in pairs(tool:GetDescendants()) do if d:IsA('Sound') and (d.Name=='Shoot' or d.Name=='ShootSound') then rec.Sound=d rec.OrigSound=d.SoundId break end end
+for _,m in ipairs(candidates) do rec.Parts[m]={tex=m.TextureID,trans=m.Transparency} end
 AppliedSkins[tool]=rec
 local data=LoadSkinData()
-if data then local ws=data[tool.Name] local inf=ws and ws[skinName] if inf and inf.TextureID and type(inf.TextureID)=='string' then def.TextureID=inf.TextureID def.Transparency=0 end end
+if data then
+-- // [juju] 键兜底: 全名 -> [括号] 名 -> 大小写不敏感 //
+local ws=skinDataFor(data,tool.Name)
+if ws then
+local inf=ws[skinName] or (next(ws) and ws[next(ws)])
+if type(inf)=='string' then inf={TextureID=inf} end
+if inf and type(inf.TextureID)=='string' and inf.TextureID~='' then
+for _,m in ipairs(candidates) do pcall(function() m.TextureID=inf.TextureID m.Transparency=0 end) end
+end
+end
+end
 end
 local function ProcessToolForSkin(tool)
 if not Config['Skin Changer'].Enabled then return end
@@ -1385,8 +1692,19 @@ if skin and skin~='' and skin~='None' then ApplySkinToTool(tool,skin) end
 end
 local function hookSkinChar(ch)
 if not ch then return end
-for _,c in pairs(ch:GetChildren()) do if c:IsA('Tool') then ProcessToolForSkin(c) end end
-track(ch.ChildAdded:Connect(function(c) if c:IsA('Tool') then task.wait(0.1) ProcessToolForSkin(c) end end))
+local function watchTool(t)
+task.wait(0.1)
+ProcessToolForSkin(t)
+local conn=t:GetPropertyChangedSignal('Parent'):Connect(function()
+if Unloaded then conn:Disconnect() return end
+if t.Parent==ch then
+task.wait(0.1)
+ProcessToolForSkin(t)
+end
+end)
+end
+for _,c in pairs(ch:GetChildren()) do if c:IsA('Tool') then watchTool(c) end end
+track(ch.ChildAdded:Connect(function(c) if c:IsA('Tool') then watchTool(c) end end))
 end
 if LocalPlayer.Character then hookSkinChar(LocalPlayer.Character) end
 track(LocalPlayer.CharacterAdded:Connect(function(ch) task.wait(0.5) hookSkinChar(ch) end))
@@ -1404,12 +1722,24 @@ RestorePending=true
 task.defer(function() if RestorePending and Config.Utility.NoRecoil then Camera.CFrame=SavedCFrame end RestorePending=false end)
 end
 track(RunService.RenderStepped:Connect(function() if not RestorePending then SavedCFrame=Camera.CFrame end end))
-do local MainEvent=ReplicatedStorage:FindFirstChild("MainEvent") or ReplicatedStorage:FindFirstChild("MAINEVENT") if MainEvent then track(MainEvent.OnClientEvent:Connect(function(p) if p=="ShootingRecoil" then QueueRestore() end end)) end end
+do local recoilHooked=false
+local function tryHookRecoil()
+if recoilHooked then return true end
+local e=getMainEvent()
+if e then track(e.OnClientEvent:Connect(function(p) if p=="ShootingRecoil" then QueueRestore() end end)) recoilHooked=true return true end
+return false
+end
+task.spawn(function() for _=1,60 do if Unloaded then return end if tryHookRecoil() then return end task.wait(0.5) end end)
+end
 function SetupAntiStomp(Character)
 if not Character then return end
-local be=Character:FindFirstChild("BodyEffects") or Character:WaitForChild("BodyEffects",10)
+local be=Character:FindFirstChild(GameCfg.folderName) or Character:WaitForChild(GameCfg.folderName,10)
 if not be then return end
-local kn=be:FindFirstChild("K.O") or be:FindFirstChild("Knocked")
+local kn
+local knNames={GameCfg.knocked}
+if GameCfg.knocked~='K.O' then table.insert(knNames,'K.O') end
+if GameCfg.knocked~='Knocked' then table.insert(knNames,'Knocked') end
+for _,n in ipairs(knNames) do kn=be:FindFirstChild(n) if kn then break end end
 if not kn then return end
 track(kn:GetPropertyChangedSignal("Value"):Connect(function()
 if Config.Utility.AntiStomp and kn.Value==true then
@@ -1461,7 +1791,7 @@ track(LocalPlayer.CharacterAdded:Connect(function(ch) task.wait(1) pcall(functio
 shopItems={};shopNames={}
 -- // [修复] 商店扫描改为可重复调用: 脚本比商店先加载时原来会永久扫不到 -> 购买选择栏整个是空的 //
 function scanShop()
-local shop=Workspace:FindFirstChild("Ignored") and Workspace.Ignored:FindFirstChild("Shop")
+local shop=getShopFolder()
 if not shop then return #shopItems end
 local function registerShop(sp)
 local nm=string.match(sp.Name,"%b[]")
@@ -1536,7 +1866,7 @@ function purchaseItem(item)
 if purchasing then return end
 local obj=shopNames[item]
 if not obj then
-local shp=Workspace:FindFirstChild("Ignored") and Workspace.Ignored:FindFirstChild("Shop")
+local shp=getShopFolder()
 if shp then for _,sp in pairs(shp:GetDescendants()) do
 local nm=string.match(sp.Name,"%b[]")
 if nm then nm=cleanName(nm)
@@ -1572,7 +1902,7 @@ end)
 return true
 end
 local function hookGunAmmo(tool)
-local ammo=tool:FindFirstChild("Ammo")
+local ammo=getToolAmmo(tool)
 if ammo then
 local old=ammo.Value
 track(ammo:GetPropertyChangedSignal("Value"):Connect(function() if ammo.Value<old then shotTime=tick() end old=ammo.Value end))
@@ -1604,27 +1934,58 @@ for _,pl in pairs(Players:GetPlayers()) do if pl~=LocalPlayer then watchPlayerHi
 track(Players.PlayerAdded:Connect(function(pl) if pl~=LocalPlayer then watchPlayerHits(pl) end end))
 sounds={["Bubble"]="rbxassetid://6534947588",["Lazer"]="rbxassetid://130791043",["Pick"]="rbxassetid://1347140027",["Pop"]="rbxassetid://198598793",["Rust"]="rbxassetid://1255040462",["Sans"]="rbxassetid://3188795283",["Fart"]="rbxassetid://130833677",["Big"]="rbxassetid://5332005053",["Vine"]="rbxassetid://5332680810",["UwU"]="rbxassetid://8679659744",["Bruh"]="rbxassetid://4578740568",["Skeet"]="rbxassetid://5633695679",["Neverlose"]="rbxassetid://6534948092",["Fatality"]="rbxassetid://6534947869",["Bonk"]="rbxassetid://5766898159",["Minecraft"]="rbxassetid://5869422451",["Gamesense"]="rbxassetid://4817809188",["RIFK7"]="rbxassetid://9102080552",["Bamboo"]="rbxassetid://3769434519",["Crowbar"]="rbxassetid://546410481",["Weeb"]="rbxassetid://6442965016",["Beep"]="rbxassetid://8177256015",["Bambi"]="rbxassetid://8437203821",["Stone"]="rbxassetid://3581383408",["Old Fatality"]="rbxassetid://6607142036",["Click"]="rbxassetid://8053704437",["Ding"]="rbxassetid://7149516994",["Snow"]="rbxassetid://6455527632",["Laser"]="rbxassetid://7837461331",["Mario"]="rbxassetid://2815207981",["Steve"]="rbxassetid://4965083997",["Call of Duty"]="rbxassetid://5952120301",["Bat"]="rbxassetid://3333907347",["TF2 Critical"]="rbxassetid://296102734",["Saber"]="rbxassetid://8415678813",["Baimware"]="rbxassetid://3124331820",["Osu"]="rbxassetid://7149255551",["TF2"]="rbxassetid://2868331684",["Slime"]="rbxassetid://6916371803",["Among Us"]="rbxassetid://5700183626",["One"]="rbxassetid://7380502345"}
 beamTextures={["Laser"]="rbxassetid://446111271",["Beam"]="rbxassetid://18854333763"}
-function renderTracer(from,to,color,life)
-local line=Drawing.new("Line");line.Thickness=1;line.Color=color;line.ZIndex=2
-local out=Drawing.new("Line");out.Thickness=3;out.Color=Color3.new(0,0,0);out.ZIndex=1
-local s1=Camera:WorldToViewportPoint(from);local s2=Camera:WorldToViewportPoint(to)
-line.From=Vector2.new(s1.X,s1.Y);line.To=Vector2.new(s2.X,s2.Y)
+function renderTracer(from,to,color,life,olc)
+local line=Drawing.new("Line");line.Thickness=1;line.Color=color;line.Transparency=0;line.ZIndex=2;line.Visible=false
+local out=Drawing.new("Line");out.Thickness=3;out.Color=olc or Color3.new(0,0,0);out.Transparency=0;out.ZIndex=1;out.Visible=false
+local elapsed=0;local fade=0;local alive=true
+local con=RunService.Heartbeat:Connect(function(dt)
+if not alive then return end
+elapsed=elapsed+dt
+local p1,ok1=Camera:WorldToViewportPoint(from)
+local p2,ok2=Camera:WorldToViewportPoint(to)
+if not ok1 or not ok2 then
+line.Visible=false;out.Visible=false
+return
+end
+if elapsed>life then
+fade=fade+dt
+local t=math.clamp(fade/0.2,0,1)
+t=t*t*(3-2*t)
+line.Transparency=t;out.Transparency=t
+end
+line.From=Vector2.new(p1.X,p1.Y);line.To=Vector2.new(p2.X,p2.Y)
 out.From=line.From;out.To=line.To
 line.Visible=true;out.Visible=true
-task.delay(life,function() for i=1,10 do line.Transparency=1-i/10 out.Transparency=1-i/10 task.wait(0.02) end pcall(function() line:Remove() out:Remove() end) end)
+end)
+task.delay(life+0.25,function()
+alive=false
+pcall(function() con:Disconnect() line:Remove() out:Remove() end)
+end)
 end
-function renderBeamTracer(from,to,cfgT,isLocal)
-local a1=Instance.new("Attachment");a1.Name="HateA";a1.WorldCFrame=CFrame.new(from);a1.Parent=Workspace.Terrain
-local a2=Instance.new("Attachment");a2.Name="HateA";a2.WorldCFrame=CFrame.new(to);a2.Parent=Workspace.Terrain
-local beam=Instance.new("Beam");beam.Name="HateTracer";beam.Attachment0=a1;beam.Attachment1=a2
-beam.Texture=beamTextures[cfgT.Texture] or beamTextures.Laser
-beam.Color=ColorSequence.new(cfgT.Color)
+function renderBeamTracer(from,to,cfgT)
+local life=(cfgT and cfgT.Life) or 0.6
+local color=(cfgT and cfgT.Color) or Color3.new(1,1,1)
+local tex=beamTextures[(cfgT and cfgT.Texture) or "Laser"] or beamTextures.Laser
+local a1=Instance.new("Attachment");a1.Name="HateTA1";a1.CFrame=CFrame.new(from);a1.Parent=Workspace.Terrain
+local a2=Instance.new("Attachment");a2.Name="HateTA2";a2.CFrame=CFrame.new(to);a2.Parent=Workspace.Terrain
+local beam=Instance.new("Beam")
+beam.Name="HateTracer"
+beam.Texture=tex
+beam.TextureMode=Enum.TextureMode.Wrap
+beam.TextureLength=10
+beam.FaceCamera=true;beam.LightEmission=1;beam.LightInfluence=1;beam.Enabled=true
+beam.Color=ColorSequence.new(color)
 beam.Transparency=NumberSequence.new(0)
-beam.Width0=0.15;beam.Width1=0.15;beam.FaceCamera=true;beam.LightEmission=1
-beam.Parent=Workspace.Terrain
-task.wait(cfgT.Life)
-for i=1,10 do beam.Transparency=NumberSequence.new(i/10) task.wait(0.02) end
-pcall(function() beam:Destroy() a1:Destroy() a2:Destroy() end)
+beam.Width0=0.15;beam.Width1=0.15
+beam.Attachment0=a1;beam.Attachment1=a2
+local ig=getIgnoredFolder()
+beam.Parent=ig or Workspace.Terrain
+task.delay(life,function()
+pcall(function()
+game:GetService("TweenService"):Create(beam,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Transparency=NumberSequence.new(1)}):Play()
+end)
+task.delay(0.25,function() pcall(function() beam:Destroy() a1:Destroy() a2:Destroy() end) end)
+end)
 end
 function renderTracerNeon(from,to,color,life)
 local mid=(from+to)/2
@@ -1634,14 +1995,24 @@ task.delay(life,function() for i=1,10 do p.Transparency=i/10 task.wait(0.02) end
 end
 function renderTracerByStyle(from,to,cfgT)
 local style=cfgT and cfgT.Value or "Line"
-if style=="Beam" then renderBeamTracer(from,to,cfgT,true)
+if style=="Beam" then renderBeamTracer(from,to,cfgT)
 elseif style=="Neon" then renderTracerNeon(from,to,cfgT.Color,cfgT.Life)
-else renderTracer(from,to,cfgT.Color,cfgT.Life) end
+else renderTracer(from,to,cfgT.Color,cfgT.Life,cfgT.Outline) end
 end
-function renderImpact(pos,color,life,size)
-local p=Instance.new("Part");p.Name="HateImpact";p.Anchored=true;p.CanCollide=false;p.Size=Vector3.new(size,size,size);p.Color=color;p.Material=Enum.Material.Neon;p.CFrame=CFrame.new(pos);p.Parent=Workspace
-local sb=Instance.new("SelectionBox");sb.Adornee=p;sb.Color3=color;sb.LineThickness=0.01;sb.SurfaceTransparency=1;sb.Parent=p
-task.delay(life,function() for i=1,10 do p.Transparency=i/10 sb.Transparency=i/10 task.wait(0.02) end pcall(function() p:Destroy() end) end)
+function renderImpact(pos,color,life,size,olc)
+local ig=getIgnoredFolder() or Workspace
+local p=Instance.new("Part")
+p.Name="HateImpact";p.Anchored=true;p.CanCollide=false;p.Size=Vector3.new(size,size,size)
+p.Color=color or Color3.new(1,1,1);p.Material=Enum.Material.Neon;p.CFrame=CFrame.new(pos)
+p.Parent=ig
+local sb=Instance.new("SelectionBox");sb.Adornee=p;sb.Color3=olc or color or Color3.new(1,1,1);sb.LineThickness=0.01;sb.SurfaceTransparency=1;sb.Parent=p
+task.delay(life or 0.5,function()
+pcall(function()
+game:GetService("TweenService"):Create(p,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Transparency=1}):Play()
+game:GetService("TweenService"):Create(sb,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Transparency=1}):Play()
+end)
+task.delay(0.3,function() pcall(function() p:Destroy() end) end)
+end)
 end
 function playHitSound()
 local VA=Config['Visual Awareness']
@@ -1802,36 +2173,123 @@ if v=="On hit" then pushNotification("hit "..player.Name.." for "..damage) end
 end
 end
 end))
+-- // [juju] 数据层 (L5327-5840): 武器类型表 + 每玩家状态记录 + 本地/敌人子弹信号 //
+local gun_types={
+["[LMG]"]="automatic",["[Double-Barrel SG]"]="shotgun",["[TacticalShotgun]"]="shotgun",["[AUG]"]="automatic",
+["[P90]"]="automatic",["[Glock]"]="pistol",["[DrumGun]"]="automatic",["[Rifle]"]="global",["[Shotgun]"]="shotgun",
+["[SMG]"]="automatic",["[AR]"]="automatic",["[Revolver]"]="pistol",["[AK47]"]="automatic",["[SilencerAR]"]="automatic",["[Silencer]"]="pistol"
+}
+local hatePlayerData={}
+newLocalBullet=newSignal()
+newEnemyBullet=newSignal()
+function updateHatePlayerData(pl)
+local d=hatePlayerData[pl]
+if not d then d={} hatePlayerData[pl]=d end
+local ch=pl and pl.Character
+if not ch or not ch.Parent then d.character=nil d.position=nil return d end
+d.character=ch
+local hrp=ch:FindFirstChild('HumanoidRootPart')
+d.position=hrp and hrp.Position or nil
+local hum=ch:FindFirstChildOfClass('Humanoid')
+d.health=hum and hum.Health or 0
+d.max_health=hum and hum.MaxHealth or 100
+local armor=ch:FindFirstChild('Armor') or ch:FindFirstChild('armor')
+d.armor=(armor and armor.Value) or 0
+local tool
+for _,t in ipairs(ch:GetChildren()) do if t:IsA('Tool') then tool=t break end end
+d.tool=tool
+d.knocked=isCharKO(ch)
+d.grabbed=ch:FindFirstChild('GRABBING_CONSTRAINT')~=nil
+d.forcefield=ch:FindFirstChild('ForceField')~=nil
+d.crew=false
+return d
+end
+track(RunService.Heartbeat:Connect(function()
+if Unloaded or not Started then return end
+for _,pl in ipairs(Players:GetPlayers()) do
+if pl~=LocalPlayer then updateHatePlayerData(pl) end
+end
+end))
+track(Players.PlayerRemoving:Connect(function(pl) hatePlayerData[pl]=nil end))
+-- // [juju 移植] 子弹: 文件夹名来自 GameCfg(找不到自动扫描), 读取子弹内部偏移拿 Attachment 端点 //
 local bulletNames={BULLET_RAYS=true,["Part"]=true,RevStealth=true,bulletray=true,["Bullet"]=true,["bullet"]=true,["Ray"]=true,["Tracer"]=true}
+if GameCfg and GameCfg.bulletName and GameCfg.bulletName~='' then bulletNames[GameCfg.bulletName]=true end
+local lastShotPosC=nil
+local handledBullets=setmetatable({},{__mode='k'})
+local function findBulletEnd(obj,beam)
+local at
+for _,d in ipairs(obj:GetDescendants()) do
+if d:IsA("Attachment") and d.CFrame~=(obj.CFrame) then at=d break end
+end
+if not at and beam then
+if beam.Attachment1 then at=beam.Attachment1 end
+if not at and beam.Attachment0 then at=beam.Attachment0 end
+end
+if at then return at.WorldCFrame.Position end
+return nil
+end
 local function handleBullet(obj)
-if Unloaded then return end
-if not (bulletNames[obj.Name] or obj:FindFirstChildOfClass("Beam")) then return end
-local beam=obj:FindFirstChildOfClass("Beam")
-if not beam then beam=obj:WaitForChild("Beam",0.2) end
+if Unloaded or not obj or handledBullets[obj] then return end
+handledBullets[obj]=true
+if not obj:IsA("BasePart") then return end
+local from=obj.Position
+local function findBeam()
+local b=obj:FindFirstChildOfClass("Beam")
+if b then return b end
+for _,d in ipairs(obj:GetDescendants()) do
+if d:IsA("Beam") then return d end
+end
+return nil
+end
+-- // [修复] 检测瞬间 Beam 还没挂上时最多等 2 帧 (juju 的 wait()); 之后不再要求对象仍在场景里 //
+if not (bulletNames[obj.Name] or findBeam()) then
+for _=1,2 do
+task.wait()
+if findBeam() then break end
+end
+end
+local beam=findBeam()
 if not beam then return end
-if LocalPlayer.Character and obj:IsDescendantOf(LocalPlayer.Character) then return end
+local to=findBulletEnd(obj,beam) or (beam.Attachment1 and beam.Attachment1.WorldCFrame.Position or nil) or from
 local hrp=LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-local isLocal=recentlyShot() or (hrp and (obj.Position-hrp.Position).Magnitude<10)
-local VA=Config['Visual Awareness']
-local from=obj.CFrame.Position
-local to=beam.Attachment1 and beam.Attachment1.WorldCFrame.Position or from
+-- // [juju] 本地/敌人判定: recently_shot (弹药减少/开火事件) 或 枪口位置匹配 last_shot_position //
+local isLocal=recentlyShot() or (lastShotPosC and (obj.Position-lastShotPosC).Magnitude<1) or (hrp and (obj.Position-hrp.Position).Magnitude<10)
+if isLocal then lastShotPosC=obj.Position end
 if isLocal then
-if VA.Tracers.Enabled then renderTracerByStyle(from,to,VA.Tracers) end
-if VA.Impacts.Enabled then renderImpact(to,VA.Impacts.Color,VA.Impacts.Life,VA.Impacts.Size) end
+newLocalBullet:Fire(from,to)
 else
+newEnemyBullet:Fire(from,to)
+end
+end
+newLocalBullet:Connect(function(from,to)
+local VA=Config['Visual Awareness']
+if not VA or not from or not to then return end
+if VA.Tracers.Enabled then renderTracerByStyle(from,to,VA.Tracers) end
+if VA.Impacts.Enabled then renderImpact(to,VA.Impacts.Color,VA.Impacts.Life,VA.Impacts.Size,VA.Impacts.Outline) end
+end)
+newEnemyBullet:Connect(function(from,to)
+local VA=Config['Visual Awareness']
+if not VA or not from or not to then return end
 if VA.EnemyTracers.Enabled then renderTracerByStyle(from,to,VA.EnemyTracers) end
+end)
+local bulletFolderWatched=false
+local function watchBulletFolder(f)
+if not f or bulletFolderWatched then return end
+bulletFolderWatched=true
+track(f.ChildAdded:Connect(function(o)
+if o:IsA("BasePart") and (bulletNames[o.Name] or o:FindFirstChildOfClass("Beam")) then task.spawn(handleBullet,o) end
+end))
 end
-end
-track(Workspace.ChildAdded:Connect(function(o) if bulletNames[o.Name] then task.spawn(handleBullet,o) end end))
-track(Workspace.DescendantAdded:Connect(function(o) if bulletNames[o.Name] then task.spawn(handleBullet,o) end end))
-local ign0=Workspace:FindFirstChild("Ignored")
-if ign0 then track(ign0.ChildAdded:Connect(function(o) if bulletNames[o.Name] then task.spawn(handleBullet,o) end end)) end
 task.spawn(function()
-if not Workspace:FindFirstChild("Ignored") then
-local w=Workspace:WaitForChild("Ignored",15)
-if w then track(w.ChildAdded:Connect(function(o) if bulletNames[o.Name] then task.spawn(handleBullet,o) end end)) end
+while not Unloaded and not bulletFolderWatched do
+task.wait(0.3)
+watchBulletFolder(getBulletFolder())
 end
 end)
+-- // [修复] Workspace 兜底监听常开 (即使已找到子弹文件夹): 子弹可能直接创建在 Workspace 下 //
+track(Workspace.DescendantAdded:Connect(function(o)
+if o:IsA("BasePart") and (bulletNames[o.Name] or o:FindFirstChildOfClass("Beam")) then task.spawn(handleBullet,o) end
+end))
 -- // ===== PART 1 END ===== //
 -- // ===== PART 2 START ===== //
 R15_BONES={{"Head","UpperTorso"},{"UpperTorso","LowerTorso"},{"UpperTorso","LeftUpperArm"},{"LeftUpperArm","LeftLowerArm"},{"UpperTorso","RightUpperArm"},{"RightUpperArm","RightLowerArm"},{"LowerTorso","LeftUpperLeg"},{"LeftUpperLeg","LeftLowerLeg"},{"LowerTorso","RightUpperLeg"},{"RightUpperLeg","RightLowerLeg"}}
@@ -1941,8 +2399,8 @@ esp.healthFG.Visible=true;esp.healthFG.From=Vector2.new(bx,vpos.Y+h);esp.healthF
 if VA.HealthBar.ShowText then esp.healthText.Visible=true;esp.healthText.Text=tostring(math.floor(hum.Health+0.5));esp.healthText.Position=Vector2.new(bx-4,vpos.Y+h-(h*frac)-6);esp.healthText.Color=hpCol else esp.healthText.Visible=false end
 else esp.healthBG.Visible=false;esp.healthFG.Visible=false;esp.healthText.Visible=false end
 if VA.ArmorBar.Enabled then
-local be=ch:FindFirstChild("BodyEffects")
-local armor=0;local armO=be and be:FindFirstChild("Armor");if armO then armor=armO.Value else pcall(function() armor=ch:GetAttribute("Armor") or ch:GetAttribute("ArmorValue") or 0 end) end
+local be=ch:FindFirstChild(GameCfg.folderName)
+local armor=0;local armO=be and be:FindFirstChild(GameCfg.armor);if armO then armor=armO.Value else pcall(function() armor=ch:GetAttribute("Armor") or ch:GetAttribute("ArmorValue") or 0 end) end
 esp.armorBar.Visible=true;esp.armorBar.From=Vector2.new(vpos.X+w+4,vpos.Y+h);esp.armorBar.To=Vector2.new(vpos.X+w+4,vpos.Y+h-(h*(armor/130)));esp.armorBar.Thickness=3;esp.armorBar.Color=Color3.fromRGB(255,0,0):Lerp(Color3.fromRGB(0,204,255),math.clamp(armor/130,0,1))
 else esp.armorBar.Visible=false end
 if VA.Skeleton.Enabled then
@@ -2382,16 +2840,16 @@ track(RunService.RenderStepped:Connect(function()
 if Unloaded or not Started then return end
 local ch=LocalPlayer.Character if not ch then return end
 local tool=ch:FindFirstChildOfClass("Tool") if not tool then return end
-local ammo=tool:FindFirstChild("Ammo")
+local ammo=getToolAmmo(tool)
 if ammo and ammo.Value==0 then
 if Config.Utility.SmartAutoReload then
 task.wait(Config.Utility.SmartAutoReloadDelay)
-if ch:FindFirstChildOfClass("Tool")==tool and tool:FindFirstChild("Ammo") and tool.Ammo.Value==0 then
-local ev=ReplicatedStorage:FindFirstChild("MainEvent")
+local ammo2=getToolAmmo(tool)","if ch:FindFirstChildOfClass("Tool")==tool and ammo2 and ammo2.Value==0 then
+local ev=getMainEvent()
 if ev then ev:FireServer("Reload",tool) end
 end
 elseif Config.Utility.AutoReload then
-local ev=ReplicatedStorage:FindFirstChild("MainEvent")
+local ev=getMainEvent()
 if ev then ev:FireServer("Reload",tool) end
 end
 end
@@ -2405,7 +2863,7 @@ if tick()-lastAmmoBuy<2 then return end
 local ch=LocalPlayer.Character if not ch then return end
 local tool=ch:FindFirstChildOfClass("Tool") if not tool then return end
 local mag=tool:FindFirstChild("Magazine") or tool:FindFirstChild("CurrentAmmo") or tool:FindFirstChild("Mag") or tool:FindFirstChild("Clip")
-local ammoVal=(mag and mag:IsA("ValueBase")) and mag or tool:FindFirstChild("Ammo")
+local ammoVal=(mag and mag:IsA("ValueBase")) and mag or getToolAmmo(tool)
 if not ammoVal then return end
 if ammoVal.Value<=Config['Auto Ammo'].Amount then
 lastAmmoBuy=tick()
@@ -2420,8 +2878,8 @@ if not Config.Purchases.AutoArmor then return end
 if purchasing then return end
 if tick()-lastArmorBuy<3 then return end
 local ch=LocalPlayer.Character if not ch then return end
-local be=ch:FindFirstChild('BodyEffects') if not be then return end
-local a=be:FindFirstChild('Armor') if not a then return end
+local be=ch:FindFirstChild(GameCfg.folderName) if not be then return end
+local a=be:FindFirstChild(GameCfg.armor) if not a then return end
 local mx=130
 if a.Value/mx <= Config.Purchases.ArmorAt/100 then
 lastArmorBuy=tick()
@@ -2531,9 +2989,29 @@ local f=UI_Font
 for _,gui in ipairs({ScreenGui,hudGui}) do pcall(function() for _,o in ipairs(gui:GetDescendants()) do if (o:IsA("TextLabel") or o:IsA("TextButton") or o:IsA("TextBox")) and o.Name~="HateBold" then o.Font=f end end end) end
 end
 function setAccentColor(v)
+local old=UI.Accent
 UI.Accent=v
 Config['UI Settings'].ThemeColor=v
 for _,e in pairs(AccentElements) do pcall(function() if e:IsA("TextLabel") or e:IsA("TextButton") then e.TextColor3=v elseif e:IsA("Frame") then e.BackgroundColor3=v end end) end
+-- // [修复] 选中颜色必须整UI生效: 描边/未登记的按钮/标题等全部跟随主题换色 //
+if old~=v then
+local white=Color3.fromRGB(255,255,255)
+for _,gui in ipairs({ScreenGui,hudGui,PopupGui}) do
+if gui and gui.Parent then
+pcall(function()
+for _,o in ipairs(gui:GetDescendants()) do
+if o:IsA("UIStroke") then
+if o.Color==old then o.Color=v end
+elseif (o:IsA("TextLabel") or o:IsA("TextButton")) then
+if not o.RichText and o.TextColor3==old and not (old==white) then o.TextColor3=v end
+elseif (o:IsA("Frame") or o:IsA("ScrollingFrame") or o:IsA("TextBox")) then
+if o.BackgroundColor3==old then o.BackgroundColor3=v end
+end
+end
+end)
+end
+end
+end
 if applyTabVisual then pcall(function() applyTabVisual(activeTab) end) end
 refreshAllComponents()
 end
@@ -2804,7 +3282,7 @@ local x=12+(i-1)%cols*(sw+gap)
 local y=32+math.floor((i-1)/cols)*(sw+gap)
 local s=Instance.new('TextButton');s.Size=UDim2.new(0,sw,0,sw);s.Position=UDim2.fromOffset(x,y);s.BackgroundColor3=c;s.BorderSizePixel=0;s.Text='';s.AutoButtonColor=false;s.ZIndex=101;s.Parent=popup
 if i==1 and okc then addStroke(s,UI.Accent) end
-s.MouseButton1Click:Connect(function() pcall(function() setColor(c) end) closePicker() end)
+s.MouseButton1Click:Connect(function() pcall(function() setColor(c) end) pcall(refreshAllComponents) closePicker() end)
 end
 ColorPopup=popup;ColorCatcher=catcher
 end
@@ -3188,8 +3666,8 @@ local aaBox=CreateSection(Pages.Aim.R,"AimAssist")
 local aaBtn=CreateToggle(aaBox,"AimAssist",function() return Config['Aim Assist'].Enabled end,function(v) Config['Aim Assist'].Enabled=v if not v then aimAssistPart=nil aimbotTargetPlayer=nil aimbotTargetPart=nil end end)
 attachKeybind(aaBtn,Config.Keybinds['Aim Assist'])
 CreateDropdown(aaBox,"AssistStyle",{"Mouse","Camera"},function() return Config['Aim Assist'].Style end,function(v) Config['Aim Assist'].Style=v end)
-CreateSlider(aaBox,"HSmoothness",1,100,function() return Config['Aim Assist'].HSmoothness end,function(v) Config['Aim Assist'].HSmoothness=v end)
-CreateSlider(aaBox,"VSmoothness",1,100,function() return Config['Aim Assist'].VSmoothness end,function(v) Config['Aim Assist'].VSmoothness=v end)
+CreateSlider(aaBox,"HSmoothness",1,20,function() return Config['Aim Assist'].HSmoothness end,function(v) Config['Aim Assist'].HSmoothness=v end)
+CreateSlider(aaBox,"VSmoothness",1,20,function() return Config['Aim Assist'].VSmoothness end,function(v) Config['Aim Assist'].VSmoothness=v end)
 CreateDropdown(aaBox,"SmoothStyle",{"Direction","Uniform"},function() return Config['Aim Assist'].SmoothStyle end,function(v) Config['Aim Assist'].SmoothStyle=v end)
 CreateToggle(aaBox,"AutoPrediction",function() return Config['Aim Assist'].AutoPrediction~=false end,function(v) Config['Aim Assist'].AutoPrediction=v end)
 CreateSlider(aaBox,"HPrediction",0,1000,function() return math.floor(Config['Aim Assist'].HPrediction*1000) end,function(v) Config['Aim Assist'].HPrediction=v/1000 end)
@@ -3262,6 +3740,8 @@ CreateToggle(espBox,"HealthText",function() return VA.HealthBar.ShowText end,fun
 CreateToggle(espBox,"Skeleton",function() return VA.Skeleton.Enabled end,function(v) VA.Skeleton.Enabled=v end)
 CreateToggle(espBox,"KeybindDisplay",function() return VA.KeybindDisplay end,function(v) VA.KeybindDisplay=v;updateKeybindDisplay() end)
 CreateColorPicker(espBox,"KDPColor",function() return VA.KeybindDisplayColor end,function(v) VA.KeybindDisplayColor=v;updateKeybindDisplay() end)
+CreateSlider(espBox,"KDPSize",8,40,function() return VA.KeybindDisplaySize end,function(v) VA.KeybindDisplaySize=v;updateKeybindDisplay() end)
+CreateDropdown(espBox,"KDPFont",{"Plex","UI","Flex","Monospace"},function() return VA.KeybindDisplayFont end,function(v) VA.KeybindDisplayFont=v;updateKeybindDisplay() end)
 CreateToggle(espBox,"AntiRecord",function() return VA.AntiRecord end,function(v) VA.AntiRecord=v end)
 local lpBox=CreateSection(Pages.Visuals.L,"LPVisuals")
 CreateToggle(lpBox,"Trail",function() return Config['Local Player Visuals'].Trail end,function(v) Config['Local Player Visuals'].Trail=v;applyTrail() end)
@@ -3271,7 +3751,10 @@ CreateColorPicker(lpBox,"GradientColor",function() return Config['Local Player V
 CreateToggle(lpBox,"MaterialTools",function() return Config['Local Player Visuals'].MaterialTools end,function(v) Config['Local Player Visuals'].MaterialTools=v;applyMaterialTools() end)
 CreateDropdown(lpBox,"MaterialValue",{"ForceField","Neon","Glass","Ice"},function() return Config['Local Player Visuals'].MaterialToolsValue end,function(v) Config['Local Player Visuals'].MaterialToolsValue=v;applyMaterialTools() end)
 CreateColorPicker(lpBox,"MaterialColor",function() return Config['Local Player Visuals'].MaterialToolsColor end,function(v) Config['Local Player Visuals'].MaterialToolsColor=v;applyMaterialTools() end)
-CreateToggle(lpBox,"AccessoryAdder",function() return true end,function() end)
+CreateToggle(lpBox,"AccessoryAdder",function() return Config['Local Player Visuals'].AccessoryAdder end,function(v)
+Config['Local Player Visuals'].AccessoryAdder=v
+if not v then removeAllAccessories() end
+end)
 CreateTextBox(lpBox,"AccessoryID","107473988",function() return accessoryId end,function(v) accessoryId=v end)
 CreateButton(lpBox,"AddAccessory",function() addAccessory(accessoryId) end)
 CreateButton(lpBox,"RemoveAccessory",function() removeAllAccessories() end)
@@ -3480,6 +3963,10 @@ CreateDropdown(rbBox,"AttachMode",{"Strafe","Random Teleport"},function() return
 CreateSlider(rbBox,"StrafeSpeed",1,100,function() return Config.Ragebot.StrafeSpeed end,function(v) Config.Ragebot.StrafeSpeed=v end)
 CreateSlider(rbBox,"HOffset",1,50,function() return Config.Ragebot.HOffset end,function(v) Config.Ragebot.HOffset=v end)
 CreateSlider(rbBox,"VOffset",1,50,function() return Config.Ragebot.VOffset end,function(v) Config.Ragebot.VOffset=v end)
+CreateToggle(rbBox,"RageDesyncPos",function() return Config.Ragebot.DesyncPosition end,function(v)
+Config.Ragebot.DesyncPosition=v
+if not v then rageDesyncClear() end
+end)
 CreateToggle(rbBox,"TeleportBullets",function() return Config.Ragebot.TeleportBullets end,function(v) Config.Ragebot.TeleportBullets=v end)
 CreateToggle(rbBox,"ViewTarget",function() return Config.Ragebot.ViewTarget end,function(v)
 Config.Ragebot.ViewTarget=v
@@ -3528,6 +4015,69 @@ CreateToggle(utBox,"InstantStand",function() return Config.Utility.InstantStand 
 CreateToggle(utBox,"NoSit",function() return Config.Utility.NoSit end,function(v) Config.Utility.NoSit=v;applyNoSit() end)
 CreateToggle(utBox,"NoVoidKill",function() return Config.Utility.NoVoidKill end,function(v) Config.Utility.NoVoidKill=v;applyNoVoidKill() end)
 CreateToggle(utBox,"AutoSort",function() return Config.Utility.AutoSort end,function(v) Config.Utility.AutoSort=v;if v then doAutoSort() end end)
+-- // [juju] AutoSort 9槽方案: 保存当前9格排序为方案, 死亡/乱序后点一次“现在自动排序”即按方案重排 //
+local sortPlanName=''
+local sortPlanSel=''
+local function sortPlanNames()
+local names={}
+for n in pairs(Config.Utility.SortPlans or {}) do
+if type(n)=="string" and n~='' then table.insert(names,n) end
+end
+table.sort(names)
+return names
+end
+local function sortPlanSelected()
+local ns=sortPlanNames()
+if ns[1] and (sortPlanSel=='' or not table.find(ns,sortPlanSel)) then sortPlanSel=ns[1] end
+return sortPlanSel
+end
+CreateTextBox(utBox,"SortPlanName","输入方案名称",function() return sortPlanName end,function(v) sortPlanName=v end)
+CreateButton(utBox,"SortPlanSave",function()
+local name=(sortPlanName or ''):gsub('^%s+',''):gsub('%s+$','')
+if name=='' then return end
+local bp=LocalPlayer.Backpack
+if not bp then return end
+local slots={}
+local kids=bp:GetChildren()
+for i=1,9 do
+local c=kids[i]
+if c and c:IsA('Tool') then slots[i]=c.Name else slots[i]='' end
+end
+Config.Utility.SortPlans=Config.Utility.SortPlans or {}
+Config.Utility.SortPlans[name]=slots
+sortPlanSel=name
+end)
+local pickBtn=CreateButton(utBox,"SortPlanPick",function()
+local ns=sortPlanNames()
+if #ns==0 then return end
+openDropdown(pickBtn,ns,function(opt) sortPlanSel=opt end)
+end)
+CreateButton(utBox,"SortPlanApply",function()
+local name=sortPlanSelected()
+if not name then return end
+local plan=Config.Utility.SortPlans and Config.Utility.SortPlans[name]
+if not plan then return end
+local sl={}
+for i=1,9 do sl[i]=plan[i] or '' end
+Config.Utility.AutoSortSlots=sl
+doAutoSort()
+end)
+CreateButton(utBox,"SortPlanDel",function()
+local name=sortPlanSelected()
+if not name or not Config.Utility.SortPlans then return end
+Config.Utility.SortPlans[name]=nil
+sortPlanSel=''
+end)
+CreateDynLabel(utBox,function()
+local name=sortPlanSelected()
+if not name then return T("SortPlanNone") end
+local plan=Config.Utility.SortPlans and Config.Utility.SortPlans[name] or {}
+local parts={}
+for i=1,9 do
+if plan[i] and plan[i]~='' then table.insert(parts,i.." "..plan[i]) end
+end
+return name.."  "..table.concat(parts," | ")
+end)
 CreateButton(utBox,"AutoSortNow",function() doAutoSort() end)
 local dtBox=CreateSection(Pages.Misc.R,"DoubleTap")
 CreateToggle(dtBox,"DoubleTap",function() return Config['Double Tap'].Enabled end,function(v) Config['Double Tap'].Enabled=v end)
@@ -3712,7 +4262,7 @@ local function hasAssistDisabler(AA)
 	if table.find(d,'No Gun') then
 		local tool=LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass('Tool')
 		-- // [修复] da hood 的枪械不一定有 Ammo 子对象, 旧判定会把辅助瞄准永久关掉 //
-		if not (tool and (tool:FindFirstChild('Ammo') or string.match(tool.Name,'^%['))) then return true end
+		if not (tool and (getToolAmmo(tool) or string.match(tool.Name,'^%['))) then return true end
 	end
 	if table.find(d,'Third Person') and isThirdPerson() then return true end
 	if table.find(d,'Ping Spike') then
@@ -3808,6 +4358,7 @@ end
 -- // [修复] FOV 中心点: 默认锁死屏幕中心; 打开"FOV跟随鼠标光标"后跟着真实光标走 //
 function aimCenter()
 	local AA=Config['Aim Assist']
+	-- // [修复] “FOV跟随鼠标光标”: 始终取自跟踪的光标位置 (游戏内指针被LockCenter锁定, GetMouseLocation恒为定点) //
 	if AA.FOVMouse then
 		if mouseCursorPos then return mouseCursorPos end
 		local ok,ml=pcall(function() return UserInputService:GetMouseLocation() end)
@@ -3899,8 +4450,8 @@ end
 function updateAimFOV()
 	if not aaFovCircle then return end
 	local AA=Config['Aim Assist']
-	local okRun=Started and not PanicMode and not Unloaded
-	local show=okRun and AA.Enabled and AA.UseFOV and AA.FOVVisible and bindActive('Aim Assist')
+	-- // [修复] FOV圈与辅助瞄准开关解耦: 只要“启用FOV+显示FOV”开着就一直生效, 无需在UI重新开关 //
+	local show=Started and not PanicMode and not Unloaded and AA.UseFOV and AA.FOVVisible
 	if show then
 		local pos=aimCenter()
 		aaFovCircle.Visible=true;aaFovCircle.Position=pos;aaFovCircle.Radius=math.max((AA.FOVSize or 600)/2,1)
@@ -3908,7 +4459,7 @@ function updateAimFOV()
 		aaFovCircle.Filled=false
 	else aaFovCircle.Visible=false end
 	pcall(function() fovCircle.Visible=false end)
-	-- // 面板上实时显示当前锁到的目标 (0.25s 刷一次, 不每帧改 UI) //
+	-- // 实时显示当前瞄准目标 (0.25s 刷一次, 不每帧刷 UI) //
 	if aaStatus and tick()>=aaStatusNext then
 		aaStatusNext=tick()+0.25
 		pcall(function() aaStatus:Refresh() end)
@@ -3921,9 +4472,10 @@ end
 -- // [重映射] 平滑度: 1=彻底锁死(准星一动不动), 数值越大越平滑 //
 -- // 旧公式最猛也只有约 25%/帧, 所以拉到 1 也永远锁不死 //
 local function smoothAlpha(v,dt)
-	local s=tonumber(v) or 50
+	-- // [重映射] 1-20: 1-5 硬锁, 5-10 微硬锁, 10-15 微软锁, 15-20 软锁; 1 = 彻底锁死(准星瞬间贴目标) //
+	local s=tonumber(v) or 10
 	if s<=1 then return 1 end
-	local t=math.clamp((s-1)/99,0,1)
+	local t=math.clamp((s-1)/19,0,1)
 	local k=math.lerp(420,2.5,t)
 	return math.clamp(1-math.exp(-k*math.max(dt or 0.016,0.0001)),0,1)
 end
@@ -3983,10 +4535,20 @@ function applyAimbotImpl(dt)
 	local aH,aV=aimSmoothAA(AA,dt)
 	local canMouse=(type(mousemoverel)=="function") or (type(setmouseposition)=="function")
 	local done=false
-	if AA.Style=='Mouse' and canMouse then
+	local okMB,mb2=pcall(function() return UserInputService.MouseBehavior end)
+	local mouseLocked=okMB and mb2~=nil and mb2~=Enum.MouseBehavior.Default
+	-- // [修复] 锁定视角时鼠标被钉在屏幕中心, 再调 mousemoverel 会和游戏自己的视角控制打架, 鼠标左右乱滑 //
+	-- // // 锁定模式直接走下面的相机 lerp: 第一人称里相机就是准星, 效果等同鼠标锁住人物ESP //
+	if AA.Style=='Mouse' and canMouse and not mouseLocked then
 		local sp,on=Camera:WorldToViewportPoint(pos)
 		if on then
-			local cur=aimCenter()
+			-- // [修复] 始终用真实鼠标位置做基准 (juju: distance = new_pos - mouse_position) //
+			-- // 第3人称不锁视角时若用屏幕中心做基准, 鼠标会朝错误方向飘 //
+			local cur
+			local okML,ml=pcall(function() return UserInputService:GetMouseLocation() end)
+			if okML and ml then cur=ml
+			elseif mouseCursorPos then cur=mouseCursorPos
+			else cur=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2) end
 			local dx=(sp.X-cur.X)*aH
 			local dy=(AA.DontAimVertically and 0 or (sp.Y-cur.Y)*aV)
 			if type(mousemoverel)=="function" then
@@ -4018,6 +4580,7 @@ pcall(function()
 	RunService:BindToRenderStep("HateCC_AimApply",Enum.RenderPriority.Camera.Value+10,function(dt)
 		if Unloaded or not Started then return end
 		applyAimbot(dt)
+	pcall(updateAimFOV) -- // [修复] FOV圈更新必须晚于瞄准应用(Camera+10), 否则会被早退分支再次隐藏 //
 	end)
 	aimApplyBound=true
 end)
@@ -4209,15 +4772,15 @@ track(RunService.Heartbeat:Connect(function()
 	for _,uid in ipairs(RB.Targets or {}) do
 		local p=Players:GetPlayerByUserId(uid)
 		if p and p~=LocalPlayer and p.Character then
-			local pbe=p.Character:FindFirstChild('BodyEffects')
-			local pko=pbe and (pbe:FindFirstChild('K.O') or pbe:FindFirstChild('Knocked'))
+			local pbe=p.Character:FindFirstChild(GameCfg.folderName)
+			local pko=pbe and (pbe:FindFirstChild(GameCfg.knocked) or pbe:FindFirstChild('K.O') or pbe:FindFirstChild('Knocked'))
 			local psd=pbe and pbe:FindFirstChild('SDeath')
 			if pko and pko.Value and not (psd and psd.Value) then stompT=p break end
 		end
 	end
 	if not stompT and ragebotTarget and ragebotTarget~=LocalPlayer and ragebotTarget.Character then
-		local pbe=ragebotTarget.Character:FindFirstChild('BodyEffects')
-		local pko=pbe and (pbe:FindFirstChild('K.O') or pbe:FindFirstChild('Knocked'))
+		local pbe=ragebotTarget.Character:FindFirstChild(GameCfg.folderName)
+		local pko=pbe and (pbe:FindFirstChild(GameCfg.knocked) or pbe:FindFirstChild('K.O') or pbe:FindFirstChild('Knocked'))
 		local psd=pbe and pbe:FindFirstChild('SDeath')
 		if pko and pko.Value and not (psd and psd.Value) then stompT=ragebotTarget end
 	end
@@ -4227,7 +4790,7 @@ track(RunService.Heartbeat:Connect(function()
 		if ut then hrp.CFrame=CFrame.new(ut.Position+Vector3.new(0,3,0)) end
 		if tick()-stompLastFire>0.03 then
 			stompLastFire=tick()
-			local ev=ReplicatedStorage:FindFirstChild('MainEvent') or ReplicatedStorage:FindFirstChild('MAINEVENT')
+			local ev=getMainEvent()
 			if ev then pcall(function() ev:FireServer('Stomp') end) end
 		end
 	elseif ragebotBackPos then
@@ -4450,6 +5013,29 @@ Translations.CN.Desync="假同步";Translations.CN.DesyncMode="模式";Translati
 Translations.CN.ParticleAura="粒子光环";Translations.CN.AuraValue="光环类型";Translations.CN.AuraColor="光环颜色"
 Translations.CN.Forcefield="力场";Translations.CN.ForcefieldBody="力场身体";Translations.CN.ForcefieldBodyColor="身体颜色";Translations.CN.ForcefieldHats="力场帽子";Translations.CN.ForcefieldHatsColor="帽子颜色"
 Translations.CN.KDPColor="指示颜色"
+Translations.EN.RageDesyncPos="Desync position";Translations.CN.RageDesyncPos="Desync 位置"
+Translations.EN.AutoSortNow="Sort now";Translations.CN.AutoSortNow="立即排序"
+Translations.EN.AccessoryAdder="Accessory Adder";Translations.CN.AccessoryAdder="饰品添加"
+Translations.EN.AutoSlot1="Slot 1 (item name)"
+Translations.CN.AutoSlot1="槽位 1 (物品名)"
+Translations.EN.AutoSlot2="Slot 2 (item name)"
+Translations.CN.AutoSlot2="槽位 2 (物品名)"
+Translations.EN.AutoSlot3="Slot 3 (item name)"
+Translations.CN.AutoSlot3="槽位 3 (物品名)"
+Translations.EN.AutoSlot4="Slot 4 (item name)"
+Translations.CN.AutoSlot4="槽位 4 (物品名)"
+Translations.EN.AutoSlot5="Slot 5 (item name)"
+Translations.CN.AutoSlot5="槽位 5 (物品名)"
+Translations.EN.AutoSlot6="Slot 6 (item name)"
+Translations.CN.AutoSlot6="槽位 6 (物品名)"
+Translations.EN.AutoSlot7="Slot 7 (item name)"
+Translations.CN.AutoSlot7="槽位 7 (物品名)"
+Translations.EN.AutoSlot8="Slot 8 (item name)"
+Translations.CN.AutoSlot8="槽位 8 (物品名)"
+Translations.EN.AutoSlot9="Slot 9 (item name)"
+Translations.CN.AutoSlot9="槽位 9 (物品名)"
+Translations.EN.KDPSize="Indicator Size";Translations.EN.KDPFont="Indicator Font"
+Translations.CN.KDPSize="指示大小";Translations.CN.KDPFont="指示字体"
 -- ######################## 动画修改器 (free 移植: 14 套动画预设) ########################
 local AnimKeepOnDeath=false
 local AnimOptions={["Idle1"]="http://www.roblox.com/asset/?id=180435571",["Idle2"]="http://www.roblox.com/asset/?id=180435792",["Walk"]="http://www.roblox.com/asset/?id=180426354",["Run"]="http://www.roblox.com/asset/?id=180426354",["Jump"]="http://www.roblox.com/asset/?id=125750702",["Climb"]="http://www.roblox.com/asset/?id=180436334",["Fall"]="http://www.roblox.com/asset/?id=180436148"}
@@ -4498,16 +5084,17 @@ function startGodBlock()
 	godBlockConn=RunService.Stepped:Connect(function()
 		if not Config['God Block'].Enabled then return end
 		local ch=LocalPlayer.Character
-		if ch and ch:FindFirstChild('BodyEffects') then
-			local be=ch.BodyEffects
-			if be:FindFirstChild('Block') then be.Block:Destroy() end
+		if ch and ch:FindFirstChild(GameCfg.folderName) then
+			local be=ch:FindFirstChild(GameCfg.folderName)
+			if be:FindFirstChild('Block') then be:FindFirstChild('Block'):Destroy() end
 			local tool=ch:FindFirstChildWhichIsA('Tool')
-			if tool and tool:FindFirstChild('Ammo') then
-				pcall(function() ReplicatedStorage.MainEvent:FireServer('Block', false) end)
+			local mev=getMainEvent()
+			if tool and getToolAmmo(tool) then
+				if mev then pcall(function() mev:FireServer('Block', false) end) end
 			else
-				pcall(function() ReplicatedStorage.MainEvent:FireServer('Block', true) end)
+				if mev then pcall(function() mev:FireServer('Block', true) end) end
 				task.wait()
-				pcall(function() ReplicatedStorage.MainEvent:FireServer('Block', false) end)
+				if mev then pcall(function() mev:FireServer('Block', false) end) end
 			end
 		end
 	end)
