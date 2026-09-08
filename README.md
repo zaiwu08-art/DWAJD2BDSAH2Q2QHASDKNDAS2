@@ -1,1 +1,1 @@
-# hate.cc1
+fuck u :)
